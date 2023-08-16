@@ -1,1 +1,69 @@
-<p>login works!</p>
+<div class="login-component row">
+
+    <div class="col-sm-7">
+        <img src="../../../assets/login.png" style="width: 100%;" alt="">
+    </div>
+
+    <div class="login col-sm-5" *ngIf="isLogin">
+        <h1>Welcome!</h1>
+        <h2>Login</h2>
+        <form>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </form>
+        
+        <div class="change-register" (click)="changeisLogin()">
+            <h4>Dont have account? Register</h4>
+        </div>
+    </div>
+
+    <div class="register col-sm-5" *ngIf="!isLogin">
+        <h1>Welcome!</h1>
+        <h2>Register</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">User name:</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <br>
+                <input type="radio" value="Male" name="gender">
+                <span>Male</span>
+                <input type="radio" value="Female" name="gender">
+                <span>Female</span>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">Register</button>
+            </div>
+        </form>
+
+        <div class="change-login" (click)="changeisLogin()">
+            <h4>Have account? Login</h4>
+        </div>
+    </div>
+
+</div>

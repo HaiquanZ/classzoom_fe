@@ -1,1 +1,58 @@
-<p>home works!</p>
+<div class="home-component row">
+    <div class="first-block col-sm-8">
+        <div class="header-home d-flex justify-content-around">
+            <div class="title">
+                <h1 style="font-weight: bolder; font-size: 3rem;">Your Groups</h1>
+                <h2 style="color: var(--main-color);">01/01/2023</h2>
+            </div>
+            <button class="add-group">
+                <fa-icon [icon]="faPlus"></fa-icon>
+            </button>
+        </div>
+
+        <div class="group-list" style="width: 90%;" *ngFor="let i of list">
+            <div class="group-item mt-5">
+                <div>
+                    <img 
+                        width="80%" class="pt-3 pb-3" src="../../../assets/biology.png" 
+                        alt="avatar-group"
+                        style="margin-left: 1rem; border-radius: 20px;"
+                    >
+                </div>
+                <div class="group-description mt-4">
+                    <h2 style="font-weight: bold;">Biology Class</h2>
+                    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
+                </div>
+                <div class="total-member text-center">
+                    <h1>99</h1>
+                    <h2>Member</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="second-block col-sm-4">
+        <div class="account d-flex justify-content-center">
+            <img style="width: 15%;" src="../../../assets/avatar-female-1.png" alt="avatar">
+            <h2>Do Duc Khiem</h2>
+        </div>
+
+        <div class="your-assignment mt-5">
+            <h2>Assignment</h2>
+            <div class="assignment-list" *ngFor="let i of list">
+                <div class="assignment-item d-flex mt-5">
+                    <div class="item-icon">
+                        <fa-icon 
+                            [icon]="faFile"
+                            style="font-size: 3rem; padding: 2rem; color: var(--main-color)"
+                        >
+                        </fa-icon>
+                    </div>
+                    <div class="item-infor">
+                        <h3 style="font-weight: bold;">Task 1</h3>
+                        <h5 style="font-weight: bold;">Due to: 01/01/2023</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

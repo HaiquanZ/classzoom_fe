@@ -1,0 +1,52 @@
+.home-component{
+    margin-top: 2rem;
+}
+.account{
+    cursor: pointer;
+}
+.account h2{
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.your-assignment h2{
+    color: var(--gray-color);
+    font-weight: bold;
+}
+.item-icon{
+    margin-right: 2rem;
+    background-color: var(--theme-color);
+    border-radius: 15px;
+}
+.assignment-item{
+    cursor: pointer;
+}
+.add-group{
+    border: none;
+    border-radius: 20px;
+    background-color: var(--main-color);
+}
+.add-group fa-icon{
+    color: #fff;
+    font-size: 3rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+}
+.group-item{
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1.5fr;
+    gap: 10px;
+    border-radius: 20px;
+    background-color: var(--theme-color);
+    color: #000;
+    transition: all ease-in-out .2s;
+}
+.group-item:hover{
+    background-color: var(--main-color);
+    color: #fff;
+}
+.total-member h1{
+    font-weight: bolder;
+    margin-top: 2.5rem;
+}

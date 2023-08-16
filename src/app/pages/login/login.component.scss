@@ -1,0 +1,45 @@
+.login-component{
+    background-color: var(--theme-color);
+    border: 1px var(--main-color) solid;
+    border-radius: 20px;
+    margin-right: 5rem;
+    margin-top: 50vh;
+    transform: translateY(-50%);
+    height: 90vh;
+}
+
+.register, .login{
+    margin-top: 10%;
+}
+
+.register h1, .login h1{
+    color: var(--main-color);
+    font-size: 4rem;
+}
+.register h2, .login h2{
+    font-size: 2.5rem;
+}
+.register label, .login label{
+    font-size: 1.25rem;
+}
+.register input[type=text], .login input[type=text]{
+    width: 70%;
+}
+.register input[type=password], .login input[type=password]{
+    width: 70%;
+}
+.register button, .login button{
+    margin: 1.5rem auto;
+    font-size: 1.5rem;
+}
+.register h4, .login h4{
+    cursor: pointer;
+}
+.register h4:hover, .login h4:hover{
+    color: var(--main-color);
+}
+
+.register span{
+    margin: 1rem;
+    font-size: 1.25rem;
+}
