@@ -10,8 +10,8 @@
             </button>
         </div>
 
-        <div class="group-list" style="width: 90%;" *ngFor="let i of list">
-            <div class="group-item mt-5">
+        <div class="group-list" style="width: 90%;">
+            <div class="group-item mt-5" *ngFor="let i of list">
                 <div>
                     <img 
                         width="80%" class="pt-3 pb-3" src="../../../assets/biology.png" 
@@ -31,15 +31,15 @@
         </div>
     </div>
     <div class="second-block col-sm-4">
-        <div class="account d-flex justify-content-center" routerLink="profile">
+        <div class="account d-flex justify-content-center" routerLink="profile" (click)="handleClickProfile">
             <img style="width: 15%;" src="../../../assets/avatar-female-1.png" alt="avatar">
             <h2>Do Duc Khiem</h2>
         </div>
 
         <div class="your-assignment mt-5">
             <h2>Assignment</h2>
-            <div class="assignment-list" *ngFor="let i of list">
-                <div class="assignment-item d-flex mt-5">
+            <div class="assignment-list">
+                <div class="assignment-item d-flex mt-5" *ngFor="let i of list">
                     <div class="item-icon">
                         <fa-icon 
                             [icon]="faFile"
