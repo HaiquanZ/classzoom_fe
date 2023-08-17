@@ -1,0 +1,12 @@
+.profile-component{
+    background-color: var(--theme-color);
+    border: 1px var(--main-color) solid;
+    border-radius: 20px;
+    margin-right: 5rem;
+    margin-top: 50vh;
+    transform: translateY(-50%);
+    height: 90vh;
+}
+.profile-image img{
+    margin-top: 10rem;
+}

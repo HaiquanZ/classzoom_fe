@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faHome, faUserGroup, faPen, faUser } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
@@ -11,9 +12,10 @@ export class HeaderComponent{
   faUserGroup = faUserGroup;
   faPen = faPen;
   faUser = faUser;
-  typeHeader: string = 'home';
+  public typeHeader: string = 'home';
 
-  handleChangeType(type: string){
+  public handleChangeType(type: string){
     this.typeHeader = type;
+    
   }
 }
