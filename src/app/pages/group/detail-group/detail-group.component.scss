@@ -1,0 +1,38 @@
+.detail-header{
+    border-bottom: 1px solid var(--main-color);
+    margin-right: 3rem;
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+}
+.name-group img{
+    width: 6%;
+    height: auto;
+}
+.action-item{
+    margin: auto 2rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+}
+.action-item:hover{
+    color: var(--main-color);
+}
+.hello-picture{
+    width: 50%;
+    margin-top: 5rem;
+}
+.post-item{
+    background-color: var(--theme-color);
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-right: 3rem;
+}
+.owner img{
+    width: 5rem !important;
+    margin-right: 1rem;
+}
+.content-detail p{
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}

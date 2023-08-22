@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-detail-assignment',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./detail-assignment.component.scss']
 })
 export class DetailAssignmentComponent {
-
+  faArrowLeft = faArrowLeft;
 }

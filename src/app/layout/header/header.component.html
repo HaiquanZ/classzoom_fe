@@ -3,11 +3,11 @@
         <h1>ClassZoom</h1>
     </div>
 
-    <div class="header-menu">
+    <div class="header-menu" *ngIf="hiddenHeader">
         <div 
             class="header-item d-flex justify-content-center pt-4 pb-4" 
             routerLink="/"
-            [ngClass]="{'active-header' : this.common.typeHeader == 'home'}"
+            [ngClass]="{'active-header' : this.typeHeader == 'home'}"
             (click)="handleChangeType('home')"
         >
             <fa-icon [icon] = "faHome"></fa-icon>
@@ -16,7 +16,7 @@
         <div 
             class="header-item d-flex justify-content-center pt-4 pb-4" 
             routerLink="/group"
-            [ngClass]="{'active-header' : this.common.typeHeader == 'group'}"
+            [ngClass]="{'active-header' : this.typeHeader == 'group'}"
             (click)="handleChangeType('group')"
         >
             <fa-icon [icon] = "faUserGroup"></fa-icon>
@@ -25,7 +25,7 @@
         <div
             class="header-item d-flex justify-content-center pt-4 pb-4" 
             routerLink="/assignment"
-            [ngClass]="{'active-header' : this.common.typeHeader == 'assignment'}"
+            [ngClass]="{'active-header' : this.typeHeader == 'assignment'}"
             (click)="handleChangeType('assignment')"
         >
             <fa-icon [icon] = "faPen"></fa-icon>
@@ -34,7 +34,7 @@
         <div 
             class="header-item d-flex justify-content-center pt-4 pb-4" 
             routerLink="/profile"
-            [ngClass]="{'active-header' : this.common.typeHeader == 'profile'}"
+            [ngClass]="{'active-header' : this.typeHeader == 'profile'}"
             (click)="handleChangeType('profile')"
         >
             <fa-icon [icon] = "faUser"></fa-icon>

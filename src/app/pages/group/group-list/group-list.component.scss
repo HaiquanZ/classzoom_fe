@@ -1,0 +1,26 @@
+.group-component>h1{
+    font-weight: bold;
+    font-size: 3rem;
+    color: var(--main-color);
+    margin-bottom: 3rem;
+}
+.abs-gr-item h1{
+    color: var(--main-color);
+    font-weight: bold;
+}
+.group-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin: auto 10px;
+}
+.group-item{
+    cursor: pointer;
+    border: 1px var(--main-color) solid;
+    border-radius: 20px;
+    transition: all ease-in-out .3s;
+}
+.group-item:hover{
+    transform: scale(1.05);
+    color: var(--main-color);
+}

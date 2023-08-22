@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { faHome, faUserGroup, faPen, faUser } from '@fortawesome/free-solid-svg-icons'
 import { CommonService } from 'src/app/services/common.service';
 
@@ -13,15 +12,22 @@ export class HeaderComponent implements OnInit {
   faUserGroup = faUserGroup;
   faPen = faPen;
   faUser = faUser;
+  hiddenHeader: boolean = true;
 
-  constructor(public common : CommonService){}
+  typeHeader: string = 'home';
 
+  constructor(
+    public common : CommonService,
+  ){}
+
+  
   public handleChangeType(type: string){
-    this.common.typeHeader = type;
+    this.typeHeader = type;
     
   }
 
   ngOnInit(): void {
-      
+      this.common.typeHeader.subscribe(type => this.typeHeader = type);
+      this.common.logged.subscribe( logged => this.hiddenHeader = logged);
   }
 }

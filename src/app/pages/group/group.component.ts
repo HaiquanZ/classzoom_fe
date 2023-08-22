@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./group.component.scss']
 })
 export class GroupComponent {
-  list: Array<number> = [1, 2, 3, 4, 5];
+  
 }

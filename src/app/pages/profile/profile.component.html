@@ -4,7 +4,7 @@
     </div>
     <div class="col-sm-8 infor-profile">
         <h1>Information of account</h1>
-        <img src="../../../assets/avatar-female-1.png" style="width: 30%;" alt="">
+        <img src="{{ urlAvt }}" style="width: 30%;" alt="">
         <table class="table table-primary table-striped table-profile">
             <thead>
                 <tr>
@@ -15,21 +15,21 @@
             <tbody>
                 <tr>
                     <th scope="row">Name</th>
-                    <td>Mark</td>
+                    <td>{{userName}}</td>
                 </tr>
 
                 <tr>
                     <th scope="row">Email</th>
-                    <td>mark@gmail.com</td>
+                    <td>{{email}}</td>
                 </tr>
 
                 <tr>
                     <th scope="row">Gender</th>
-                    <td>Female</td>
+                    <td>{{gender}}</td>
                 </tr>
             </tbody>
         </table>
 
-        <button class="btn btn-primary mt-3">Log out</button>
+        <button class="btn btn-primary mt-3" (click)="handleLogOut()">Log out</button>
     </div>
 </div>

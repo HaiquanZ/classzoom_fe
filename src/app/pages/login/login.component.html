@@ -7,19 +7,19 @@
     <div class="login col-sm-5" *ngIf="isLogin">
         <h1>Welcome!</h1>
         <h2>Login</h2>
-        <form>
+        <form [formGroup]="formGroup" (ngSubmit)="login()">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" formControlName="password">
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary">Login</button>
+                <button class="btn btn-primary" type="submit">Login</button>
             </div>
         </form>
         
@@ -31,33 +31,33 @@
     <div class="register col-sm-5" *ngIf="!isLogin">
         <h1>Welcome!</h1>
         <h2>Register</h2>
-        <form>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
             <div class="form-group">
                 <label for="name">User name:</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="username">
             </div>
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" formControlName="password">
             </div>
 
             <div class="form-group">
                 <label for="gender">Gender:</label>
                 <br>
-                <input type="radio" value="Male" name="gender">
+                <input type="radio" value="Male" name="gender" formControlName="gender">
                 <span>Male</span>
-                <input type="radio" value="Female" name="gender">
+                <input type="radio" value="Female" name="gender" formControlName="gender">
                 <span>Female</span>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary">Register</button>
+                <button class="btn btn-primary" type="submit">Register</button>
             </div>
         </form>
 

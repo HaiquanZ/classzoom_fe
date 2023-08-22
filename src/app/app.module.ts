@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeaderComponent } from './layout/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GroupComponent } from './pages/group/group.component';
@@ -15,6 +15,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { DetailGroupComponent } from './pages/group/detail-group/detail-group.component';
 import { DetailAssignmentComponent } from './pages/assignment/detail-assignment/detail-assignment.component';
 import { CreateAssignmentComponent } from './pages/assignment/create-assignment/create-assignment.component';
+import { GroupListComponent } from './pages/group/group-list/group-list.component';
+import { AssignmentListComponent } from './pages/assignment/assignment-list/assignment-list.component';
+import { OwnerAssignmentComponent } from './pages/assignment/owner-assignment/owner-assignment.component';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 @NgModule({
   declarations: [
@@ -28,13 +35,21 @@ import { CreateAssignmentComponent } from './pages/assignment/create-assignment/
     ProfileComponent,
     DetailGroupComponent,
     DetailAssignmentComponent,
-    CreateAssignmentComponent
+    CreateAssignmentComponent,
+    GroupListComponent,
+    AssignmentListComponent,
+    OwnerAssignmentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
