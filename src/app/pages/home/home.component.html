@@ -11,7 +11,7 @@
         </div>
 
         <div class="group-list" style="width: 90%;">
-            <div class="group-item mt-5" (click)="handleChangeTypeHeader('group')" *ngFor="let i of list" routerLink="/group/detail">
+            <div class="group-item mt-5" (click)="handleChangeTypeHeader('group')" *ngFor="let i of listGroup" routerLink="/group/detail">
                 <div>
                     <img 
                         width="80%" class="pt-3 pb-3" src="../../../assets/biology.png" 
@@ -20,11 +20,11 @@
                     >
                 </div>
                 <div class="group-description mt-4">
-                    <h2 style="font-weight: bold;">Biology Class</h2>
-                    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
+                    <h2 style="font-weight: bold;">{{i.groupName}}</h2>
+                    <h4>{{i.description}}</h4>
                 </div>
                 <div class="total-member text-center">
-                    <h1>99</h1>
+                    <h1>{{i.totalMember}}</h1>
                     <h2>Member</h2>
                 </div>
             </div>

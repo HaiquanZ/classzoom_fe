@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit{
           this.authService.id = result.data.id;
           this.authService.gender = result.data.gender;
           this.authService.userName = result.data.username;
-          localStorage.setItem('token', JSON.stringify(result.data.token));
+          localStorage.setItem('token', result.data.token);
           this.commonService.logged.next(true);
           this.router.navigate(['']);
         },

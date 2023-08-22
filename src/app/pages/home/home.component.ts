@@ -3,6 +3,7 @@ import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CommonService } from 'src/app/services/common.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,13 @@ export class HomeComponent implements OnInit{
   logged: boolean = false;
   userName: string = '';
   urlAvt: string = '';
+  listGroup: Array<any> = [];
   
   constructor(
     private commonService: CommonService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private groupService: GroupService
   ){}
 
   //handle change typeHeader
@@ -29,6 +32,7 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
+      //handle user information
       this.commonService.logged.subscribe(logged => this.logged = logged);
       if (!this.logged){
         this.router.navigate(['/login']);
@@ -39,6 +43,14 @@ export class HomeComponent implements OnInit{
       }else{
         this.urlAvt = '../../../assets/avatar-female-1.png';
       }
+      //handle list groups
+      this.groupService.getAllGroups().subscribe(
+        (result) => {
+          console.log(result);
+          this.listGroup = result.slice();
+        },
+        (err) => {console.log(err);}
+      )
 
   }
 }
