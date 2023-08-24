@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,6 @@ export class AuthService {
   // public username = new BehaviorSubject<string>('');
   // public email = new BehaviorSubject<string>('');
   // public gender = new BehaviorSubject<string>('');
-
-  id: string = '';
-  userName: string = '';
-  email: string = '';
-  gender: string = '';
 
   constructor(private http: HttpClient) { }
 

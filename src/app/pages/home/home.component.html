@@ -3,15 +3,15 @@
         <div class="header-home d-flex justify-content-around">
             <div class="title">
                 <h1 style="font-weight: bolder; font-size: 3rem;">Your Groups</h1>
-                <h2 style="color: var(--main-color);">01/01/2023</h2>
+                <h2 style="color: var(--main-color);">{{ dataTime | date}}</h2>
             </div>
-            <button class="add-group">
+            <button class="add-group" routerLink="/group/create" (click)="handleChangeTypeHeader('group')">
                 <fa-icon [icon]="faPlus"></fa-icon>
             </button>
         </div>
 
         <div class="group-list" style="width: 90%;">
-            <div class="group-item mt-5" (click)="handleChangeTypeHeader('group')" *ngFor="let i of listGroup" routerLink="/group/detail">
+            <div class="group-item mt-5" (click)="handleClickGroupItem(i.groupId)" *ngFor="let i of listGroup">
                 <div>
                     <img 
                         width="80%" class="pt-3 pb-3" src="../../../assets/biology.png" 

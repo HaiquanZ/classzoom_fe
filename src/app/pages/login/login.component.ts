@@ -52,10 +52,10 @@ export class LoginComponent implements OnInit{
       this.authService.login(this.formGroup.value.email, this.formGroup.value.password).subscribe(
         (result) => {
           this.notifiService.showSuccess("Hello. Have a nice day!", "Login success!");
-          this.authService.email = result.data.email;
-          this.authService.id = result.data.id;
-          this.authService.gender = result.data.gender;
-          this.authService.userName = result.data.username;
+          localStorage.setItem('id', result.data.id);
+          localStorage.setItem('email', result.data.email);
+          localStorage.setItem('gender', result.data.gender);
+          localStorage.setItem('username', result.data.username);
           localStorage.setItem('token', result.data.token);
           this.commonService.logged.next(true);
           this.router.navigate(['']);
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit{
       }
       this.authService.register(data).subscribe(
         (result) => {
-          this.notifiService.showSuccess("Login for going on!", "Register success!");
+          this.notifiService.showSuccess("Login to continue", "Register success!");
           this.changeisLogin();
         },
         (err) => {this.notifiService.showError(err.error.error, "Register failed!");}

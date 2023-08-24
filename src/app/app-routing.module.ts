@@ -30,7 +30,7 @@ const routes: Routes = [
         component: GroupListComponent,
       },
       {
-        path: 'detail',
+        path: 'detail/:id',
         component: DetailGroupComponent,
       },
       {
