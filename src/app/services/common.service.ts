@@ -18,6 +18,9 @@ export class CommonService{
   gender: string = '';
   userName: string = '';
 
+  //handle picture of group
+
+  
   constructor(
     private http: HttpClient
   ) { }
