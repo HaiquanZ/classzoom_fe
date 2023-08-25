@@ -1,20 +1,24 @@
 <div class="detail-group-component">
     <div class="detail-header d-flex">
         <div class="name-group d-flex">
-            <img src="../../../../assets/history.png" alt="avatar group">
+            <img src="../../../../assets/hi.png" alt="avatar group">
             <h1 class="mt-4 p-4" style="color: var(--main-color);">History Class</h1>
         </div>
 
         <div class="action-group d-flex">
-            <div class="action-item">
+            <div class="action-item" title="Post" routerLink="/group/create-post">
                 <fa-icon [icon]="faPenToSquare"></fa-icon>
             </div>
 
-            <div class="action-item">
+            <div class="action-item" title="Assignment" routerLink="/assignment/create">
+                <fa-icon [icon]="faBookOpen"></fa-icon>
+            </div>
+
+            <div class="action-item" title="Call">
                 <fa-icon [icon]="faSquarePhone"></fa-icon>
             </div>
 
-            <div class="action-item">
+            <div class="action-item" title="Setting" routerLink="/group/update/{{groupId}}">
                 <fa-icon [icon]="faGear"></fa-icon>
             </div>
         </div>

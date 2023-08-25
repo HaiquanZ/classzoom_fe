@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./group.component.scss']
 })
 export class GroupComponent {
-  
+
 }

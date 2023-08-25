@@ -21,6 +21,8 @@ import { OwnerAssignmentComponent } from './pages/assignment/owner-assignment/ow
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { UpdateGroupComponent } from './pages/group/update-group/update-group.component';
+import { CreatePostComponent } from './pages/group/create-post/create-post.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     CreateAssignmentComponent,
     GroupListComponent,
     AssignmentListComponent,
-    OwnerAssignmentComponent
+    OwnerAssignmentComponent,
+    UpdateGroupComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,

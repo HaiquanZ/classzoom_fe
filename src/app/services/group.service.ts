@@ -20,5 +20,19 @@ export class GroupService {
     );
   }
 
+  createGroup(data: any): Observable<any>{
+    return this.http.post(
+      `${this.baseUrl}/api/v1/group/create`,
+      data,
+      {headers: {token: this.token}}
+    )
+  }
+
+  deleteGroup(id: any): Observable<any>{
+    return this.http.delete(
+      `${this.baseUrl}/api/v1/group/${id}`,
+      {headers: {token: this.token}}
+    )
+  }
 
 }

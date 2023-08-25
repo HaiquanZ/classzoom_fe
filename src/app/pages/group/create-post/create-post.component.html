@@ -1,0 +1,12 @@
+<div class="create-post-component d-flex justify-content-center">
+    <form action="" [formGroup]="createPostForm" (ngSubmit)="createPost()">
+        <h1 class="text-center title-create mt-5">Create new post</h1>
+
+        <div class="form-group mt-3">
+            <label for="content">Content:</label>
+            <textarea class="form-control" rows="10" cols="80" formControlName="content"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Create</button>
+    </form>
+</div>

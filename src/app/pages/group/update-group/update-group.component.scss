@@ -1,0 +1,27 @@
+.input-group button{
+    color: black;
+    border: var(--main-color) 2px solid;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all ease-in-out .2s;
+}
+
+.input-group button:hover{
+    color: #fff;
+    background-color: var(--main-color);
+}
+
+.input-group input{
+    border: var(--main-color) 2px solid;
+    font-size: 1.5rem;
+}
+.list-member{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.member-item{
+    background-color: var(--theme-color);
+    border-radius: 20px;
+    padding: 1rem;
+}
