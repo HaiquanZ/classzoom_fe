@@ -13,6 +13,7 @@ import { GroupListComponent } from './pages/group/group-list/group-list.componen
 import { AssignmentListComponent } from './pages/assignment/assignment-list/assignment-list.component';
 import { UpdateGroupComponent } from './pages/group/update-group/update-group.component';
 import { CreatePostComponent } from './pages/group/create-post/create-post.component';
+import { OwnerAssignmentComponent } from './pages/assignment/owner-assignment/owner-assignment.component';
 
 const routes: Routes = [
   {
@@ -44,7 +45,7 @@ const routes: Routes = [
         component: UpdateGroupComponent,
       },
       {
-        path: 'create-post',
+        path: 'create-post/:id',
         component: CreatePostComponent
       }
     ]
@@ -58,12 +59,16 @@ const routes: Routes = [
         component: AssignmentListComponent,
       },
       {
-        path: 'create',
+        path: 'create/:id',
         component: CreateAssignmentComponent,
       },
       {
-        path: 'detail',
+        path: 'detail/:id',
         component: DetailAssignmentComponent,
+      },
+      {
+        path: 'owner/:id',
+        component: OwnerAssignmentComponent
       }
     ]
   },

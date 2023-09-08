@@ -15,4 +15,26 @@ export class PostService {
   getPostByGroupId(groupId: any): Observable<any>{
     return this.http.get(`${this.baseUrl}/api/v1/post/${groupId}`,{headers: {'token': this.token}});
   }
+
+  createPost(data: any): Observable<any>{
+    return this.http.post(
+      `${this.baseUrl}/api/v1/post/create`,
+      data,
+      {headers: {token: this.token}}
+    );
+  }
+
+  getAssignmentByUser(): Observable<any>{
+    return this.http.get(
+      `${this.baseUrl}/api/v1/post/assignment`,
+      {headers: {'token': this.token}}
+    )
+  }
+
+  getDetailAssignment(id: string): Observable<any>{
+    return this.http.get(
+      `${this.baseUrl}/api/v1/post/assignment/${id}`,
+      {headers: {'token': this.token}}
+    )
+  }
 }

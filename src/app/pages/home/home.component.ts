@@ -3,6 +3,7 @@ import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { CommonService } from 'src/app/services/common.service';
 import { GroupService } from 'src/app/services/group.service';
 import { Router } from '@angular/router';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +18,13 @@ export class HomeComponent implements OnInit{
   userName: any;
   urlAvt: any;
   listGroup: Array<any> = [];
+  listAssignment: Array<any> = [];
   dataTime: any;
   
   constructor(
     private commonService: CommonService,
     private groupService: GroupService,
+    private postService: PostService,
     private router: Router
   ){}
 
@@ -50,6 +53,14 @@ export class HomeComponent implements OnInit{
         (result) => {
           this.listGroup = result.slice();
           //console.log(this.listGroup);
+        },
+        (err) => {console.log(err);}
+      )
+
+      this.postService.getAssignmentByUser().subscribe(
+        (result) => {
+          console.log(result);
+          this.listAssignment = result;
         },
         (err) => {console.log(err);}
       )

@@ -9,8 +9,10 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./update-group.component.scss']
 })
 export class UpdateGroupComponent implements OnInit{
-  list: Array<number> = [1,2,3,4,5,6,7,8,9,10];
+  memberList: Array<any> = [];
   groupId: any;
+
+  email: string = '';
 
   constructor(
     private groupService: GroupService,
@@ -22,6 +24,35 @@ export class UpdateGroupComponent implements OnInit{
   ngOnInit(): void {
       this.groupId = this.route.snapshot.paramMap.get('id');
       //console.log(this.groupId);
+      this.groupService.getUserOfGroup(this.groupId).subscribe(
+        (result) => {
+          //console.log(result);
+          this.memberList = result;
+        },
+        (err) => {console.log(err);}
+      )
+  }
+
+  addMember(){
+    if (this.email === ''){
+      this.notificationService.showError('Email is required', "Error");
+    }else{
+      let expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      if (!expression.test(this.email)){
+        this.notificationService.showError('Email is not valid', "Error");
+      }else{
+        this.groupService.addMember({
+          email: this.email,
+          groupId: this.groupId
+        }).subscribe(
+          (result) => {
+            window.location.reload();
+            this.notificationService.showSuccess(result.msg, "Member added");
+          },
+          (err) => {this.notificationService.showError(err.error.error, "Error");}
+        )
+      }
+    }
   }
 
   deleteGroup(groupId: any){

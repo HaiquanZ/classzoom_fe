@@ -16,6 +16,7 @@ export class DetailGroupComponent implements OnInit{
   groupId: any;
   list: Array<number> = [1,2,3,4,5];
   posts: Array<any> = [];
+  userId: any;
   
   constructor(
     private postService: PostService,
@@ -24,10 +25,11 @@ export class DetailGroupComponent implements OnInit{
 
   ngOnInit(): void {
       this.groupId = this.router.url.split('/')[3];
+      this.userId = localStorage.getItem('id');
       this.postService.getPostByGroupId(this.groupId).subscribe(
         (result) => {
           this.posts = result;
-          //console.log(result);
+          console.log(result);
         },
         (err) => {console.log(err);}
       );

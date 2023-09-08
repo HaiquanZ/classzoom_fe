@@ -1,8 +1,8 @@
 <div class="update-group-component">
     <div class="nav-update-group d-flex justify-content-center">
         <div class="input-group mt-5" style="width: 70%;">
-            <input type="text" class="form-control" placeholder="Enter email to add members" aria-label="Recipient's username with two button addons">
-            <button class="btn btn-outline-secondary" type="button">Add Member</button>
+            <input type="text" class="form-control" placeholder="Enter email to add members" [(ngModel)]="email">
+            <button class="btn btn-outline-secondary" type="button" (click)="addMember()">Add Member</button>
             <button class="btn btn-outline-secondary" type="button" (click)="deleteGroup(groupId)">Delete Group</button>
         </div>
     </div>
@@ -10,11 +10,11 @@
     <h1 class="mt-5" style="color: var(--gray-color);">Members of group</h1>
 
     <div class="list-member mt-5">
-        <div class="member-item d-flex" *ngFor="let i of list">
-            <img width="10%" src="../../../../assets/avatar-female-1.png" alt="">
+        <div class="member-item d-flex" *ngFor="let member of memberList">
+            <img width="10%" src="../../../../assets/avatar-{{member.gender}}-1.png" alt="">
             <div class="member-infor" style="margin-top: 5px; margin-left: 10px;">
-                <h3>Do Duc Khiem</h3>
-                <h5>Member</h5>
+                <h3>{{ member.userName }}</h3>
+                <h5 style="text-transform: capitalize;">{{ member.role }}</h5>
             </div>
         </div>
     </div>

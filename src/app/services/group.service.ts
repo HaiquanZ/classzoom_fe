@@ -35,4 +35,20 @@ export class GroupService {
     )
   }
 
+  getUserOfGroup(id: any): Observable<any>{
+    return this.http.post(
+      `${this.baseUrl}/api/v1/group/${id}`,
+      {},
+      {headers: {token: this.token}}
+    )
+  }
+
+  addMember(data: any): Observable<any>{
+    return this.http.post(
+      `${this.baseUrl}/api/v1/group/member`,
+      data,
+      {headers: {token: this.token}}
+    )
+  }
+
 }

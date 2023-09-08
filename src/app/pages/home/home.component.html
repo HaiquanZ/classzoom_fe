@@ -39,7 +39,7 @@
         <div class="your-assignment mt-5">
             <h2>Assignment</h2>
             <div class="assignment-list">
-                <div class="assignment-item d-flex mt-5" (click)="handleChangeTypeHeader('assignment')" *ngFor="let i of list" routerLink="assignment/detail">
+                <div class="assignment-item d-flex mt-5" (click)="handleChangeTypeHeader('assignment')" *ngFor="let assignment of listAssignment" routerLink="assignment/detail/{{assignment.postid}}">
                     <div class="item-icon">
                         <fa-icon 
                             [icon]="faFile"
@@ -48,8 +48,8 @@
                         </fa-icon>
                     </div>
                     <div class="item-infor">
-                        <h3 style="font-weight: bold;">Task 1</h3>
-                        <h5 style="font-weight: bold;">Due to: 01/01/2023</h5>
+                        <h3 style="font-weight: bold;">{{assignment.Assignment.name}}</h3>
+                        <h5 style="font-weight: bold;">Due to: {{assignment.Assignment.dueto | date}}</h5>
                     </div>
                 </div>
             </div>

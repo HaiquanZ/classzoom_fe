@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UpdateGroupComponent } from './pages/group/update-group/update-group.component';
 import { CreatePostComponent } from './pages/group/create-post/create-post.component';
+import { MeetingComponent } from './pages/meeting/meeting.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CreatePostComponent } from './pages/group/create-post/create-post.compo
     AssignmentListComponent,
     OwnerAssignmentComponent,
     UpdateGroupComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    MeetingComponent
   ],
   imports: [
     BrowserModule,
