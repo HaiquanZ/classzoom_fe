@@ -23,8 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UpdateGroupComponent } from './pages/group/update-group/update-group.component';
 import { CreatePostComponent } from './pages/group/create-post/create-post.component';
-import { MeetingComponent } from './pages/meeting/meeting.component';
-
+import { RoomComponent } from './pages/room/room.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { ViewAnswerComponent } from './pages/assignment/view-answer/view-answer.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { MeetingComponent } from './pages/meeting/meeting.component';
     OwnerAssignmentComponent,
     UpdateGroupComponent,
     CreatePostComponent,
-    MeetingComponent
+    RoomComponent,
+    ViewAnswerComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,12 @@ import { MeetingComponent } from './pages/meeting/meeting.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SocketIoModule.forRoot({
+      url: 'http://localhost:4000/room',
+      options: {}
+    }),
+    NgxDocViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

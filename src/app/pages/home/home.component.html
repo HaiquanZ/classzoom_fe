@@ -39,7 +39,12 @@
         <div class="your-assignment mt-5">
             <h2>Assignment</h2>
             <div class="assignment-list">
-                <div class="assignment-item d-flex mt-5" (click)="handleChangeTypeHeader('assignment')" *ngFor="let assignment of listAssignment" routerLink="assignment/detail/{{assignment.postid}}">
+                <div 
+                    class="assignment-item d-flex mt-5" 
+                    (click)="handleChangeTypeHeader('assignment')" 
+                    *ngFor="let assignment of listAssignment" 
+                    routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}"
+                >
                     <div class="item-icon">
                         <fa-icon 
                             [icon]="faFile"

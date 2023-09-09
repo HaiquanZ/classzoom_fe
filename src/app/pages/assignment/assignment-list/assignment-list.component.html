@@ -23,7 +23,11 @@
     </div>
 
     <div class="assignment-list row">
-        <div class="assignment-item d-flex justify-content-around" *ngFor="let assignment of listAssignment" routerLink="/assignment/detail/{{assignment.postid}}">
+        <div 
+            class="assignment-item d-flex justify-content-around" 
+            *ngFor="let assignment of listAssignment" 
+            routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}"
+        >
             <fa-icon [icon]="faFile" class="mt-2"></fa-icon>
             <div class="description-assignment mt-3">
                 <h2>{{assignment.Assignment.name}}</h2>

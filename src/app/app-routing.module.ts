@@ -14,6 +14,8 @@ import { AssignmentListComponent } from './pages/assignment/assignment-list/assi
 import { UpdateGroupComponent } from './pages/group/update-group/update-group.component';
 import { CreatePostComponent } from './pages/group/create-post/create-post.component';
 import { OwnerAssignmentComponent } from './pages/assignment/owner-assignment/owner-assignment.component';
+import { RoomComponent } from './pages/room/room.component';
+import { ViewAnswerComponent } from './pages/assignment/view-answer/view-answer.component';
 
 const routes: Routes = [
   {
@@ -69,12 +71,20 @@ const routes: Routes = [
       {
         path: 'owner/:id',
         component: OwnerAssignmentComponent
+      },
+      {
+        path: 'view/:id',
+        component: ViewAnswerComponent
       }
     ]
   },
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'room',
+    component: RoomComponent
   }
 ];
 

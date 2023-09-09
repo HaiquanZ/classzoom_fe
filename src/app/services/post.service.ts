@@ -37,4 +37,33 @@ export class PostService {
       {headers: {'token': this.token}}
     )
   }
+
+  submitAnswer(data: any): Observable<any>{
+    return this.http.post(
+      `${this.baseUrl}/api/v1/post/answer`,
+      data,
+      {headers: {token: this.token}}
+    )
+  }
+
+  getAnswerOfUser(id: any): Observable<any>{
+    return this.http.get(
+      `${this.baseUrl}/api/v1/post/answer/${id}`,
+      {headers: {token: this.token}}
+    )
+  }
+
+  getAnswerOfAssignment(id: any): Observable<any>{
+    return this.http.get(
+      `${this.baseUrl}/api/v1/post/answer-all/${id}`,
+      {headers: {token: this.token}}
+    )
+  }
+
+  getFile(id: any): Observable<any>{
+    return this.http.get(
+      `${this.baseUrl}/api/v1/post/answer-file/${id}`,
+      {headers: {token: this.token}}
+    )
+  }
 }

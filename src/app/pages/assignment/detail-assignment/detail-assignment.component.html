@@ -12,9 +12,18 @@
                 {{content}}
             </p>
 
-            <div class="d-flex justify-content-around">
-                <input type="file" class="btn btn-primary mt-5" style="font-size: 1.5rem;"/>
-                <button class="btn btn-primary mt-5" style="font-size: 1.5rem; font-weight: bold;">Turn in</button>
+            <form class="d-flex justify-content-around" enctype="multipart/form-data" (submit)="submitAnswer()">
+                <input type="file" name="file" (change)="fileChange($event)" class="btn btn-primary mt-5" style="font-size: 1.5rem;"/>
+                <input type="submit" class="btn btn-primary mt-5" style="font-size: 1.5rem; font-weight: bold;" value="Turn in">
+            </form>
+
+            <div class="status mt-5 text-center">
+                <div *ngIf="statusAssignment.content == 'none'">
+                    <h2>Not turn in</h2>
+                </div>
+                <div *ngIf="statusAssignment.content != 'none'">
+                    <h3>Submitted at {{statusAssignment.updatedAt | date}}</h3>
+                </div>
             </div>
         </div>
     </div>

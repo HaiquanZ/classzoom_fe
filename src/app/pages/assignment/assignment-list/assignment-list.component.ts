@@ -22,6 +22,7 @@ export class AssignmentListComponent implements OnInit{
   ngOnInit(): void {
       this.postService.getAssignmentByUser().subscribe(
         (result) => {
+          console.log(result);
           this.listAssignment = result;
           this.assAll = result.length;
           for (let i=0; i < this.assAll; i++){
