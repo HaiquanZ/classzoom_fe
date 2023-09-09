@@ -71,4 +71,25 @@ export class DetailGroupComponent implements OnInit{
       (err) => {console.log(err);}
     )
   }
+
+  makeVideoCall(){
+    let roomId = Date.now();
+    //console.log(roomId);
+    this.postService.createPost({
+      groupId: this.groupId,
+      type: 'call',
+      content: roomId,
+    }).subscribe(
+      (result) => {
+        window.open(`http://localhost:3030/${roomId}`);
+        window.location.reload();
+        this.notificationService.showSuccess("Make a call", 'Success');
+      },
+      (err) => {console.log(err);}
+    )
+  }
+
+  joinCall(id: any){
+    window.open(`http://localhost:3030/${id}`);
+  }
 }

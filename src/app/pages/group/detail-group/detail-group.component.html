@@ -14,7 +14,7 @@
                 <fa-icon [icon]="faBookOpen"></fa-icon>
             </div>
 
-            <div class="action-item" title="Call">
+            <div class="action-item" title="Call" (click)="makeVideoCall()">
                 <fa-icon [icon]="faSquarePhone"></fa-icon>
             </div>
 
@@ -37,7 +37,10 @@
                 </div>
 
                 <div class="content-detail">
-                    <p>{{ post.content }}</p>
+                    <p *ngIf="post.type != 'call'">{{ post.content }}</p>
+                    <p *ngIf="post.type == 'call'" style="color: var(--main-color); font-size: 1.75rem;">
+                        Meeting {{post.createdAt | date}}
+                    </p>
                 </div>
 
                 <div *ngIf="post.type == 'assignment'">
@@ -56,6 +59,16 @@
                         style="font-size: 1.5rem; margin: 1rem; margin-left: 0;"
                     >
                         View Detail
+                    </button>
+                </div>
+
+                <div *ngIf="post.type == 'call'">
+                    <button 
+                        (click)="joinCall(post.content)"
+                        class="btn btn-primary"
+                        style="font-size: 1.5rem; margin: 1rem; margin-left: 0;"
+                    >
+                        Join
                     </button>
                 </div>
 
