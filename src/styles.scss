@@ -2,9 +2,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Sarabun:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap');
 
 :root {
-    --main-color: #0067FF;
+    --primary-color: #1890FF;
+    --main-color: #1890FF;
     --gray-color: #CCCFDB;
     --theme-color: #F4F6FF;
 }
@@ -23,4 +25,109 @@ html{
     /* box-sizing: border-box; */
     scroll-behavior: smooth;
     overflow-x: hidden;
+}
+//define common css
+.logo-script{
+    font-family: "Lugrasimo", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--primary-color);
+}
+
+//config antd
+.ant-input {
+    height: 45px !important;
+    width: 100%;
+    border-radius: 10px !important;
+}
+.ant-btn{
+    border-radius: 10px !important;
+}
+
+// css
+@for $i from 0 through 220 {
+    .min-width-#{$i} {
+        min-width: #{$i}px !important;
+    }
+
+    .w-cs-#{$i}-px {
+        width: #{$i}px !important;
+    }
+
+    .fs-cs-#{$i} {
+        font-size: #{$i}px !important;
+
+        * {
+            font-size: #{$i}px !important;
+        }
+    }
+
+    .border-radius-#{$i} {
+        border-radius: #{$i}px !important;
+    }
+
+    .mg-t-#{$i} {
+        margin-top: #{$i}px !important;
+    }
+
+    .mg-b-#{$i} {
+        margin-bottom: #{$i}px !important;
+    }
+
+    .mg-l-#{$i} {
+        margin-left: #{$i}px !important;
+    }
+
+    .mg-r-#{$i} {
+        margin-right: #{$i}px !important;
+    }
+
+    .mg-tb-#{$i} {
+        margin-top: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+    }
+
+    .mg-lr-#{$i} {
+        margin-left: #{$i}px !important;
+        margin-right: #{$i}px !important;
+    }
+
+    .pd-#{$i} {
+        padding: #{$i}px !important;
+    }
+
+    .pd-t-#{$i} {
+        padding-top: #{$i}px !important;
+    }
+
+    .pd-b-#{$i} {
+        padding-bottom: #{$i}px !important;
+    }
+
+    .pd-l-#{$i} {
+        padding-left: #{$i}px !important;
+    }
+
+    .pd-r-#{$i} {
+        padding-right: #{$i}px !important;
+    }
+
+    .pd-tb-#{$i} {
+        padding-top: #{$i}px !important;
+        padding-bottom: #{$i}px !important;
+    }
+
+    .pd-lr-#{$i} {
+        padding-left: #{$i}px !important;
+        padding-right: #{$i}px !important;
+    }
+
+    .mg-#{$i} {
+        margin: #{$i}px !important;
+    }
+
+    .flex-gap-#{$i} {
+        gap: #{$i}px !important;
+    }
+
 }

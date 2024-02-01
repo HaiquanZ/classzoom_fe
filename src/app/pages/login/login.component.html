@@ -1,70 +1,30 @@
-<div class="login-component row">
+<div class="login-component" nz-row nzAlign="middle" nzJustify="center">
+    <div class="content-login row">
+        <div class="col-lg-6" nz-row nzAlign="middle" nzJustify="center">
+            <img style="width: 80%;" src="../../../assets/login.png" alt="">
+        </div>
+        <div class="col-lg-6 form-login" nz-row nzJustify="center">
+            <div>
+                <h2 nz-typography>Welcome to <span class="logo-script">Space</span></h2>
+                <h2>Login</h2>
+                <form nz-form nzLayout="vertical">
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input nz-input formControlName="email" id="email" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="email">Password</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input nz-input formControlName="password" id="password"/>
+                        </nz-form-control>
+                    </nz-form-item>
 
-    <div class="col-sm-7">
-        <img src="../../../assets/login.png" style="width: 100%;" alt="">
-    </div>
-
-    <div class="login col-sm-5" *ngIf="isLogin">
-        <h1>Welcome!</h1>
-        <h2>Login</h2>
-        <button nz-button nzType="primary">Primary</button>
-        <form [formGroup]="formGroup" (ngSubmit)="login()">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" class="form-control" formControlName="email">
+                    <button nz-button nzType="primary">Login</button>
+                    <h3>Dont have account? Register</h3>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" formControlName="password">
-            </div>
-
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Login</button>
-            </div>
-        </form>
-        
-        <div class="change-register" (click)="changeisLogin()">
-            <h4>Dont have account? Register</h4>
         </div>
     </div>
-
-    <div class="register col-sm-5" *ngIf="!isLogin">
-        <h1>Welcome!</h1>
-        <h2>Register</h2>
-        <form [formGroup]="registerForm" (ngSubmit)="register()">
-            <div class="form-group">
-                <label for="name">User name:</label>
-                <input type="text" class="form-control" formControlName="username">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" class="form-control" formControlName="email">
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" formControlName="password">
-            </div>
-
-            <div class="form-group">
-                <label for="gender">Gender:</label>
-                <br>
-                <input type="radio" value="Male" name="gender" formControlName="gender">
-                <span>Male</span>
-                <input type="radio" value="Female" name="gender" formControlName="gender">
-                <span>Female</span>
-            </div>
-
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Register</button>
-            </div>
-        </form>
-
-        <div class="change-login" (click)="changeisLogin()">
-            <h4>Have account? Login</h4>
-        </div>
-    </div>
-
 </div>
