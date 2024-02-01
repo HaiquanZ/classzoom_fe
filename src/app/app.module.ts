@@ -27,6 +27,13 @@ import { RoomComponent } from './pages/room/room.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { ViewAnswerComponent } from './pages/assignment/view-answer/view-answer.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { vi_VN } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import vi from '@angular/common/locales/vi';
+import { AntdModule } from './component/antd/antd.module';
+
+registerLocaleData(vi);
 
 @NgModule({
   declarations: [
@@ -63,9 +70,12 @@ import { ViewAnswerComponent } from './pages/assignment/view-answer/view-answer.
       url: 'http://localhost:4000/room',
       options: {}
     }),
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    AntdModule
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: vi_VN }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,6 +7,7 @@
     <div class="login col-sm-5" *ngIf="isLogin">
         <h1>Welcome!</h1>
         <h2>Login</h2>
+        <button nz-button nzType="primary">Primary</button>
         <form [formGroup]="formGroup" (ngSubmit)="login()">
             <div class="form-group">
                 <label for="email">Email:</label>
