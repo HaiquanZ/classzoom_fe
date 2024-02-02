@@ -9,3 +9,13 @@
 .form-login{
     background-color: var(--theme-color);
 }
+input{
+    width: 320px !important;
+}
+.trans{
+    text-align: center;
+}
+.trans:hover{
+    color: var(--primary-color);
+    cursor: pointer;
+}

@@ -4,25 +4,55 @@
             <img style="width: 80%;" src="../../../assets/login.png" alt="">
         </div>
         <div class="col-lg-6 form-login" nz-row nzJustify="center">
-            <div>
+            <div class="mg-tb-35" *ngIf="showLogin">
                 <h2 nz-typography>Welcome to <span class="logo-script">Space</span></h2>
-                <h2>Login</h2>
-                <form nz-form nzLayout="vertical">
+                <h2 style="font-weight: bold;" class="mg-b-10">Login</h2>
+                <form nz-form nzLayout="vertical" (ngSubmit)="login()" [formGroup]="loginForm">
                     <nz-form-item>
                         <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
                         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
-                        <input nz-input formControlName="email" id="email" />
+                        <input nz-input placeholder="Enter your email" formControlName="email" id="email" />
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item>
                         <nz-form-label nzRequired nzFor="email">Password</nz-form-label>
                         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
-                        <input nz-input formControlName="password" id="password"/>
+                        <input placeholder="Enter your password" nz-input formControlName="password" id="password"/>
                         </nz-form-control>
                     </nz-form-item>
 
-                    <button nz-button nzType="primary">Login</button>
-                    <h3>Dont have account? Register</h3>
+                    <div nz-row nzAlign="middle" nzJustify="space-between" class="mg-b-20">
+                        <button nz-button nzType="primary" type="submit">Login</button>
+                        <h3 style="color: var(--primary-color); cursor: pointer; margin-bottom: 0 !important;">Forgot password?</h3>
+                    </div>
+                    <h3 class="trans" (click)="trans()">Don't have an account yet? Register</h3>
+                </form>
+            </div>
+            <div class="mg-tb-35" *ngIf="!showLogin">
+                <h2 nz-typography>Welcome to <span class="logo-script">Space</span></h2>
+                <h2 style="font-weight: bold;" class="mg-b-10">Register</h2>
+                <form nz-form nzLayout="vertical" (ngSubmit)="register()" [formGroup]="registerForm">
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="username">Username</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input nz-input placeholder="Enter your username" formControlName="username" id="username" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input nz-input placeholder="Enter your email" formControlName="email" id="email" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="email">Password</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input placeholder="Enter your password" nz-input formControlName="password" id="password"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <button class="mg-b-20" nz-button nzType="primary">Register</button>
+                    <h3 class="trans" (click)="trans()">Already have an account? Login</h3>
                 </form>
             </div>
         </div>
