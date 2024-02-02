@@ -1,11 +1,12 @@
 <div class="login-component" nz-row nzAlign="middle" nzJustify="center">
     <div class="content-login row">
-        <div class="col-lg-6" nz-row nzAlign="middle" nzJustify="center">
+        <div class="col-12 col-lg-6" nz-row nzAlign="middle" nzJustify="center">
+            <!-- <h2 class="wel-mobile" nz-typography>Welcome to <span class="logo-script">Space</span></h2> -->
             <img style="width: 80%;" src="../../../assets/login.png" alt="">
         </div>
-        <div class="col-lg-6 form-login" nz-row nzJustify="center">
+        <div class="col-12 col-lg-6 form-login" nz-row nzJustify="center">
             <div class="mg-tb-35" *ngIf="showLogin">
-                <h2 nz-typography>Welcome to <span class="logo-script">Space</span></h2>
+                <h2 class="wel-web" nz-typography>Welcome to <span class="logo-script">Space</span></h2>
                 <h2 style="font-weight: bold;" class="mg-b-10">Login</h2>
                 <form nz-form nzLayout="vertical" (ngSubmit)="login()" [formGroup]="loginForm">
                     <nz-form-item>
@@ -29,7 +30,7 @@
                 </form>
             </div>
             <div class="mg-tb-35" *ngIf="!showLogin">
-                <h2 nz-typography>Welcome to <span class="logo-script">Space</span></h2>
+                <h2 class="wel-web" nz-typography>Welcome to <span class="logo-script">Space</span></h2>
                 <h2 style="font-weight: bold;" class="mg-b-10">Register</h2>
                 <form nz-form nzLayout="vertical" (ngSubmit)="register()" [formGroup]="registerForm">
                     <nz-form-item>

@@ -19,3 +19,27 @@ input{
     color: var(--primary-color);
     cursor: pointer;
 }
+.wel-mobile{
+    display: none;
+}
+
+@media (min-width: 576px) and (max-width: 991px){
+    .content-login{
+        width: 500px;
+    }
+}
+@media (max-width: 575px){
+    .content-login{
+        height: 100vh;
+    }
+    // .wel-web{
+    //     display: none;
+    // }
+    // .wel-mobile{
+    //     display: block;
+    //     margin-bottom: 0 !important;
+    // }
+    // .ant-typography h2, div.ant-typography-h2, div.ant-typography-h2>textarea, h2.ant-typography{
+    //     margin-bottom: 10px;
+    // }
+}
