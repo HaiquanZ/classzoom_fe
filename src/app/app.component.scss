@@ -1,0 +1,75 @@
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+    background-color: #fff;
+    color: black;
+}
+
+.ant-menu-dark .ant-menu-item,
+.ant-menu-dark .ant-menu-item-group-title,
+.ant-menu-dark .ant-menu-item>a,
+.ant-menu-dark .ant-menu-item>span>a {
+    color: black;
+    background-color: #fff;
+}
+
+//hover
+.ant-menu-dark .ant-menu-item-active,
+.ant-menu-dark .ant-menu-item:hover,
+.ant-menu-dark .ant-menu-submenu-active,
+.ant-menu-dark .ant-menu-submenu-open,
+.ant-menu-dark .ant-menu-submenu-selected,
+.ant-menu-dark .ant-menu-submenu-title:hover {
+    color: #fff;
+    background-color: var(--primary-color) !important;
+}
+
+::ng-deep {
+    .ant-layout-sider-trigger {
+        background: var(--primary-color) !important;
+    }
+
+    .ant-menu-dark .ant-menu-inline.ant-menu-sub {
+        background: #fff !important;
+    }
+
+    .ant-menu-dark .ant-menu-sub .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+    .ant-menu-dark .ant-menu-sub .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+    .ant-menu.ant-menu-dark .ant-menu-sub .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+    .ant-menu.ant-menu-dark .ant-menu-sub .ant-menu-submenu-title .ant-menu-submenu-arrow::before,
+    .ant-menu.ant-menu-dark .ant-menu-submenu-title .ant-menu-submenu-arrow::after,
+    .ant-menu.ant-menu-dark .ant-menu-submenu-title .ant-menu-submenu-arrow::before {
+        background: black !important;
+    }
+
+    .ant-menu-dark .ant-menu-sub .ant-menu-submenu-title .ant-menu-submenu-arrow,
+    .ant-menu.ant-menu-dark .ant-menu-sub .ant-menu-submenu-title .ant-menu-submenu-arrow,
+    .ant-menu.ant-menu-dark .ant-menu-submenu-title .ant-menu-submenu-arrow {
+        opacity: 1;
+    }
+    .ant-layout-sider{
+        background: #fff;
+    }
+}
+
+.logo{
+    h1{
+        margin-top: 1rem;
+    }
+    background-image: url(../assets/backlogo.png);
+}
+.menu-mobile{
+    display: none;
+}
+
+@media (max-width: 576px){
+    nz-sider{
+        display: none;
+    }
+    .menu-mobile{
+        padding-top: 1rem;
+        display: grid;
+        grid-template-columns: 1.5fr 7fr;
+        background-image: url(../assets/backlogo.png);
+    }
+}

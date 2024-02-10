@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonService } from './services/common.service';
 import { Router } from '@angular/router';
+import { NzSiderComponent } from 'ng-zorro-antd/layout';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,12 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
   title = 'classzoom_fe';
   logged: boolean = false;
+  isCollapsed: boolean = false;
+  textLogo: string = 'Space';
+  @ViewChild('sidebar', {static: false}) sideBar!: NzSiderComponent;
+
   constructor(private commonService: CommonService, private router: Router){}
+
 
   ngOnInit() {
     // handle when user reload page
@@ -22,6 +28,21 @@ export class AppComponent implements OnInit{
       if (!this.logged){
         this.router.navigate(['/login']);
       }
-    
+  }
+
+  ngAfterViewInit() {
+    console.log('Sidebar: ', this.sideBar.widthSetting);
+  }
+
+  onCollapseChange(e: any){
+    if(e){
+      this.textLogo = 'S';
+    }else{
+      this.textLogo = 'Space';
+    }
+  }
+
+  logout(){
+    this.logged = false;
   }
 }
