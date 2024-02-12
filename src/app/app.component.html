@@ -4,7 +4,7 @@
   </div>
   <div *ngIf="logged">
     <nz-layout>
-      <nz-sider #sidebar nzCollapsible [(nzCollapsed)]="isCollapsed" (nzCollapsedChange)="onCollapseChange($event)" nzWidth="200px">
+      <nz-sider #sidebar nzCollapsible [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="collapseWidth" (nzCollapsedChange)="onCollapseChange($event)" nzWidth="{{sidebarWidth}}">
         <div class="logo" nz-row nzAlign="middle" nzJustify="center">
           <h1 class="logo-script" style="color: white;">{{textLogo}}</h1>
         </div>
@@ -42,14 +42,18 @@
       </nz-sider>
       <nz-layout>
         <div class="menu-mobile">
-          <div style="text-align: center;">
-            <span nz-icon style="color: white; font-size: 30px;" nzType="menu" nzTheme="outline"></span>
+          <div style="text-align: center;" (click)="handleCollapseMobile()">
+            <span *ngIf="this.isCollapsed" nz-icon style="color: white; font-size: 30px;" nzType="menu" nzTheme="outline"></span>
+            <span *ngIf="!this.isCollapsed" nz-icon style="color: white; font-size: 30px;" nzType="close" nzTheme="outline"></span>
           </div>
           <div>
-            <h1 class="logo-script" style="color: white; font-size: 32px; text-align: center;">Space</h1>
+            <h1 class="logo-script" style="color: white; font-size: 32px; text-align: center;">{{titleMobile}}</h1>
           </div>
         </div>
-        <router-outlet></router-outlet>
+        <div>
+          <div class="overlay" [hidden]="overlay" (click)="handleCollapseMobile()"></div>
+          <router-outlet *ngIf="overlay"></router-outlet>
+        </div>
       </nz-layout>
     </nz-layout>
   </div>
