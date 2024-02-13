@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HeaderComponent } from './layout/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GroupComponent } from './pages/group/group.component';
 import { AssignmentComponent } from './pages/assignment/assignment.component';
@@ -40,7 +39,6 @@ registerLocaleData(vi);
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     HomeComponent,
     GroupComponent,
     AssignmentComponent,
