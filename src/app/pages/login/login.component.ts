@@ -73,12 +73,22 @@ export class LoginComponent implements OnInit{
   }
 
   register(){
-    if (this.loginForm.valid) {
-      console.log('submit', this.loginForm.value);
-      this.commonSrv.logged.next(true);
-      this.router.navigate(['/']);
+    if (this.registerForm.valid) {
+      console.log('submit', this.registerForm.value);
+      this.authSrv.register(this.registerForm.value, (res: any) => {
+        if(res){
+          this.notification.success(
+            'Success',
+            'Registered successfully. Login to continue.',
+            {
+              nzStyle: { backgroundColor: 'var(--success-light)'}
+            }
+          );
+          this.showLogin = true;
+        }
+      })
     } else {
-      Object.values(this.loginForm.controls).forEach(control => {
+      Object.values(this.registerForm.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });

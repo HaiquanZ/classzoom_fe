@@ -51,6 +51,7 @@ export class AuthService {
   }
 
   register(data: any, callBack: Function): any{
+    data.gender = 'male';
     this.http.post(environment.path.auth.REGISTER, data, { observe: 'response' }).subscribe(
       (response: any) => {
         if(response.body){

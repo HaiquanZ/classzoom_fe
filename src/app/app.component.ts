@@ -2,13 +2,14 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonService } from './services/common.service';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'classzoom_fe';
   logged: boolean = false;
   isCollapsed: boolean = false;
@@ -27,10 +28,11 @@ export class AppComponent implements OnInit{
   constructor(
     private commonService: CommonService,
     private router: Router,
-    private authSrv: AuthService
-  ){
+    private authSrv: AuthService,
+    private notification: NzNotificationService
+  ) {
     this.handleCollapseWidth(window.outerWidth);
-    if(window.outerWidth < 576){
+    if (window.outerWidth < 576) {
       this.isCollapsed = true;
     }
   }
@@ -38,14 +40,14 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     // handle when user reload page
-    if (localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       this.commonService.logged.next(true);
     }
     //handle when user did not login
     this.commonService.logged.subscribe(logged => this.logged = logged);
-      if (!this.logged){
-        this.router.navigate(['/login']);
-      }
+    if (!this.logged) {
+      this.router.navigate(['/login']);
+    }
   }
 
   ngAfterViewInit() {
@@ -54,26 +56,27 @@ export class AppComponent implements OnInit{
     // }, 2000)
   }
 
-  onCollapseChange(e: any){
+  onCollapseChange(e: any) {
     this.textLogo = e ? 'S' : 'Space';
   }
 
-  logout(){
+  logout() {
     this.authSrv.removeInfoLogout();
     this.logged = false;
+    this.notification.success('Success', 'Logout successfully', { nzStyle: { backgroundColor: 'var(--success-light)' } });
   }
 
-  handleCollapseWidth(val: number){
-    if(val < 576){
+  handleCollapseWidth(val: number) {
+    if (val < 576) {
       this.collapseWidth = 0;
       this.sidebarWidth = String(val * 0.7) + 'px';
-    }else{
+    } else {
       this.collapseWidth = 80;
       this.sidebarWidth = '200px';
     }
   }
 
-  handleCollapseMobile(){
+  handleCollapseMobile() {
     this.isCollapsed = !this.isCollapsed;
     this.overlay = !this.overlay;
     this.titleMobile = this.isCollapsed ? 'Space' : '';
