@@ -10,7 +10,7 @@ export class CommonService{
   public typeHeader = new BehaviorSubject<string>('home');
 
   //handle log in component
-  public logged = new BehaviorSubject<boolean>(true);
+  public logged = new BehaviorSubject<boolean>(false);
 
   //save information user
   email: string = '';

@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonService } from './services/common.service';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit{
   constructor(
     private commonService: CommonService,
     private router: Router,
+    private authSrv: AuthService
   ){
     this.handleCollapseWidth(window.outerWidth);
     if(window.outerWidth < 576){
@@ -57,6 +59,7 @@ export class AppComponent implements OnInit{
   }
 
   logout(){
+    this.authSrv.removeInfoLogout();
     this.logged = false;
   }
 

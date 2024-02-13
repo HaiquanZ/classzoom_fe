@@ -19,7 +19,7 @@ import { GroupListComponent } from './pages/group/group-list/group-list.componen
 import { AssignmentListComponent } from './pages/assignment/assignment-list/assignment-list.component';
 import { OwnerAssignmentComponent } from './pages/assignment/owner-assignment/owner-assignment.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { UpdateGroupComponent } from './pages/group/update-group/update-group.component';
 import { CreatePostComponent } from './pages/group/create-post/create-post.component';
@@ -32,6 +32,8 @@ import { vi_VN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
 import { AntdModule } from './component/antd/antd.module';
+import { Interceptor } from './interceptors/add-header';
+import { ErrorInterceptor } from './interceptors/handle-error';
 
 registerLocaleData(vi);
 
@@ -74,7 +76,9 @@ registerLocaleData(vi);
     AntdModule
   ],
   providers: [
-    { provide: NZ_I18N, useValue: vi_VN }
+    { provide: NZ_I18N, useValue: vi_VN },
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
