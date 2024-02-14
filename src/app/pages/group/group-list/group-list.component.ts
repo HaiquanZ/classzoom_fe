@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GroupModel } from 'src/app/models/group-model';
 import { GroupService } from 'src/app/services/group.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { GroupService } from 'src/app/services/group.service';
 })
 export class GroupListComponent implements OnInit{
 
-  listGroup: any;
+  listGroup: GroupModel[] = [];
   groupCount: number = 0;
   moderatorCount: number = 0;
   memberCount: number = 0;
@@ -20,19 +21,17 @@ export class GroupListComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-      // this.groupService.getAllGroups().subscribe(
-      //   (result) => {
-      //     this.listGroup = result;
-      //     //console.log(result);
-      //     // update abstract count
-      //     this.listGroup.map((element: any) => {
-      //       this.groupCount++;
-      //       if (element.role === 'member') this.memberCount++;
-      //       if (element.role === 'moderator') this.moderatorCount++;
-      //     });
-      //   },
-      //   (err) => {console.log(err);}
-      // );
+      this.groupService.getAllGroups({}, (res: GroupModel[]) => {
+        if(res){
+          this.listGroup = res;
+          // update abstract count
+          this.listGroup.map((element: any) => {
+            this.groupCount++;
+            if (element.role === 'member') this.memberCount++;
+            if (element.role === 'moderator') this.moderatorCount++;
+          });
+        }
+      })
   }
 
 }

@@ -8,12 +8,12 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NotificationService } from '../services/notification.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
-        private notification: NzNotificationService
+        private notificationSrv: NotificationService
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -23,22 +23,16 @@ export class ErrorInterceptor implements HttpInterceptor {
                 if (error.error instanceof ErrorEvent) {
                     // Xảy ra lỗi mạng hoặc lỗi không mong muốn từ phía client
                     errorMessage = `Error: ${error.error.message}`;
-                    this.notification.error(
+                    this.notificationSrv.showError(
                         error.statusText,
                         error.error?.error ? error.error?.error : 'Something went wrong',
-                        {
-                            nzStyle: { backgroundColor: 'var(--error-light)' }
-                        }
                     );
                 } else {
                     // Xảy ra lỗi từ phía server
                     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-                    this.notification.error(
+                    this.notificationSrv.showError(
                         error.statusText,
                         error.error?.error ? error.error?.error : 'Something went wrong',
-                        {
-                            nzStyle: { backgroundColor: 'var(--error-light)' }
-                        }
                     );
                 }
                 return throwError(errorMessage);

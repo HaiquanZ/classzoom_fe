@@ -17,17 +17,17 @@
           </ng-template>
         </div>
         <ul nz-menu nzMode="inline">
-          <li nz-menu-item nzSelected>
+          <li nz-menu-item nzSelected routerLink="/">
             <span nz-icon nzType="home" nzTheme="outline"></span>
             <span>Home</span>
           </li>
-          <li nz-menu-item>
+          <li nz-menu-item routerLink="/group">
             <span nz-icon nzType="team" nzTheme="outline"></span>
             <span>Groups</span>
           </li>
-          <li nz-menu-item>
-            <span nz-icon nzType="desktop"></span>
-            <span>Option 2</span>
+          <li nz-menu-item routerLink="/assignment">
+            <span nz-icon nzType="edit" nzTheme="outline"></span>
+            <span>Assignment</span>
           </li>
           <li nz-submenu nzTitle="User" nzIcon="user">
             <ul>
@@ -42,7 +42,7 @@
               <li nz-menu-item>Team 2</li>
             </ul>
           </li>
-          <li nz-menu-item>
+          <li nz-menu-item routerLink="/profile">
             <span nz-icon nzType="user" nzTheme="outline"></span>
             <span>Profile</span>
           </li>

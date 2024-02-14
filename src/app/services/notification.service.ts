@@ -1,17 +1,29 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor(private toastr: ToastrService) { }
+  constructor(private notification: NzNotificationService) { }
 
   showSuccess(message: any, title: any){
-    this.toastr.success(message, title)
+    this.notification.success(
+      title,
+      message,
+      {
+        nzStyle: { backgroundColor: 'var(--success-light)'}
+      }
+    );
   }
   showError(message: any, title: any){
-    this.toastr.error(message, title)
+    this.notification.error(
+      title,
+      message,
+      {
+          nzStyle: { backgroundColor: 'var(--error-light)' }
+      }
+    )
   }
 }

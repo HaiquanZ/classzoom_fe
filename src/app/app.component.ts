@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonService } from './services/common.service';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     private commonService: CommonService,
     private router: Router,
     private authSrv: AuthService,
-    private notification: NzNotificationService
+    private notificationSrv: NotificationService
   ) {
     this.handleCollapseWidth(window.outerWidth);
     if (window.outerWidth < 576) {
@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.authSrv.removeInfoLogout();
     this.logged = false;
-    this.notification.success('Success', 'Logout successfully', { nzStyle: { backgroundColor: 'var(--success-light)' } });
+    this.notificationSrv.showSuccess('Logout successfully', 'Success')
   }
 
   handleCollapseWidth(val: number) {
