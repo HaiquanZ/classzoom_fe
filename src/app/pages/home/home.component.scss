@@ -32,14 +32,13 @@
     padding-left: 1.75rem;
     padding-right: 1.75rem;
 }
+.group-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
 .group-item{
     cursor: pointer;
-    display: grid;
-    grid-template-columns: 1fr 3fr 1.5fr;
-    gap: 10px;
-    border-radius: 20px;
-    background-color: var(--theme-color);
-    color: #000;
     transition: all ease-in-out .2s;
 }
 .group-item:hover{

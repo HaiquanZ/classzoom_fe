@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { GroupService } from 'src/app/services/group.service';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
+import { GroupModel } from 'src/app/models/group-model';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit{
   logged: boolean = false;
   userName: any;
   urlAvt: any;
-  listGroup: Array<any> = [];
+  listGroup: Array<GroupModel> = [];
   listAssignment: Array<any> = [];
   dataTime: any;
   
@@ -49,13 +50,11 @@ export class HomeComponent implements OnInit{
         (er) => {console.log(er);}
       )
       //handle list groups
-      this.groupService.getAllGroups().subscribe(
-        (result) => {
-          this.listGroup = result.slice();
-          //console.log(this.listGroup);
-        },
-        (err) => {console.log(err);}
-      )
+      this.groupService.getAllGroups({}, (res: GroupModel[]) => {
+        if(res){
+          this.listGroup = res;
+        }
+      })
 
       this.postService.getAssignmentByUser().subscribe(
         (result) => {

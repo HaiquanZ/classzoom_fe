@@ -12,7 +12,7 @@ export class Interceptor implements HttpInterceptor {
     const url = `${environment.server.apiUrl}${req.url}`;
 
     // add token
-    const token = 'your-token'; // Thay thế bằng token của bạn
+    const token = localStorage.getItem('token'); // Thay thế bằng token của bạn
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'

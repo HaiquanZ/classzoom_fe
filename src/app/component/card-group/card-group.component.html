@@ -1,0 +1,22 @@
+<nz-card [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+    <ng-template #avatarTemplate>
+        <nz-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+    </ng-template>
+    <ng-template #coverTemplate>
+        <img alt="example" src="../../../assets/{{ data.subject }}.png" />
+    </ng-template>
+    <ng-template #descriptionTemplate>
+        <p nz-typography nzEllipsis [nzEllipsisRows]="3">{{data.description}}</p>
+    </ng-template>
+    <nz-card-meta nzTitle="{{data.groupName}}" [nzDescription]="descriptionTemplate"
+        [nzAvatar]="avatarTemplate"></nz-card-meta>
+</nz-card>
+<ng-template #actionSetting>
+    <span nz-icon nzType="setting"></span>
+</ng-template>
+<ng-template #actionEdit>
+    <span nz-icon nzType="edit"></span>
+</ng-template>
+<ng-template #actionEllipsis>
+    <span nz-icon nzType="ellipsis"></span>
+</ng-template>

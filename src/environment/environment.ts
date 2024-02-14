@@ -6,6 +6,15 @@ export const environment = {
         auth: {
             LOGIN: '/user/login',
             REGISTER: '/user/register'
+        },
+        group: {
+            GET_ALL_GROUPS: '/group',
+            CREATE_GROUP: '/group/create',
+            DELETE_GROUP: '/group',
+            ADD_MEMBER: '/group/member'
+        },
+        assignment: {
+            
         }
     }
 };

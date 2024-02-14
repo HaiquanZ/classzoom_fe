@@ -33,6 +33,8 @@ import vi from '@angular/common/locales/vi';
 import { AntdModule } from './component/antd/antd.module';
 import { Interceptor } from './interceptors/add-header';
 import { ErrorInterceptor } from './interceptors/handle-error';
+import { NotfoundComponent } from './pages/notfound/notfound/notfound.component';
+import { CardGroupComponent } from './component/card-group/card-group.component';
 
 registerLocaleData(vi);
 
@@ -54,7 +56,9 @@ registerLocaleData(vi);
     UpdateGroupComponent,
     CreatePostComponent,
     RoomComponent,
-    ViewAnswerComponent
+    ViewAnswerComponent,
+    NotfoundComponent,
+    CardGroupComponent
   ],
   imports: [
     BrowserModule,

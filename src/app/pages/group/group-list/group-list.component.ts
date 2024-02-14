@@ -20,19 +20,19 @@ export class GroupListComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-      this.groupService.getAllGroups().subscribe(
-        (result) => {
-          this.listGroup = result;
-          //console.log(result);
-          // update abstract count
-          this.listGroup.map((element: any) => {
-            this.groupCount++;
-            if (element.role === 'member') this.memberCount++;
-            if (element.role === 'moderator') this.moderatorCount++;
-          });
-        },
-        (err) => {console.log(err);}
-      );
+      // this.groupService.getAllGroups().subscribe(
+      //   (result) => {
+      //     this.listGroup = result;
+      //     //console.log(result);
+      //     // update abstract count
+      //     this.listGroup.map((element: any) => {
+      //       this.groupCount++;
+      //       if (element.role === 'member') this.memberCount++;
+      //       if (element.role === 'moderator') this.moderatorCount++;
+      //     });
+      //   },
+      //   (err) => {console.log(err);}
+      // );
   }
 
 }

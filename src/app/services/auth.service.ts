@@ -9,11 +9,6 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   private baseUrl: string = environment.server.apiUrl;
-  // save user information
-  // public id = new BehaviorSubject<string>('');
-  // public username = new BehaviorSubject<string>('');
-  // public email = new BehaviorSubject<string>('');
-  // public gender = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) { }
 

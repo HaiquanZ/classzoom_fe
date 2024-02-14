@@ -1,53 +1,55 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environment/environment';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupService {
 
-  private baseUrl: string = environment.server.apiUrl;
-  private token: string = 'Bearer ' + localStorage.getItem('token');
-
   constructor(private http: HttpClient) { }
 
-  getAllGroups(): Observable<any>{
-    return this.http.get(
-      `${this.baseUrl}/api/v1/group`,
-      {headers: {token: this.token}}
-    );
+  getAllGroups(option: any, callBack: Function): any{
+    this.http.get(environment.path.group.GET_ALL_GROUPS, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
   }
 
   createGroup(data: any): Observable<any>{
     return this.http.post(
-      `${this.baseUrl}/api/v1/group/create`,
-      data,
-      {headers: {token: this.token}}
+      `/group/create`,
+      data
     )
   }
 
   deleteGroup(id: any): Observable<any>{
     return this.http.delete(
-      `${this.baseUrl}/api/v1/group/${id}`,
-      {headers: {token: this.token}}
+      `/group/${id}`
     )
   }
 
   getUserOfGroup(id: any): Observable<any>{
     return this.http.post(
-      `${this.baseUrl}/api/v1/group/${id}`,
-      {},
-      {headers: {token: this.token}}
+      `/group/${id}`,
+      {}
     )
   }
 
   addMember(data: any): Observable<any>{
     return this.http.post(
-      `${this.baseUrl}/api/v1/group/member`,
-      data,
-      {headers: {token: this.token}}
+      `/group/member`,
+      data
     )
   }
 

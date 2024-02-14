@@ -8,8 +8,20 @@
         <div class="logo" nz-row nzAlign="middle" nzJustify="center">
           <h1 class="logo-script" style="color: white;">{{textLogo}}</h1>
         </div>
+        <div class="search-input mg-tb-10 mg-lr-5">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input style="height: 35px !important;" type="text" nz-input placeholder="Search..." />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item nzSelected>
+            <span nz-icon nzType="home" nzTheme="outline"></span>
+            <span>Home</span>
+          </li>
+          <li nz-menu-item>
             <span nz-icon nzType="team" nzTheme="outline"></span>
             <span>Groups</span>
           </li>

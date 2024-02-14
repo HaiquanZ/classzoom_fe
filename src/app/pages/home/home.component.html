@@ -10,23 +10,9 @@
             </button>
         </div>
 
-        <div class="group-list" style="width: 90%;">
-            <div class="group-item mt-5" (click)="handleClickGroupItem(i.groupId)" *ngFor="let i of listGroup">
-                <div>
-                    <img 
-                        width="80%" class="pt-3 pb-3" src="../../../assets/{{ i.subject }}.png" 
-                        alt="avatar-group"
-                        style="margin-left: 1rem; border-radius: 20px;"
-                    >
-                </div>
-                <div class="group-description mt-4">
-                    <h2 style="font-weight: bold;">{{i.groupName}}</h2>
-                    <h4>{{i.description}}</h4>
-                </div>
-                <div class="total-member text-center">
-                    <h1>{{i.totalMember}}</h1>
-                    <h2>Member</h2>
-                </div>
+        <div class="group-list">
+            <div class="group-item mt-5" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item.groupId)">
+                <app-card-group [data]="item"></app-card-group>
             </div>
         </div>
     </div>

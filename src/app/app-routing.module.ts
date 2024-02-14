@@ -16,6 +16,7 @@ import { CreatePostComponent } from './pages/group/create-post/create-post.compo
 import { OwnerAssignmentComponent } from './pages/assignment/owner-assignment/owner-assignment.component';
 import { RoomComponent } from './pages/room/room.component';
 import { ViewAnswerComponent } from './pages/assignment/view-answer/view-answer.component';
+import { NotfoundComponent } from './pages/notfound/notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'room',
     component: RoomComponent
+  },
+  {
+    path: '**',
+    component: NotfoundComponent
   }
 ];
 
