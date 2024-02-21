@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonService } from 'src/app/services/common.service';
 import { PostService } from 'src/app/services/post.service';
 import { environment } from 'src/environment/environment';
 
@@ -16,21 +15,18 @@ export class ViewAnswerComponent implements OnInit{
   url: any;
 
   constructor(
-    private postService: PostService,
+    private postSrv: PostService,
     private route: ActivatedRoute,
-    private commonService: CommonService
   ){}
 
   ngOnInit(): void {
       this.answerId = this.route.snapshot.paramMap.get('id');
-      this.commonService.typeHeader.next('assignment');
-      this.postService.getFile(this.answerId).subscribe(
-        (result) => {
-          this.data = result;
-          this.url = `${this.baseUrl}/${result.content}`;
+      this.postSrv.getFile(this.answerId, (res: any) => {
+        if(res){
+          this.data = res;
+          this.url = `${this.baseUrl}/${res.content}`;
           console.log(this.url);
-        },
-        (err) => {console.log(err);}
-      )
+        }
+      })
   }
 }

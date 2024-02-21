@@ -1,6 +1,6 @@
 export const environment = {
     server: {
-        apiUrl: 'http://192.168.1.38:4000/api/v1',
+        apiUrl: 'http://192.168.1.4:4000/api/v1',
     },
     path: {
         auth: {
@@ -11,10 +11,22 @@ export const environment = {
             GET_ALL_GROUPS: '/group',
             CREATE_GROUP: '/group/create',
             DELETE_GROUP: '/group',
+            GET_MEMBERS: '/groups',
             ADD_MEMBER: '/group/member'
         },
-        assignment: {
-            
+        comment: {
+            CREATE_COMMENT: '/comment',
+            GET_COMMENT: '/comment'
+        },
+        post: {
+            CREATE_POST: '/post/create',
+            GET_ASSIGNMENT_BY_USER: '/post/assignment',
+            GET_DETAIL_ASSIGNMENT: '/post/assignment',
+            SUBMIT_ANSWER: '/post/answer',
+            GET_ANSWER_USER: '/post/answer',
+            GET_ANSWER_ASSIGNMENT: '/post/answer-all',
+            GET_FILE: '/post/answer-file',
+            GET_POST_BY_GROUPID: '/post'
         }
     }
 };

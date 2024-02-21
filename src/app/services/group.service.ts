@@ -26,30 +26,67 @@ export class GroupService {
     )
   }
 
-  createGroup(data: any): Observable<any>{
-    return this.http.post(
-      `/group/create`,
-      data
+  createGroup(data: any, callBack: Function): any{
+    this.http.post(environment.path.group.CREATE_GROUP, data, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
     )
   }
 
-  deleteGroup(id: any): Observable<any>{
-    return this.http.delete(
-      `/group/${id}`
+  deleteGroup(id: any, callBack: Function): any{
+    this.http.delete(environment.path.group.DELETE_GROUP + `/${id}`, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
     )
   }
 
-  getUserOfGroup(id: any): Observable<any>{
-    return this.http.post(
-      `/group/${id}`,
-      {}
+  getUserOfGroup(id: any, callBack: Function): any{
+    this.http.post(environment.path.group.GET_MEMBERS + `/${id}`, {}, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
     )
   }
 
-  addMember(data: any): Observable<any>{
-    return this.http.post(
-      `/group/member`,
-      data
+  addMember(data: any, callBack: Function): any{
+    this.http.post(environment.path.group.ADD_MEMBER, data, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
     )
   }
 

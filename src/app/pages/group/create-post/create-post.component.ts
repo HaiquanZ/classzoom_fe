@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from 'src/app/services/common.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { PostService } from 'src/app/services/post.service';
 
@@ -16,15 +15,13 @@ export class CreatePostComponent implements OnInit{
   groupId: any;
 
   constructor(
-    private commentService: CommonService,
-    private postService: PostService,
+    private postSrv: PostService,
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService
   ){}
 
   ngOnInit(): void {
-      this.commentService.typeHeader.next('group');
       this.initForm();
       this.groupId = this.route.snapshot.paramMap.get('id');
   }
@@ -36,16 +33,16 @@ export class CreatePostComponent implements OnInit{
   }
 
   createPost(){
-    this.postService.createPost({
+    let data = {
       groupId: this.groupId,
       content: this.createPostForm.value.content,
       type: 'post'
-    }).subscribe(
-      (result) => {
-        this.notificationService.showSuccess(result.msg, "Successfully created");
+    }
+    this.postSrv.createPost(data, (res: any) => {
+      if(res){
+        this.notificationService.showSuccess(res.msg, "Successfully created");
         this.router.navigate([`/group/detail/${this.groupId}`]);
-      },
-      (err) => {console.log(err);}
-    )
+      }
+    })
   }
 }

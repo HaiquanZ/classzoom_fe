@@ -23,16 +23,11 @@ export class HomeComponent implements OnInit{
   dataTime: any;
   
   constructor(
-    private commonService: CommonService,
     private groupService: GroupService,
-    private postService: PostService,
+    private postSrv: PostService,
     private router: Router
   ){}
 
-  //handle change typeHeader
-  handleChangeTypeHeader(type: string){
-    this.commonService.typeHeader.next(type);
-  }
 
   ngOnInit(): void {
       //handle user information
@@ -42,13 +37,7 @@ export class HomeComponent implements OnInit{
       }else{
         this.urlAvt = '../../../assets/avatar-female-1.png';
       }
-      //get data time
-      this.commonService.getDataTime().subscribe(
-        (result) => {
-          this.dataTime = result.datetime;
-        },
-        (er) => {console.log(er);}
-      )
+
       //handle list groups
       this.groupService.getAllGroups({}, (res: GroupModel[]) => {
         if(res){
@@ -56,17 +45,14 @@ export class HomeComponent implements OnInit{
         }
       })
 
-      this.postService.getAssignmentByUser().subscribe(
-        (result) => {
-          console.log(result);
-          this.listAssignment = result;
-        },
-        (err) => {console.log(err);}
-      )
+      this.postSrv.getAssignmentByUser((res: any) => {
+        if(res){
+          this.listAssignment = res;
+        }
+      })
   }
 
   handleClickGroupItem(id: any){
     this.router.navigate([`/group/detail/${id}`]);
-    this.handleChangeTypeHeader('group');
   }
 }

@@ -7,7 +7,7 @@ import { PostService } from 'src/app/services/post.service';
   templateUrl: './assignment-list.component.html',
   styleUrls: ['./assignment-list.component.scss']
 })
-export class AssignmentListComponent implements OnInit{
+export class AssignmentListComponent implements OnInit {
   faFile = faFile;
   listAssignment: any;
   assAll: number = 0;
@@ -16,22 +16,20 @@ export class AssignmentListComponent implements OnInit{
   assDone: number = 0;
 
   constructor(
-    private postService: PostService
-  ){}
+    private postSrv: PostService
+  ) { }
 
   ngOnInit(): void {
-      this.postService.getAssignmentByUser().subscribe(
-        (result) => {
-          console.log(result);
-          this.listAssignment = result;
-          this.assAll = result.length;
-          for (let i=0; i < this.assAll; i++){
-            if (result[i].content == 'owner') this.assOwner++;
-            else if (result[i].content == 'none') this.assNotTurnIn++;
-            else this.assDone++;
-          }
-        },
-        (err) => {console.log(err);}
-      )
+    this.postSrv.getAssignmentByUser((result: any) => {
+      if (result) {
+        this.listAssignment = result;
+        this.assAll = result.length;
+        for (let i = 0; i < this.assAll; i++) {
+          if (result[i].content == 'owner') this.assOwner++;
+          else if (result[i].content == 'none') this.assNotTurnIn++;
+          else this.assDone++;
+        }
+      }
+    })
   }
 }

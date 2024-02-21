@@ -24,15 +24,15 @@ export class ErrorInterceptor implements HttpInterceptor {
                     // Xảy ra lỗi mạng hoặc lỗi không mong muốn từ phía client
                     errorMessage = `Error: ${error.error.message}`;
                     this.notificationSrv.showError(
-                        error.statusText,
                         error.error?.error ? error.error?.error : 'Something went wrong',
+                        error.statusText
                     );
                 } else {
                     // Xảy ra lỗi từ phía server
                     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
                     this.notificationSrv.showError(
-                        error.statusText,
                         error.error?.error ? error.error?.error : 'Something went wrong',
+                        error.statusText
                     );
                 }
                 return throwError(errorMessage);

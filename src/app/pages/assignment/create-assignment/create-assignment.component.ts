@@ -16,8 +16,7 @@ export class CreateAssignmentComponent implements OnInit{
   groupId: any;
 
   constructor(
-    private commonService: CommonService,
-    private postService: PostService,
+    private postSrv: PostService,
     private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService
@@ -32,25 +31,23 @@ export class CreateAssignmentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      this.commonService.typeHeader.next('assignment');
       this.initForm();
       this.groupId = this.route.snapshot.paramMap.get('id');
   }
 
   createAssignment(){
-    this.postService.createPost({
+    let data = {
       type: 'assignment',
       groupId: this.groupId,
       content: this.createAssignmentForm.value.content,
       dueto: this.createAssignmentForm.value.dueto,
       name: this.createAssignmentForm.value.name
-    }).subscribe(
-      (result) => {
-        this.notificationService.showSuccess(result.msg, "Successfully created");
+    }
+    this.postSrv.createPost(data, (res: any) => {
+      if(res){
+        this.notificationService.showSuccess(res.msg, "Successfully created");
         this.router.navigate([`/group/detail/${this.groupId}`]);
-      },
-      (err) => {console.log(err);}
-    )
-    
+      }
+    })
   }
 }

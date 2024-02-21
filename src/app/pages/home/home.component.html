@@ -5,7 +5,7 @@
                 <h1 style="font-weight: bolder; font-size: 3rem;">Your Groups</h1>
                 <h2 style="color: var(--main-color);">{{ dataTime | date}}</h2>
             </div>
-            <button class="add-group" routerLink="/group/create" (click)="handleChangeTypeHeader('group')">
+            <button class="add-group" routerLink="/group/create">
                 <fa-icon [icon]="faPlus"></fa-icon>
             </button>
         </div>
@@ -27,7 +27,6 @@
             <div class="assignment-list">
                 <div 
                     class="assignment-item d-flex mt-5" 
-                    (click)="handleChangeTypeHeader('assignment')" 
                     *ngFor="let assignment of listAssignment" 
                     routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}"
                 >

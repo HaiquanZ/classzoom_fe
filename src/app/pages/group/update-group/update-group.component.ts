@@ -15,7 +15,7 @@ export class UpdateGroupComponent implements OnInit{
   email: string = '';
 
   constructor(
-    private groupService: GroupService,
+    private groupSrv: GroupService,
     private notificationService: NotificationService,
     private route: ActivatedRoute,
     private router: Router
@@ -23,14 +23,11 @@ export class UpdateGroupComponent implements OnInit{
 
   ngOnInit(): void {
       this.groupId = this.route.snapshot.paramMap.get('id');
-      //console.log(this.groupId);
-      this.groupService.getUserOfGroup(this.groupId).subscribe(
-        (result) => {
-          //console.log(result);
-          this.memberList = result;
-        },
-        (err) => {console.log(err);}
-      )
+      this.groupSrv.getUserOfGroup(this.groupId, (res: any) => {
+        if(res){
+          this.memberList = res;
+        }
+      })
   }
 
   addMember(){
@@ -41,27 +38,27 @@ export class UpdateGroupComponent implements OnInit{
       if (!expression.test(this.email)){
         this.notificationService.showError('Email is not valid', "Error");
       }else{
-        this.groupService.addMember({
+        let data = {
           email: this.email,
           groupId: this.groupId
-        }).subscribe(
-          (result) => {
+        }
+
+        this.groupSrv.addMember(data, (res: any) => {
+          if(res){
             window.location.reload();
-            this.notificationService.showSuccess(result.msg, "Member added");
-          },
-          (err) => {this.notificationService.showError(err.error.error, "Error");}
-        )
+            this.notificationService.showSuccess(res.msg, "Member added");
+          }
+        })
       }
     }
   }
 
   deleteGroup(groupId: any){
-    this.groupService.deleteGroup(groupId).subscribe(
-      (result) => {
+    this.groupSrv.deleteGroup(groupId, (res: any) => {
+      if(res){
         this.notificationService.showSuccess('Delete Group Success', 'Success');
         this.router.navigate(['/group']);
-      },
-      (err) => { this.notificationService.showError(err.msg, 'Error');}
-    )
+      }
+    })
   }
 }

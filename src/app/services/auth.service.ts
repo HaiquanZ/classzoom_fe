@@ -8,8 +8,6 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private baseUrl: string = environment.server.apiUrl;
-
   constructor(private http: HttpClient) { }
 
   login(data: any, callBack: Function): any{

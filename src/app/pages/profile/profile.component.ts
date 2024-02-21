@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
     private notificationService: NotificationService
   ){}
   ngOnInit(): void {
-    this.commonService.typeHeader.next('profile');
     this.userName = localStorage.getItem('username');
     this.email = localStorage.getItem('email');
     this.gender = localStorage.getItem('gender');
@@ -40,7 +39,6 @@ export class ProfileComponent implements OnInit {
     localStorage.removeItem('gender');
     localStorage.removeItem('id');
     this.commonService.logged.next(false);
-    this.commonService.typeHeader.next('home');
     this.router.navigate(['/login']);
   }
 }

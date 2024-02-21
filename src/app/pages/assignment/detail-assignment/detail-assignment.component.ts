@@ -22,30 +22,26 @@ export class DetailAssignmentComponent implements OnInit{
   formData:FormData = new FormData();
 
   constructor(
-    private postService: PostService,
+    private postSrv: PostService,
     private route: ActivatedRoute,
-    private commonService: CommonService,
     private notificationService: NotificationService
   ){};
 
   ngOnInit(): void {
       this.postId = this.route.snapshot.paramMap.get('id');
-      this.commonService.typeHeader.next('assignment');
-      this.postService.getDetailAssignment(this.postId).subscribe(
-        (result) => {
-          this.content = result.content;
-          this.dueto = result.Assignment.dueto,
-          this.name = result.Assignment.name
-        },
-        (err) => {console.log(err);}
-      )
+      this.postSrv.getDetailAssignment(this.postId, (res:any) => {
+        if(res){
+          this.content = res.content;
+          this.dueto = res.Assignment.dueto,
+          this.name = res.Assignment.name
+        }
+      })
 
-      this.postService.getAnswerOfUser(this.postId).subscribe(
-        (result) => {
-          this.statusAssignment = result;
-        },
-        (err) => {console.log(err);}
-      );
+      this.postSrv.getAnswerOfUser(this.postId, (res: any) => {
+        if(res){
+          this.statusAssignment = res;
+        }
+      })
   }
 
   fileChange(e: any){
@@ -58,12 +54,11 @@ export class DetailAssignmentComponent implements OnInit{
       this.notificationService.showError("No file uploaded", "Error uploading");
     }else{
       this.formData.append('file', this.file, this.file.name)
-      this.postService.submitAnswer(this.formData).subscribe(
-        (result) => {
-          this.notificationService.showSuccess(result.msg, "Sucesss");
-        },
-        (err) => {console.log(err);}
-      )
+      this.postSrv.submitAnswer(this.formData, (res: any) => {
+        if(res){
+          this.notificationService.showSuccess(res.msg, "Sucesss");
+        }
+      })
     }
   }
 }

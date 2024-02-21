@@ -16,7 +16,7 @@ export class CreateGroupComponent implements OnInit {
   createGroupForm:FormGroup;
   constructor(
     private router: Router,
-    private groupService: GroupService,
+    private groupSrv: GroupService,
     private notificationService: NotificationService
   ){};
 
@@ -26,24 +26,18 @@ export class CreateGroupComponent implements OnInit {
 
   initForm(){
     this.createGroupForm = new FormGroup({
-      groupName: new FormControl('', [Validators.required]),
+      groupname: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       subject: new FormControl('', [Validators.required])
     });
   }
 
   createGroup(){
-    this.groupService.createGroup({
-      groupname: this.createGroupForm.value.groupName,
-      description: this.createGroupForm.value.description,
-      subject: this.createGroupForm.value.subject
-    }).subscribe(
-      (result) => {
-        //console.log(result);
-        this.notificationService.showSuccess(result.msg, "Sucess");
+    this.groupSrv.createGroup(this.createGroupForm.value, (res: any) => {
+      if(res){
+        this.notificationService.showSuccess(res.msg, "Sucess");
         this.router.navigate(['']);
-      },
-      (err) => {console.log(err);}
-    )
+      }
+    })
   }
 }
