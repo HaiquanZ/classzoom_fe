@@ -54,3 +54,27 @@
 nz-select{
     width: 200px;
 }
+
+@media (max-width: 576px){
+    .header-home{
+        display: block;
+        text-align: center;
+
+        button{
+            margin: auto;
+        }
+    }
+
+    .group-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .second-block .account{
+        display: none !important;
+    }
+    .your-assignment h2{
+        margin-left: 15px;
+    }
+}

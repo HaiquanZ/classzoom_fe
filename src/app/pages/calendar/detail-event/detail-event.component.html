@@ -6,8 +6,8 @@
         </ng-template>
         <div *ngIf="tab.icon == 'table'">
             <div>
-                <div *ngFor="let item of notes" nz-row nzAlign="middle" nzJustify="space-between">
-                    <div>
+                <div *ngFor="let item of notes" nz-row nzAlign="middle" nzJustify="space-between" class="mg-t-10 mg-b-10">
+                    <div nz-row nzAlign="middle">
                         <span
                             nz-icon
                             nzType="right"
@@ -18,20 +18,39 @@
                         <span class="mg-l-10" style="font-size: 14px;">{{item.content}}</span>
                     </div>
                     <div>
-                        <span nz-icon nzType="edit" nzTheme="outline" nzSize="lg"></span>
-                        <span nz-icon nzType="delete" nzTheme="outline" nzSize="lg"></span>
+                        <span nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px;"></span>
+                        <span nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px;" class="mg-l-10"></span>
                     </div>
                 </div>
             </div>
             <div nz-row nzJustify="end" class="mg-t-20">
-                <button nz-button (click)="close()">Close</button>
+                <button nz-button (click)="close($event)">Close</button>
             </div>
         </div>
         <div *ngIf="tab.icon != 'table'">
-            <div nz-row nzJustify="end">
-                <button nz-button (click)="close()">Close</button>
-                <button nz-button nzType="primary" style="margin-left: 2rem;">Save</button>
-            </div>
+            <form nz-form nzLayout="vertical">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Color</nz-form-label>
+                    <nz-form-control nzHasFeedback nzErrorTip="Please input your password!">
+                        <nz-select ngModel="lucy">
+                            <nz-option nzValue="jack" nzLabel="Success"></nz-option>
+                            <nz-option nzValue="lucy" nzLabel="Warning"></nz-option>
+                            <nz-option nzValue="disabled" nzLabel="Danger"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzRequired>Content</nz-form-label>
+                    <nz-form-control nzHasFeedback nzErrorTip="Please input your password!">
+                        <input nz-input type="text" formControlName="content" />
+                    </nz-form-control>
+                </nz-form-item>
+
+                <div nz-row nzJustify="end">
+                    <button nz-button (click)="close($event)" nzNoColon="true">Close</button>
+                    <button nz-button nzType="primary" type="submit" style="margin-left: 2rem;">Save</button>
+                </div>
+            </form>
         </div>
     </nz-tab>
 </nz-tabset>

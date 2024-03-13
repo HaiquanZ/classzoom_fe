@@ -30,7 +30,8 @@ export class DetailEventComponent {
     }
   ];
 
-  close(){
+  close(e: any){
+    e.preventDefault();
     this.modal.close();
   }
 }
