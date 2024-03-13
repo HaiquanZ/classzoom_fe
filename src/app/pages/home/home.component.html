@@ -2,28 +2,44 @@
     <div class="first-block col-sm-8">
         <div class="header-home d-flex justify-content-around">
             <div class="title">
-                <h1 style="font-weight: bolder; font-size: 3rem;">Your Groups</h1>
+                <h1 style="font-size: 3rem; margin-bottom: 0 !important;">Hi, Do Duc Khiem</h1>
                 <h2 style="color: var(--main-color);">{{ dataTime | date}}</h2>
             </div>
-            <button class="add-group" routerLink="/group/create">
-                <fa-icon [icon]="faPlus"></fa-icon>
+            <button nz-button nzType="primary" nzSize="default" routerLink="/group/create">
+                <span nz-icon nzType="plus" nzTheme="outline"></span>
+                Create group
             </button>
         </div>
 
-        <div class="group-list">
-            <div class="group-item mt-5" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item.groupId)">
+        <div style="background-color: white; border-radius: 8px;" class="m-4 pd-l-20 pd-r-20">
+            <app-column-home></app-column-home>
+        </div>
+
+        <p class="m-4" style="font-size: 20px; font-weight: 500;">Your groups</p>
+
+        <div class="group-list m-4">
+            <div class="group-item" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item.groupId)">
                 <app-card-group [data]="item"></app-card-group>
             </div>
         </div>
     </div>
-    <div class="second-block col-sm-4">
-        <div class="account d-flex justify-content-center" routerLink="profile">
-            <img style="width: 15%;" src="{{ urlAvt }}" alt="avatar">
-            <h2>{{ userName }}</h2>
+    <div class="second-block col-sm-4 pd-r-25">
+        <div class="account d-flex justify-content-center align-items-center" routerLink="profile">
+            <nz-avatar nzText="U" nzSize="large"></nz-avatar>
+            <h2>Do Duc Khiem</h2>
         </div>
 
         <div class="your-assignment mt-5">
-            <h2>Assignment</h2>
+            <div nz-row nzJustify="space-between" nzAlign="middle">
+                <h2>Assignment</h2>
+                <nz-select [(ngModel)]="typeAssignment" nzSize="large">
+                    <nz-option nzValue="doing" nzLabel="Doing"></nz-option>
+                    <nz-option nzValue="done" nzLabel="Done"></nz-option>
+                    <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
+                    <nz-option nzValue="cancel" nzLabel="Cancel"></nz-option>
+                    <nz-option nzValue="all" nzLabel="All"></nz-option>
+                </nz-select>
+            </div>
             <div class="assignment-list">
                 <div 
                     class="assignment-item d-flex mt-5" 
@@ -38,8 +54,8 @@
                         </fa-icon>
                     </div>
                     <div class="item-infor">
-                        <h3 style="font-weight: bold;">{{assignment.Assignment.name}}</h3>
-                        <h5 style="font-weight: bold;">Due to: {{assignment.Assignment.dueto | date}}</h5>
+                        <h3 style="font-weight: bold;">{{assignment.name}}</h3>
+                        <h5 style="font-weight: bold;">Due to: {{assignment.dueto | date}}</h5>
                     </div>
                 </div>
             </div>

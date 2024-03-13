@@ -21,12 +21,16 @@ export class HomeComponent implements OnInit{
   listGroup: Array<GroupModel> = [];
   listAssignment: Array<any> = [];
   dataTime: any;
+  typeAssignment = 'done';
   
   constructor(
     private groupService: GroupService,
     private postSrv: PostService,
     private router: Router
-  ){}
+  ){
+    const currentTimeUTC = new Date();
+    this.dataTime = new Date(currentTimeUTC.getTime() + (7 * 60 * 60 * 1000))
+  }
 
 
   ngOnInit(): void {
@@ -39,17 +43,35 @@ export class HomeComponent implements OnInit{
       }
 
       //handle list groups
-      this.groupService.getAllGroups({}, (res: GroupModel[]) => {
-        if(res){
-          this.listGroup = res;
-        }
-      })
+      // this.groupService.getAllGroups({}, (res: GroupModel[]) => {
+      //   if(res){
+      //     this.listGroup = res;
+      //   }
+      // })
 
-      this.postSrv.getAssignmentByUser((res: any) => {
-        if(res){
-          this.listAssignment = res;
-        }
-      })
+      this.listGroup = [
+        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      ];
+
+      // this.postSrv.getAssignmentByUser((res: any) => {
+      //   if(res){
+      //     this.listAssignment = res;
+      //   }
+      // })
+      this.listAssignment = [
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
+      ]
   }
 
   handleClickGroupItem(id: any){

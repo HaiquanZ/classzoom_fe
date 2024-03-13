@@ -1,0 +1,33 @@
+.card-component{
+    background-color: white;
+    transition: all ease-in-out .3s;
+    border-radius: 8px;
+}
+.card-component:hover{
+    background-color: var(--primary-color);
+    p, div{
+        color: white;
+    }
+}
+.cover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cover div{
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+    background-size: cover;
+    height: 180px;
+    width: 100%;
+}
+.text > p{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: .25rem !important;
+}
+.text > div{
+    font-size: 12px;
+    text-align: center;
+}

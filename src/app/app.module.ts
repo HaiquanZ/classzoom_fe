@@ -35,6 +35,9 @@ import { Interceptor } from './interceptors/add-header';
 import { ErrorInterceptor } from './interceptors/handle-error';
 import { NotfoundComponent } from './pages/notfound/notfound/notfound.component';
 import { CardGroupComponent } from './component/card-group/card-group.component';
+import { ColumnHomeComponent } from './component/chart/column-home/column-home.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { TruncatePipe } from './pipe/truncate.pipe';
 
 registerLocaleData(vi);
 
@@ -58,7 +61,9 @@ registerLocaleData(vi);
     RoomComponent,
     ViewAnswerComponent,
     NotfoundComponent,
-    CardGroupComponent
+    CardGroupComponent,
+    ColumnHomeComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -75,7 +80,8 @@ registerLocaleData(vi);
       options: {}
     }),
     NgxDocViewerModule,
-    AntdModule
+    AntdModule,
+    NgApexchartsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: vi_VN },

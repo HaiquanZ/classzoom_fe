@@ -47,14 +47,16 @@ export class LoginComponent implements OnInit{
 
   login() {
     if (this.loginForm.valid) {
-      this.authSrv.login(this.loginForm.value, (res: any) => {
-        if(res){
-          this.notificationSrv.showSuccess('Logged in successfully.', 'Success');
-          this.commonSrv.logged.next(true);
-          this.router.navigate(['/']);
-        }
-
-      })
+      // this.authSrv.login(this.loginForm.value, (res: any) => {
+      //   if(res){
+      //     this.notificationSrv.showSuccess('Logged in successfully.', 'Success');
+      //     this.commonSrv.logged.next(true);
+      //     this.router.navigate(['/']);
+      //   }
+      // })
+      this.notificationSrv.showSuccess('Logged in successfully.', 'Success');
+      this.commonSrv.logged.next(true);
+      this.router.navigate(['/']);
 
     } else {
       Object.values(this.loginForm.controls).forEach(control => {

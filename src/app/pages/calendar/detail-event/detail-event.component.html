@@ -1,0 +1,37 @@
+<nz-tabset>
+    <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+        <ng-template #titleTemplate>
+            <span nz-icon [nzType]="tab.icon"></span>
+            {{ tab.name }}
+        </ng-template>
+        <div *ngIf="tab.icon == 'table'">
+            <div>
+                <div *ngFor="let item of notes" nz-row nzAlign="middle" nzJustify="space-between">
+                    <div>
+                        <span
+                            nz-icon
+                            nzType="right"
+                            nzTheme="outline"
+                            style="color: red;"
+                        >
+                        </span>
+                        <span class="mg-l-10" style="font-size: 14px;">{{item.content}}</span>
+                    </div>
+                    <div>
+                        <span nz-icon nzType="edit" nzTheme="outline" nzSize="lg"></span>
+                        <span nz-icon nzType="delete" nzTheme="outline" nzSize="lg"></span>
+                    </div>
+                </div>
+            </div>
+            <div nz-row nzJustify="end" class="mg-t-20">
+                <button nz-button (click)="close()">Close</button>
+            </div>
+        </div>
+        <div *ngIf="tab.icon != 'table'">
+            <div nz-row nzJustify="end">
+                <button nz-button (click)="close()">Close</button>
+                <button nz-button nzType="primary" style="margin-left: 2rem;">Save</button>
+            </div>
+        </div>
+    </nz-tab>
+</nz-tabset>

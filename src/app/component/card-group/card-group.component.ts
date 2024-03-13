@@ -7,9 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class CardGroupComponent {
   @Input() data: any;
+  background: any;
 
   ngOnInit(){
-    // console.log('this: ', this.data);
+    console.log('this: ', this.data);
+    this.background = `background-image: url(https://i.pinimg.com/736x/6e/51/ab/6e51abfb7cd9d5b6a58ca04ab3aba764.jpg); `
   }
 
 }

@@ -40,9 +40,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // handle when user reload page
-    if (localStorage.getItem('token')) {
-      this.commonService.logged.next(true);
-    }
+    // if (localStorage.getItem('token')) {
+    //   this.commonService.logged.next(true);
+    // }
+    this.commonService.logged.next(true);
     //handle when user did not login
     this.commonService.logged.subscribe(logged => this.logged = logged);
     if (!this.logged) {

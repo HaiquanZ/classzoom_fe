@@ -61,6 +61,9 @@ html{
 .ant-form-item-label>label{
     font-size: 16px !important;
 }
+.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    border-radius: 8px !important;
+}
 
 // css
 @for $i from 0 through 220 {

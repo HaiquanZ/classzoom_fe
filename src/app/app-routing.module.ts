@@ -88,6 +88,10 @@ const routes: Routes = [
     component: RoomComponent
   },
   {
+    path: 'calendar',
+    loadChildren: () => import('./pages/calendar/calendar.module').then((m) => m.CalendarModule)
+  },
+  {
     path: '**',
     component: NotfoundComponent
   }

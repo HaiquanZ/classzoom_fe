@@ -1,6 +1,6 @@
 export const environment = {
     server: {
-        apiUrl: 'http://192.168.1.4:4000/api/v1',
+        apiUrl: 'http://192.168.1.13:4000/api/v1',
     },
     path: {
         auth: {
