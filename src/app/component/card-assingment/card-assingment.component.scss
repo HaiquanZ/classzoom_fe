@@ -1,0 +1,18 @@
+.item-icon span{
+    font-size: 30px;
+    margin: auto !important;;
+}
+.card-assignment{
+    background-color: #fff;
+    padding: 3rem 3rem;
+    border-radius: 10px;
+    transition: all ease-in-out .3s;
+}
+.card-assignment:hover{
+    transform: scale(1.05);
+}
+@media(max-width: 576px){
+    .card-assignment{
+        padding: 2rem 2rem;
+    }
+}

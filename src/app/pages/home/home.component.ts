@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { faFile, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { CommonService } from 'src/app/services/common.service';
 import { GroupService } from 'src/app/services/group.service';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
@@ -12,8 +10,6 @@ import { GroupModel } from 'src/app/models/group-model';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-  faFile = faFile;
-  faPlus = faPlus;
   list: Array<number> = [1,2,3,4,5];
   logged: boolean = false;
   userName: any;
@@ -65,12 +61,12 @@ export class HomeComponent implements OnInit{
       //   }
       // })
       this.listAssignment = [
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'done'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'cancel'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'cancel'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'done'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'doing'},
+        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'pending'},
       ]
   }
 

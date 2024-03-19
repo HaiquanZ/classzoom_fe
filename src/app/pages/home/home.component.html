@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="second-block col-sm-4 col-12 pd-r-25">
+    <div class="second-block col-sm-4 col-12">
         <div class="account d-flex justify-content-center align-items-center" routerLink="profile">
             <nz-avatar nzText="U" nzSize="large"></nz-avatar>
             <h2>Do Duc Khiem</h2>
@@ -32,7 +32,7 @@
         <div class="your-assignment mt-5">
             <div nz-row nzJustify="space-between" nzAlign="middle">
                 <h2>Assignment</h2>
-                <nz-select [(ngModel)]="typeAssignment" nzSize="large">
+                <nz-select [(ngModel)]="typeAssignment" nzSize="large" class="mg-r-20">
                     <nz-option nzValue="doing" nzLabel="Doing"></nz-option>
                     <nz-option nzValue="done" nzLabel="Done"></nz-option>
                     <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
@@ -40,23 +40,13 @@
                     <nz-option nzValue="all" nzLabel="All"></nz-option>
                 </nz-select>
             </div>
-            <div class="assignment-list">
+            <div class="assignment-list m-4">
                 <div 
-                    class="assignment-item d-flex mt-5" 
+                    class="assignment-item" 
                     *ngFor="let assignment of listAssignment" 
                     routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}"
                 >
-                    <div class="item-icon">
-                        <fa-icon 
-                            [icon]="faFile"
-                            style="font-size: 3rem; padding: 2rem; color: var(--main-color)"
-                        >
-                        </fa-icon>
-                    </div>
-                    <div class="item-infor">
-                        <h3 style="font-weight: bold;">{{assignment.name}}</h3>
-                        <h5 style="font-weight: bold;">Due to: {{assignment.dueto | date}}</h5>
-                    </div>
+                    <app-card-assingment [data]="assignment"></app-card-assingment>
                 </div>
             </div>
         </div>

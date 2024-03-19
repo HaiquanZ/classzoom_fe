@@ -51,6 +51,12 @@
     align-items: center;
     font-weight: 500;
 }
+.assignment-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+}
 nz-select{
     width: 200px;
 }

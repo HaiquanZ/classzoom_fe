@@ -1,0 +1,36 @@
+<div class="card-assignment">
+    <div class="item-icon" nz-row nzJustify="center">
+        <span 
+            *ngIf="data.type == 'pending'"
+            nz-icon
+            nzType="file-exclamation"
+            nzTheme="outline"
+            style="color: var(--warning-weight);"
+        ></span>
+        <span 
+            *ngIf="data.type == 'doing'"
+            nz-icon
+            nzType="file-text"
+            nzTheme="outline"
+            style="color: var(--primary-color);"
+        ></span>
+        <span 
+            *ngIf="data.type == 'done'"
+            nz-icon
+            nzType="file-done"
+            nzTheme="outline"
+            style="color: var(--success-weight);"
+        ></span>
+        <span 
+            *ngIf="data.type == 'cancel'"
+            nz-icon
+            nzType="file-excel"
+            nzTheme="outline"
+            style="color: var(--error-weight);"
+        ></span>
+    </div>
+    <div class="item-infor mg-t-10" style="text-align: center;">
+        <h3 style="font-weight: 500;">{{data.name}}</h3>
+        <h5 style="font-weight: 400;">Due to: {{data.dueto | date}}</h5>
+    </div>
+</div>

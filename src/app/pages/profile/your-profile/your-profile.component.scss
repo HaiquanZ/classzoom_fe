@@ -1,0 +1,49 @@
+.content-profile{
+    margin: 2rem;
+    height: calc(100vh - 4rem);
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.cover {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    background-size: cover;
+    height: 28rem;
+    width: 100%;
+}
+nz-avatar{
+    border-radius: 50%;
+    border: 4px white solid;
+}
+.statistical{
+    margin-right: 15rem;
+}
+.statistical div{
+    font-size: 28px !important;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.name-user{
+    align-items: baseline;
+    h1{
+        font-size: 32px;
+    }
+    h4{
+        font-size: 20px;
+        color: var(--gray-color);
+    }
+}
+.infor-user{
+    font-size: 20px;
+}
+.detail-content{
+    transform: translateY(-30%);
+}
+.img-profile{
+    transform: translateY(-50%);
+}
+
+@media (max-screen: 576px){
+    
+}
