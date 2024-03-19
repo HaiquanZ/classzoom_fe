@@ -1,1 +1,27 @@
-<p>list-group works!</p>
+<div class="list-group mg-l-20 mg-r-20">
+    <div class="title"><span class="logo-script">Space</span> Groups</div>
+    <div nz-row nzJustify="space-between" class="mg-t-20">
+        <button nz-button nzType="primary" nzSize="default" (click)="createGroup($event)">
+            <span nz-icon nzType="plus" nzTheme="outline"></span>
+            Create group
+        </button>
+        <div>
+            <nz-input-group [nzSuffix]="suffixIconSearch">
+                <input type="text" nz-input placeholder="Search group.." />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+                <span nz-icon nzType="search"></span>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="group-list mg-t-25">
+        <div class="group-item" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item.groupId)">
+            <app-card-group [data]="item"></app-card-group>
+        </div>
+    </div>
+
+    <div class="mg-t-25 mg-b-30" nz-row nzJustify="center">
+        <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
+    </div>
+</div>

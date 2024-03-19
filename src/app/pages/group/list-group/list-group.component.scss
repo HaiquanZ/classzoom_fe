@@ -1,0 +1,29 @@
+.title{
+    margin-top: 2rem;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+}
+button{
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+nz-input-group{
+    width: 350px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.group-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+.group-item{
+    cursor: pointer;
+    transition: all ease-in-out .2s;
+}

@@ -5,6 +5,7 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { AntdModule } from 'src/app/component/antd/antd.module';
 import { GroupRoutingModule } from './group-routing.module';
+import { CardModule } from 'src/app/component/card/card.module';
 
 
 
@@ -17,7 +18,8 @@ import { GroupRoutingModule } from './group-routing.module';
   imports: [
     CommonModule,
     AntdModule,
-    GroupRoutingModule
+    GroupRoutingModule,
+    CardModule
   ]
 })
 export class GroupModule { }
