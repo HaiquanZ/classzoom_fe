@@ -1,3 +1,37 @@
 <div class="create-group">
-    
+    <form nz-form nzLayout="vertical" (ngSubmit)="create()" [formGroup]="createForm">
+        <div class="name-upload">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="name">Name</nz-form-label>
+                <nz-form-control nzErrorTip="The input is not valid!">
+                    <input nz-input placeholder="Enter name of group" formControlName="name" id="name" class="input-name"/>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzFor="img">Avatar group</nz-form-label>
+                <nz-form-control>
+                    <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" [nzFileList]="fileList"
+                        (nzChange)="handleChange($event)">
+                        <button nz-button style="font-weight: 400;" nz-row nzAlign="middle">
+                            <span nz-icon nzType="upload"></span>
+                            Upload
+                        </button>
+                    </nz-upload>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <nz-form-item>
+            <nz-form-label nzRequired nzFor="describe">Describe</nz-form-label>
+            <nz-form-control nzErrorTip="The input is not valid!">
+                <nz-textarea-count [nzMaxCharacterCount]="2000">
+                    <textarea formControlName="describe" nz-input rows="10"
+                        placeholder="Enter describe of group"></textarea>
+                </nz-textarea-count>
+            </nz-form-control>
+        </nz-form-item>
+
+        <div nz-row nzAlign="middle" nzJustify="end" class="mg-b-20">
+            <button nz-button nzType="primary" type="submit" style="font-weight: 400;">Create</button>
+        </div>
+    </form>
 </div>

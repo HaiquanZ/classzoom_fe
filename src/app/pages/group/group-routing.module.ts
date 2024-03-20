@@ -5,7 +5,7 @@ import { DetailGroupComponent } from './detail-group/detail-group.component';
 
 const routes: Routes = [
     { path: '', component: ListGroupComponent},
-    { path: 'detail', component: DetailGroupComponent}
+    { path: 'detail/:id', component: DetailGroupComponent}
 ]
 
 @NgModule({

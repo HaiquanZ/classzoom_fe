@@ -6,6 +6,7 @@ import { CreateGroupComponent } from './create-group/create-group.component';
 import { AntdModule } from 'src/app/component/antd/antd.module';
 import { GroupRoutingModule } from './group-routing.module';
 import { CardModule } from 'src/app/component/card/card.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,9 @@ import { CardModule } from 'src/app/component/card/card.module';
     CommonModule,
     AntdModule,
     GroupRoutingModule,
-    CardModule
+    CardModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class GroupModule { }

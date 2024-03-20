@@ -27,3 +27,15 @@ nz-input-group{
     cursor: pointer;
     transition: all ease-in-out .2s;
 }
+
+@media (max-width: 576px){
+    .group-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    button{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}

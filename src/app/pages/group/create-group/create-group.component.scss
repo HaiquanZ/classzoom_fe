@@ -1,0 +1,19 @@
+textarea{
+    height: 100px !important;
+}
+.input-name{
+    width: 340px !important;
+}
+.name-upload{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width: 576px){
+    .input-name{
+        width: 100% !important;
+    }
+    .name-upload{
+        display: block;
+    }
+}
