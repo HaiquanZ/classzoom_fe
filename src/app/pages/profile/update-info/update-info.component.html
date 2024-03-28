@@ -1,0 +1,47 @@
+<div class="update-user">
+    <form nz-form nzLayout="vertical" (ngSubmit)="update()" [formGroup]="updateForm">
+        <div class="gr-1">
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="name">Name</nz-form-label>
+                <nz-form-control nzErrorTip="The input is not valid!">
+                    <input nz-input placeholder="Enter username" formControlName="name" id="name" class="input-name"/>
+                </nz-form-control>
+            </nz-form-item>
+
+            <div></div>
+    
+            <nz-form-item>
+                <nz-form-label nzRequired nzFor="phone">Phone</nz-form-label>
+                <nz-form-control nzErrorTip="The input is not valid!">
+                    <input nz-input placeholder="Enter your phone" formControlName="phone" id="phone" class="input-name"/>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+
+        <nz-form-item>
+            <nz-form-label nzRequired nzFor="gender">Gender</nz-form-label>
+            <nz-form-control nzErrorTip="The input is not valid!">
+                <nz-radio-group formArrayName="gender">
+                    <label nz-radio nzValue="MALE">Male</label>
+                    <label nz-radio nzValue="FEMALE" class="mg-l-10">Female</label>
+                    <label nz-radio nzValue="UNDEFINE" class="mg-l-10">Undefine</label>
+                  </nz-radio-group>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label nzRequired nzFor="bio">Bio</nz-form-label>
+            <nz-form-control nzErrorTip="The input is not valid!">
+                <nz-textarea-count [nzMaxCharacterCount]="2000">
+                    <textarea formControlName="bio" nz-input rows="10"
+                        placeholder="Enter your bio"></textarea>
+                </nz-textarea-count>
+            </nz-form-control>
+        </nz-form-item>
+
+
+        <div nz-row nzAlign="middle" nzJustify="end" class="mg-b-20">
+            <button nz-button nzType="primary" type="submit" style="font-weight: 400;">Update</button>
+        </div>
+    </form>
+</div>

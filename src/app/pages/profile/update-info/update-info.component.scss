@@ -1,0 +1,13 @@
+.gr-1{
+    display: grid;
+    grid-template-columns: 5fr 1fr 5fr;
+}
+textarea{
+    height: 100px !important;
+}
+
+@media(max-width:768px){
+    .gr-1{
+        display: block;
+    }
+}

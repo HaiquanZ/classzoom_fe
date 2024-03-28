@@ -24,6 +24,8 @@ import { NotfoundComponent } from './pages/notfound/notfound/notfound.component'
 import { ColumnHomeComponent } from './component/chart/column-home/column-home.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CardModule } from './component/card/card.module';
+import { PostComponent } from './component/post/post.component';
+import { CommentComponent } from './component/comment/comment.component';
 
 registerLocaleData(vi);
 
@@ -35,6 +37,8 @@ registerLocaleData(vi);
     RoomComponent,
     NotfoundComponent,
     ColumnHomeComponent,
+    PostComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

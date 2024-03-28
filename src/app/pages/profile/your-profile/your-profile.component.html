@@ -1,13 +1,12 @@
 <div class="view-profile">
     <div class="content-profile">
         <div>
-            <div class="cover" [style]="cover">
+            <div class="cover" [style]="cover"></div>
 
-            </div>
-            <div style="margin-left: 5rem; margin-right: 5rem;">
-                <div nz-row nzJustify="space-between" class="img-profile">
+            <div class="container-pr">
+                <div class="img-profile">
                     <nz-avatar nzIcon="user" [nzSrc]="img" [nzSize]="sizeAvt"></nz-avatar>
-                    <div nz-row nzAlign="middle" class="mg-t-120">
+                    <div class="text-statistical">
                         <div nz-row nzAlign="middle" nzJustify="space-between" class="statistical">
                             <div>200 Tasks solved</div>
                             <div nz-row nzAlign="middle">
@@ -19,12 +18,29 @@
                                 10
                             </div>
                         </div>
-                        <div>
-                            <button nz-button nzType="primary">
-                                <span nz-icon nzType="edit" nzTheme="outline"></span>
-                                Edit profile
-                            </button>
-                        </div>
+                    </div>
+
+                    <div class="text-statistical">
+                        <button *ngIf="!isOtherProfile" nz-button nzType="primary" (click)="openUpdate()">
+                            <span nz-icon nzType="edit" nzTheme="outline"></span>
+                            Edit profile
+                        </button>
+
+                        <button *ngIf="isOtherProfile" nz-button nz-dropdown [nzDropdownMenu]="gender">
+                            <span nz-icon nzType="edit" nzTheme="outline"></span>
+                            Rate account
+                        </button>
+
+                        <nz-dropdown-menu #gender="nzDropdownMenu">
+                            <ul nz-menu>
+                                <li nz-menu-item>
+                                    <span class="mg-r-10" nz-icon nzType="heart" nzTheme="outline" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></span> Like
+                                </li>
+                                <li nz-menu-item>
+                                    <span class="mg-r-10" nz-icon nzType="dislike" nzTheme="outline" [nzTheme]="'twotone'"></span> Unlike
+                                </li>
+                            </ul>
+                        </nz-dropdown-menu>
                     </div>
                 </div>
 

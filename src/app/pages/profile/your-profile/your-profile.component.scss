@@ -5,6 +5,11 @@
     border-radius: 10px;
 }
 
+.container-pr{
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
 .cover {
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
@@ -16,9 +21,9 @@ nz-avatar{
     border-radius: 50%;
     border: 4px white solid;
 }
-.statistical{
-    margin-right: 15rem;
-}
+// .statistical{
+//     margin-right: 15rem;
+// }
 .statistical div{
     font-size: 28px !important;
     margin-left: 2rem;
@@ -37,13 +42,43 @@ nz-avatar{
 .infor-user{
     font-size: 20px;
 }
-.detail-content{
-    transform: translateY(-30%);
-}
 .img-profile{
-    transform: translateY(-50%);
+    position: relative;
+    top: -8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+.text-statistical{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+}
+// .detail-content{
+//     transform: translateY(-30%);
+// }
+// .img-profile{
+//     transform: translateY(-50%);
+// }
 
-@media (max-screen: 576px){
-    
+@media (max-width: 576px){
+    .img-profile{
+        position: relative;
+        top: -8rem;
+        display: block !important;
+        text-align: center;
+    }
+    .container-pr{
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    .text-statistical{
+        justify-content: center;
+    }
+    .content-profile{
+        height: max-content;
+    }
+    .infor-user{
+        margin-bottom: 15px;
+    }
 }
