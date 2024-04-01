@@ -7,6 +7,8 @@ import { AntdModule } from 'src/app/component/antd/antd.module';
 import { GroupRoutingModule } from './group-routing.module';
 import { CardModule } from 'src/app/component/card/card.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PostComponent } from './post/post.component';
+import { CommentComponent } from './comment/comment.component';
 
 
 
@@ -15,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListGroupComponent,
     DetailGroupComponent,
     CreateGroupComponent,
+    PostComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,

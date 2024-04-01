@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./detail-group.component.scss']
 })
 export class DetailGroupComponent {
-
+  data: any;
 }
