@@ -5,7 +5,7 @@ import { DetailAssignmentComponent } from './detail-assignment/detail-assignment
 
 const routes: Routes = [
     { path: '', component: ListAssignmentComponent},
-    { path: 'detail', component: DetailAssignmentComponent}
+    { path: 'detail/:id', component: DetailAssignmentComponent}
 ]
 
 @NgModule({

@@ -1,12 +1,19 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { formatDistance } from 'date-fns';
+
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  selector: 'app-post-assignment',
+  templateUrl: './post-assignment.component.html',
+  styleUrls: ['./post-assignment.component.scss']
 })
-export class PostComponent {
+export class PostAssignmentComponent {
   @Input() data: any;
+
+  constructor(
+    private router: Router,
+  ){}
+
   Data: any[] = [];
   submitting = false;
   user = {
@@ -34,5 +41,9 @@ export class PostComponent {
         displayTime: formatDistance(new Date(), e.datetime)
       }));
     }, 800);
+  }
+
+  viewDetail(id: string){
+    this.router.navigate([`/assignment/detail/${id}`]);
   }
 }

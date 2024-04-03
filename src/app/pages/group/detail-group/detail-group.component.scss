@@ -1,0 +1,9 @@
+.img-hello{
+    width: 640px;
+}
+
+@media (max-width: 576px){
+    .img-hello{
+        width: 300px;
+    }
+}

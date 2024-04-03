@@ -1,0 +1,28 @@
+.post-component{
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.composer{
+    cursor: pointer;
+}
+.nav-react{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    div{
+        text-align: center;
+        cursor: pointer;
+        color: var(--gray-color);
+    }
+}
+
+.load-cmt:hover{
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: all ease-in-out .3s;
+}
+.btn-view button{
+    font-size: 14px;
+    font-weight: 500;
+}

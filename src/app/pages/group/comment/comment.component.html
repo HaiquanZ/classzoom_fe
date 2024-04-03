@@ -1,12 +1,11 @@
-<div class="mg-t-15">
-    <div>
-        <div nz-row nzAlign="middle" class="composer">
-            <nz-avatar nzText="S" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
-            <div class="mg-l-10" style="font-weight: 600;">Sơn Tùng M-TP</div>
-        </div>
-        <div class="mg-t-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua
-        </div>
-    </div>
-</div>
+<nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+    <ng-template #item let-item>
+        <nz-comment [nzAuthor]="item.author" [nzDatetime]="item.datetime">
+            <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
+            <nz-comment-content>
+                <p>{{ item.content }}</p>
+            </nz-comment-content>
+            <nz-comment-action>Reply to</nz-comment-action>
+        </nz-comment>
+    </ng-template>
+</nz-list>

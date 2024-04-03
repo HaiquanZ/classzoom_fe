@@ -9,6 +9,7 @@ import { CardModule } from 'src/app/component/card/card.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
+import { PostAssignmentComponent } from './post-assignment/post-assignment.component';
 
 
 
@@ -19,6 +20,7 @@ import { CommentComponent } from './comment/comment.component';
     CreateGroupComponent,
     PostComponent,
     CommentComponent,
+    PostAssignmentComponent,
   ],
   imports: [
     CommonModule,

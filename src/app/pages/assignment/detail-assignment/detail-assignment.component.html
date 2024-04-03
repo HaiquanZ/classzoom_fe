@@ -1,1 +1,14 @@
-<p>detail-assignment works!</p>
+<div class="pd-l-20 pd-r-20">
+    <div>
+        <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="Name of assignment"
+            nzSubtitle="Detail assignment"></nz-page-header>
+    </div>
+    <div>
+        <nz-steps [nzCurrent]="1">
+            <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="In Progress" nzSubtitle="Left 00:00:08" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+        </nz-steps>
+    </div>
+</div>

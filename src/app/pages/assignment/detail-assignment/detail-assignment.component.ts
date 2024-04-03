@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./detail-assignment.component.scss']
 })
 export class DetailAssignmentComponent {
-
+  onBack(): void {
+    console.log('onBack');
+  }
 }
