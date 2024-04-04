@@ -56,6 +56,16 @@
     nz-sider{
         height: 99vh !important;
     }
+
+    @media (min-width: 576px) {
+        .ant-layout-sider-children{
+            position: fixed !important;
+            z-index: 999999 !important;
+            width: 200px;
+            height: 100vh;
+            background: #fff;
+        }
+    }
 }
 
 .logo{
