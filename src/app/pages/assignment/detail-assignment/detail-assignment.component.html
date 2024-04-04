@@ -3,16 +3,83 @@
         <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="Name of assignment"
             nzSubtitle="Detail assignment"></nz-page-header>
 
-        <div>
-            
+        <div class="row" style="align-items: center;">
+            <div class="col-12 col-sm-7">
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                    eu fugiat
+                    nulla pariatur.
+                </div>
+                <div class="mg-t-10">
+                    <h4>Due to: Apr 4, 2024</h4>
+                </div>
+            </div>
+            <div class="col-12 col-sm-5">
+                <div>
+                    <h4>Member:</h4>
+                    <nz-avatar-group>
+                        <nz-avatar nzIcon="user"
+                            nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+                        <nz-avatar style="background-color: #f56a00" nzText="U"></nz-avatar>
+                        <nz-avatar style="background-color: #87d068" nz-tooltip nzTooltipTitle="NG-ZORRO User"
+                            nzIcon="user"></nz-avatar>
+                        <nz-avatar style="background-color: #1890ff" nzText="NG"></nz-avatar>
+                    </nz-avatar-group>
+                </div>
+                <img alt="assignment" src="../../../../assets/assignment.png" width="80%">
+            </div>
         </div>
     </div>
-    <div>
-        <nz-steps [nzCurrent]="1">
+    <div class="mg-t-20 mg-b-20">
+        <div class="mg-b-20">
+            <button (click)="changeTimeline(null)" nz-button nzType="primary" style="font-weight: 400; font-size: 14px;">
+                Change timeline
+            </button>
+        </div>
+        <nz-steps [nzCurrent]="2">
             <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
             <nz-step nzTitle="In Progress" nzSubtitle="Left 00:00:08" nzDescription="This is a description."></nz-step>
-            <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="In Progress" nzDescription="This is a description."></nz-step>
             <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
         </nz-steps>
+    </div>
+    <div class="mg-t-20 row">
+        <div class="col-12 col-sm-7">
+            <div nz-row nzJustify="space-between">
+                <h2>Sub task</h2>
+                <h2 style="color: var(--primary-color); font-weight: 400; cursor: pointer;">Add task</h2>
+            </div>
+            <nz-list class="demo-loadmore-list" [nzLoading]="initLoading">
+                <nz-list-item *ngFor="let item of testArr" class="pd-l-10 pd-r-10">
+                    <nz-list-item-meta nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                        nzDescription="This is sub task of User ABCDEF">
+                        <nz-list-item-meta-title>
+                            <a href="https://ng.ant.design">Implementer: Son Tung MT-P</a>
+                        </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                    <div>
+                        <div>
+                            Status: <span style="color: var(--primary-color);">Doing</span>
+                        </div>
+    
+                        <div style="color: var(--gray-color);">
+                            Message: Some thing to say
+                        </div>
+                       
+                    </div>
+                    <ul nz-list-item-actions>
+                        <nz-list-item-action><a (click)="edit('test')">Detail and Edit</a></nz-list-item-action>
+                    </ul>
+                </nz-list-item>
+            </nz-list>
+        </div>
+
+        <div class="col-12 col-sm-5">
+            <app-chart-timeline></app-chart-timeline>
+        </div>
     </div>
 </div>

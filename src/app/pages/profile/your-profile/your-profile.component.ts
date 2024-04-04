@@ -10,7 +10,7 @@ import { UpdateInfoComponent } from '../update-info/update-info.component';
 export class YourProfileComponent {
 
   modalRefAnt?: NzModalRef;
-  isOtherProfile: boolean = true;
+  isOtherProfile: boolean = false;
 
   constructor(
     private modalService: NzModalService,

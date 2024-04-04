@@ -1,0 +1,12 @@
+.demo-loadmore-list nz-list-item{
+    background-color: #fff;
+    transition: all ease-in-out .3s;
+    cursor: pointer;
+}
+.demo-loadmore-list nz-list-item:hover{
+    background-color: var(--gray-color);
+}
+
+nz-step{
+    cursor: pointer;
+}
