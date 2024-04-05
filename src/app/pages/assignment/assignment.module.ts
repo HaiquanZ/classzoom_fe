@@ -9,6 +9,8 @@ import { ChartTimelineComponent } from './chart-timeline/chart-timeline.componen
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateAssignmentComponent } from './update-assignment/update-assignment.component';
+import { ChartModule } from 'src/app/component/chart/chart.module';
+import { CardModule } from 'src/app/component/card/card.module';
 
 
 
@@ -18,7 +20,7 @@ import { UpdateAssignmentComponent } from './update-assignment/update-assignment
     DetailAssignmentComponent,
     DetailSubTaskComponent,
     ChartTimelineComponent,
-    UpdateAssignmentComponent
+    UpdateAssignmentComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,9 @@ import { UpdateAssignmentComponent } from './update-assignment/update-assignment
     AssignmentRoutingModule,
     NgApexchartsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartModule,
+    CardModule
   ]
 })
 export class AssignmentModule { }

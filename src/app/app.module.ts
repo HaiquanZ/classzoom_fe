@@ -21,11 +21,11 @@ import { AntdModule } from './component/antd/antd.module';
 import { Interceptor } from './interceptors/add-header';
 import { ErrorInterceptor } from './interceptors/handle-error';
 import { NotfoundComponent } from './pages/notfound/notfound/notfound.component';
-import { ColumnHomeComponent } from './component/chart/column-home/column-home.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { CardModule } from './component/card/card.module';
 import { PostComponent } from './component/post/post.component';
 import { CommentComponent } from './component/comment/comment.component';
+import { ChartModule } from './component/chart/chart.module';
 
 registerLocaleData(vi);
 
@@ -36,7 +36,6 @@ registerLocaleData(vi);
     LoginComponent,
     RoomComponent,
     NotfoundComponent,
-    ColumnHomeComponent,
     PostComponent,
     CommentComponent,
   ],
@@ -57,7 +56,8 @@ registerLocaleData(vi);
     NgxDocViewerModule,
     AntdModule,
     NgApexchartsModule,
-    CardModule
+    CardModule,
+    ChartModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: vi_VN },

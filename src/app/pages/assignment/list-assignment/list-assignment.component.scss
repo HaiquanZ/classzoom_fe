@@ -1,0 +1,21 @@
+.title{
+    font-size: 30px;
+    font-weight: 400;
+}
+
+nz-select{
+    width: 200px;
+}
+
+.assignment-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 1.5rem;
+    row-gap: 1.5rem;
+}
+
+@media(max-width: 576px){
+    .assignment-list{
+        grid-template-columns: 1fr 1fr;
+    }
+}

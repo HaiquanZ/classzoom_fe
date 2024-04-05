@@ -1,1 +1,31 @@
-<p>list-assignment works!</p>
+<div class="pd-l-20 pd-r-20">
+    <div nz-row nzJustify="space-between" nzAlign="middle" style="margin-top: 2rem;">
+        <div class="title"><span class="logo-script">Space</span> Assignments</div>
+
+        <div>
+            <nz-select [(ngModel)]="typeAssignment" nzSize="large" class="mg-r-20">
+                <nz-option nzValue="doing" nzLabel="Doing"></nz-option>
+                <nz-option nzValue="done" nzLabel="Done"></nz-option>
+                <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
+                <nz-option nzValue="cancel" nzLabel="Cancel"></nz-option>
+                <nz-option nzValue="all" nzLabel="All"></nz-option>
+            </nz-select>
+        </div>
+    </div>
+
+    <div class="row mg-t-20">
+        <div class="col-12 col-sm-6" style="background-color: #fff !important;">
+            <app-column-home></app-column-home>
+        </div>
+        <div class="col-12 col-sm-6" style="background-color: #fff !important;">
+            <app-line></app-line>
+        </div>
+    </div>
+
+    <div class="mg-t-20 assignment-list">
+        <div class="assignment-item" *ngFor="let assignment of listAssignment"
+            routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}">
+            <app-card-assingment [data]="assignment"></app-card-assingment>
+        </div>
+    </div>
+</div>
