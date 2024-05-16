@@ -4,6 +4,7 @@ import { PersonalCalendarComponent } from './personal-calendar/personal-calendar
 import { CalendarRoutingModule } from './calendar-routing.module';
 import { AntdModule } from 'src/app/component/antd/antd.module';
 import { DetailEventComponent } from './detail-event/detail-event.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,9 @@ import { DetailEventComponent } from './detail-event/detail-event.component';
   imports: [
     CommonModule,
     CalendarRoutingModule,
-    AntdModule
+    AntdModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CalendarModule { }

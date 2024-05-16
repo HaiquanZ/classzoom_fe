@@ -1,32 +1,36 @@
 <div class="pd-l-20 pd-r-20">
     <div class="title"><span class="logo-script">Space</span> Calendar</div>
-    <nz-calendar (nzSelectChange)="showDetailDay($event)">
-        <ul *nzDateCell="let date" class="events">
-          <ng-container [ngSwitch]="date.getDate()">
-            <ng-container *ngSwitchCase="8">
-              <li *ngFor="let item of listDataMap.eight; let $index = index">
-                <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
-              </li>
+    <nz-spin nzTip="Loading..." [nzSpinning]="loading" nzSize="large">
+      <nz-calendar (nzSelectChange)="showDetailDay($event)">
+          <ul *nzDateCell="let date" class="events">
+            <ng-container [ngSwitch]="date.getDate()">
+              <div *ngFor="let itemNotes of listDataMap; index as i">
+                <ng-container *ngSwitchCase="i + 1">
+                  <li *ngFor="let item of listDataMap[i]; let $index = index">
+                    <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                  </li>
+                </ng-container>
+              </div>
+              <!-- <ng-container *ngSwitchCase="10">
+                <li *ngFor="let item of listDataMap; let $index = index">
+                  <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                </li>
+              </ng-container>
+              <ng-container *ngSwitchCase="11">
+                <li *ngFor="let item of listDataMap; let $index = index">
+                  <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                </li>
+              </ng-container> -->
             </ng-container>
-            <ng-container *ngSwitchCase="10">
-              <li *ngFor="let item of listDataMap.ten; let $index = index">
-                <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
-              </li>
-            </ng-container>
-            <ng-container *ngSwitchCase="11">
-              <li *ngFor="let item of listDataMap.eleven; let $index = index">
-                <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
-              </li>
+          </ul>
+          <ng-container *nzMonthCell="let month">
+            <ng-container *ngIf="getMonthData(month) as monthData">
+              <div class="notes-month">
+                <section>{{ monthData }}</section>
+                <!-- <span>Backlog number</span> -->
+              </div>
             </ng-container>
           </ng-container>
-        </ul>
-        <ng-container *nzMonthCell="let month">
-          <ng-container *ngIf="getMonthData(month) as monthData">
-            <div class="notes-month">
-              <section>{{ monthData }}</section>
-              <!-- <span>Backlog number</span> -->
-            </div>
-          </ng-container>
-        </ng-container>
-    </nz-calendar>
+      </nz-calendar>
+    </nz-spin>
 </div>

@@ -6,49 +6,64 @@
         </ng-template>
         <div *ngIf="tab.icon == 'table'">
             <div>
-                <div *ngFor="let item of notes" nz-row nzAlign="middle" nzJustify="space-between" class="mg-t-10 mg-b-10">
+                <div *ngFor="let item of notes" nz-row nzAlign="middle" nzJustify="space-between"
+                    class="mg-t-10 mg-b-10">
                     <div nz-row nzAlign="middle">
-                        <span
+                        <span 
                             nz-icon
                             nzType="right"
                             nzTheme="outline"
-                            style="color: red;"
+                            [style]="item.type == 'success' ? 'color: var(--success-weight)' : (item.type == 'warning' ? 'color: var(--warning-weight)' : 'color: var(--error-weight)')"
                         >
                         </span>
                         <span class="mg-l-10" style="font-size: 14px;">{{item.content}}</span>
                     </div>
                     <div>
-                        <span nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px;"></span>
-                        <span nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px;" class="mg-l-10"></span>
+                        <!-- <span nz-icon nzType="edit" nzTheme="outline" style="font-size: 20px; cursor: pointer;"></span> -->
+                        <span nz-icon nzType="delete" nzTheme="outline" style="font-size: 20px; cursor: pointer;" class="mg-l-10" (click)="deleteNote(item.id)"></span>
                     </div>
                 </div>
+            </div>
+            <div *ngIf="notes.length == 0">
+                <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                    [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+                    <ng-template #contentTpl>
+                        <span>
+                            Make
+                            <span style="color: var(--primary-color);">Your Note</span>
+                        </span>
+                    </ng-template>
+                    <ng-template #footerTpl>
+                        <button nz-button nzType="primary">Create Now</button>
+                    </ng-template>
+                </nz-empty>
             </div>
             <div nz-row nzJustify="end" class="mg-t-20">
                 <button nz-button (click)="close($event)">Close</button>
             </div>
         </div>
         <div *ngIf="tab.icon != 'table'">
-            <form nz-form nzLayout="vertical">
+            <form nz-form nzLayout="vertical" [formGroup]="noteForm">
                 <nz-form-item>
                     <nz-form-label nzRequired>Color</nz-form-label>
                     <nz-form-control nzHasFeedback nzErrorTip="Please input your password!">
-                        <nz-select ngModel="lucy">
-                            <nz-option nzValue="jack" nzLabel="Success"></nz-option>
-                            <nz-option nzValue="lucy" nzLabel="Warning"></nz-option>
-                            <nz-option nzValue="disabled" nzLabel="Danger"></nz-option>
+                        <nz-select formControlName="type">
+                            <nz-option nzValue="success" nzLabel="Normal"></nz-option>
+                            <nz-option nzValue="warning" nzLabel="Warning"></nz-option>
+                            <nz-option nzValue="error" nzLabel="Danger"></nz-option>
                         </nz-select>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-label nzRequired>Content</nz-form-label>
-                    <nz-form-control nzHasFeedback nzErrorTip="Please input your password!">
+                    <nz-form-control nzHasFeedback nzErrorTip="Please input your content">
                         <input nz-input type="text" formControlName="content" />
                     </nz-form-control>
                 </nz-form-item>
 
                 <div nz-row nzJustify="end">
                     <button nz-button (click)="close($event)" nzNoColon="true">Close</button>
-                    <button nz-button nzType="primary" type="submit" style="margin-left: 2rem;">Save</button>
+                    <button nz-button nzType="primary" type="submit" style="margin-left: 2rem;" (click)="createNote()">Save</button>
                 </div>
             </form>
         </div>

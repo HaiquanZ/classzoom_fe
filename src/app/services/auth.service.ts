@@ -94,4 +94,84 @@ export class AuthService {
     )
   }
   
+  getNotebyMonth(option: any, callBack: Function): any{
+    this.http.get(environment.path.calendar.GET_NOTE_MONTH, { observe: 'response', params: option }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  getNotebyDay(option: any, callBack: Function): any{
+    this.http.get(environment.path.calendar.GET_NOTE_DAY, { observe: 'response', params: option }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  createNote(data: any, callBack: Function): any{
+    this.http.post(environment.path.calendar.CREATE_NOTE, data, { observe: 'response' }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  updateNote(data: any, callBack: Function): any{
+    this.http.post(environment.path.calendar.UPDATE_NOTE, data, { observe: 'response' }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  deleteNote(option: any, callBack: Function): any{
+    this.http.delete(environment.path.calendar.DELETE_NOTE, { observe: 'response', params: option}).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
+
 }

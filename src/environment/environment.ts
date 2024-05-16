@@ -9,6 +9,13 @@ export const environment = {
             FORGOT_PASSWORD: '/user/forgot-password',
             CONFIRM_OTP: '/user/confirm-otp'
         },
+        calendar: {
+            GET_NOTE_MONTH: '/user/calendar/month',
+            GET_NOTE_DAY: '/user/calendar/day',
+            CREATE_NOTE: '/user/calendar/create',
+            UPDATE_NOTE: '/user/calendar/update',
+            DELETE_NOTE: '/user/calendar'
+        },
         group: {
             GET_ALL_GROUPS: '/group',
             CREATE_GROUP: '/group/create',
