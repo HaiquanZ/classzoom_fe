@@ -30,9 +30,10 @@ export class AuthService {
   saveInfoLogin(val: any){
     localStorage.setItem('token', val.token);
     localStorage.setItem('userId', val.id);
-    localStorage.setItem('username', val.username);
+    localStorage.setItem('username', val.name);
     localStorage.setItem('email', val.email);
     localStorage.setItem('gender', val.gender);
+    localStorage.setItem('avatar', val.avatar);
   }
 
   removeInfoLogout(){
@@ -41,6 +42,7 @@ export class AuthService {
     localStorage.removeItem('username');
     localStorage.removeItem('email');
     localStorage.removeItem('gender');
+    localStorage.removeItem('avatar');
   }
 
   register(data: any, callBack: Function): any{
@@ -54,6 +56,38 @@ export class AuthService {
       error => {
         if(callBack){
           console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  forgotPassword(data: any, callBack: Function): any{
+    this.http.post(environment.path.auth.FORGOT_PASSWORD, data, { observe: 'response' }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  confirmOTP(data: any, callBack: Function): any{
+    this.http.post(environment.path.auth.CONFIRM_OTP, data, { observe: 'response' }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
           callBack(null);
         }
       }

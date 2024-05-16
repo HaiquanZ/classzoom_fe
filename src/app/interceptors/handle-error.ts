@@ -31,7 +31,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     // Xảy ra lỗi từ phía server
                     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
                     this.notificationSrv.showError(
-                        error.error?.error ? error.error?.error : 'Something went wrong',
+                        error.error?.data.message ? error.error?.data.message : 'Something went wrong',
                         error.statusText
                     );
                 }

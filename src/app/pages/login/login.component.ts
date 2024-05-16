@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class LoginComponent implements OnInit{
 
-  showLogin: boolean = true;
+  showForm: number = 0;
 
   constructor(
     private commonSrv: CommonService,
@@ -40,6 +40,22 @@ export class LoginComponent implements OnInit{
     password: ['', [Validators.required]],
     username: ['', [Validators.required]]
   });
+  //forgotPassword
+  forgotPass: FormGroup<{
+    email: FormControl<string>;
+  }> = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+  });
+  //confirmPassword
+  confirmPass: FormGroup<{
+    email: FormControl<string>;
+    otp: FormControl<string>;
+    password: FormControl<string>;
+  }> = this.fb.group({
+    email: [String(this.forgotPass.value.email), []],
+    otp: ['', [Validators.required]],
+    password: ['', [Validators.required]]
+  });
 
   ngOnInit(): void {
     
@@ -47,17 +63,13 @@ export class LoginComponent implements OnInit{
 
   login() {
     if (this.loginForm.valid) {
-      // this.authSrv.login(this.loginForm.value, (res: any) => {
-      //   if(res){
-      //     this.notificationSrv.showSuccess('Logged in successfully.', 'Success');
-      //     this.commonSrv.logged.next(true);
-      //     this.router.navigate(['/']);
-      //   }
-      // })
-      this.notificationSrv.showSuccess('Logged in successfully.', 'Success');
-      this.commonSrv.logged.next(true);
-      this.router.navigate(['/']);
-
+      this.authSrv.login(this.loginForm.value, (res: any) => {
+        if(res){
+          this.notificationSrv.showSuccess('Logged in successfully.', 'Success');
+          this.commonSrv.logged.next(true);
+          this.router.navigate(['/']);
+        }
+      })
     } else {
       Object.values(this.loginForm.controls).forEach(control => {
         if (control.invalid) {
@@ -70,11 +82,10 @@ export class LoginComponent implements OnInit{
 
   register(){
     if (this.registerForm.valid) {
-      console.log('submit', this.registerForm.value);
       this.authSrv.register(this.registerForm.value, (res: any) => {
         if(res){
           this.notificationSrv.showSuccess('Registered successfully. Login to continue.', 'Success');
-          this.showLogin = true;
+          this.showForm = 0;
         }
       })
     } else {
@@ -87,8 +98,56 @@ export class LoginComponent implements OnInit{
     }
   }
 
+  forgotPassword(){
+    if (this.forgotPass.valid) {
+      this.authSrv.forgotPassword(this.forgotPass.value, (res: any) => {
+        if(res){
+          this.notificationSrv.showSuccess(res.data.message, 'Success');
+          this.showForm = 3;
+          localStorage.setItem('email', String(this.forgotPass.value.email));
+        }
+      })
+    } else {
+      Object.values(this.forgotPass.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+  confirmPassword(){
+    this.confirmPass.value.email = String(localStorage.getItem('email'));
+    if (this.confirmPass.valid) {
+      console.log('submit: ', this.confirmPass.value);
+      this.authSrv.confirmOTP(this.confirmPass.value, (res: any) => {
+        if(res){
+          this.notificationSrv.showSuccess(res.data.message, 'Success');
+          this.showForm = 0;
+        }
+      })
+    } else {
+      Object.values(this.confirmPass.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
   trans(){
-    this.showLogin = !this.showLogin;
+    if(this.showForm) this.showForm = 0;
+    else this.showForm = 1;
+  }
+
+  showForgotPassForm(){
+    this.showForm = 2;
+  }
+
+  backToLogin(){
+    this.showForm = 0;
   }
 
 }

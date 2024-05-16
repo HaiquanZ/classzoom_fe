@@ -1,11 +1,13 @@
 export const environment = {
     server: {
-        apiUrl: 'http://192.168.1.13:4000/api/v1',
+        apiUrl: 'http://localhost:8000',
     },
     path: {
         auth: {
             LOGIN: '/user/login',
-            REGISTER: '/user/register'
+            REGISTER: '/user/register',
+            FORGOT_PASSWORD: '/user/forgot-password',
+            CONFIRM_OTP: '/user/confirm-otp'
         },
         group: {
             GET_ALL_GROUPS: '/group',

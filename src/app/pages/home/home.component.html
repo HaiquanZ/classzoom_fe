@@ -2,10 +2,10 @@
     <div class="first-block col-sm-8 col-12">
         <div class="header-home justify-content-around">
             <div class="title">
-                <h1 style="font-size: 3rem; margin-bottom: 0 !important;">Hi, Do Duc Khiem</h1>
+                <h1 style="font-size: 3rem; margin-bottom: 0 !important;">Hi, {{userName}}</h1>
                 <h2 style="color: var(--main-color);">{{ dataTime | date}}</h2>
             </div>
-            <button nz-button nzType="primary" nzSize="default" routerLink="/group/create">
+            <button nz-button nzType="primary" nzSize="default" (click)="handleCreateGr()">
                 <span nz-icon nzType="plus" nzTheme="outline"></span>
                 Create group
             </button>
@@ -26,7 +26,7 @@
     <div class="second-block col-sm-4 col-12">
         <div class="account d-flex justify-content-center align-items-center" routerLink="profile">
             <nz-avatar nzText="U" nzSize="large"></nz-avatar>
-            <h2>Do Duc Khiem</h2>
+            <h2>{{userName}}</h2>
         </div>
 
         <div class="your-assignment mt-5">

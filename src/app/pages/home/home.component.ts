@@ -29,15 +29,9 @@ export class HomeComponent implements OnInit{
   }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
       //handle user information
       this.userName = localStorage.getItem('username');
-      if (localStorage.getItem('gender') === 'male'){
-        this.urlAvt = '../../../assets/avatar-male-1.png';
-      }else{
-        this.urlAvt = '../../../assets/avatar-female-1.png';
-      }
-
       //handle list groups
       // this.groupService.getAllGroups({}, (res: GroupModel[]) => {
       //   if(res){
@@ -72,5 +66,9 @@ export class HomeComponent implements OnInit{
 
   handleClickGroupItem(id: any){
     this.router.navigate([`/group/detail/${id}`]);
+  }
+
+  handleCreateGr(){
+    
   }
 }

@@ -5,7 +5,7 @@
             <img style="width: 80%;" src="../../../assets/login.png" alt="">
         </div>
         <div class="col-12 col-lg-6 form-login" nz-row nzJustify="center">
-            <div class="mg-tb-35" *ngIf="showLogin">
+            <div class="mg-tb-35" *ngIf="showForm == 0">
                 <h2 class="wel-web" nz-typography>Welcome to <span class="logo-script">Space</span></h2>
                 <h2 style="font-weight: bold;" class="mg-b-10">Login</h2>
                 <form nz-form nzLayout="vertical" (ngSubmit)="login()" [formGroup]="loginForm">
@@ -24,12 +24,12 @@
 
                     <div nz-row nzAlign="middle" nzJustify="space-between" class="mg-b-20">
                         <button nz-button nzType="primary" type="submit">Login</button>
-                        <h3 style="color: var(--primary-color); cursor: pointer; margin-bottom: 0 !important;">Forgot password?</h3>
+                        <h3 style="color: var(--primary-color); cursor: pointer; margin-bottom: 0 !important;" (click)="showForgotPassForm()">Forgot password?</h3>
                     </div>
                     <h3 class="trans" (click)="trans()">Don't have an account yet? Register</h3>
                 </form>
             </div>
-            <div class="mg-tb-35" *ngIf="!showLogin">
+            <div class="mg-tb-35" *ngIf="showForm == 1">
                 <h2 class="wel-web" nz-typography>Welcome to <span class="logo-script">Space</span></h2>
                 <h2 style="font-weight: bold;" class="mg-b-10">Register</h2>
                 <form nz-form nzLayout="vertical" (ngSubmit)="register()" [formGroup]="registerForm">
@@ -54,6 +54,46 @@
 
                     <button class="mg-b-20" nz-button nzType="primary" type="submit">Register</button>
                     <h3 class="trans" (click)="trans()">Already have an account? Login</h3>
+                </form>
+            </div>
+
+            <div class="mg-tb-35" *ngIf="showForm == 2">
+                <h2 class="wel-web" nz-typography>Welcome to <span class="logo-script">Space</span></h2>
+                <h2 style="font-weight: bold;" class="mg-b-10">Forgot Password</h2>
+                <form nz-form nzLayout="vertical" [formGroup]="forgotPass" (ngSubmit)="forgotPassword()">
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="email">Email</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input placeholder="Enter your email" nz-input formControlName="email" id="email"/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <div nz-row nzJustify="space-between" nzAlign="middle">
+                        <button nz-button nzType="primary" type="submit">Get OTP</button>
+                        <h3 style="color: var(--primary-color); cursor: pointer; margin-bottom: 0 !important;" (click)="backToLogin()">Back to Login</h3>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mg-tb-35" *ngIf="showForm == 3">
+                <h2 class="wel-web" nz-typography>Welcome to <span class="logo-script">Space</span></h2>
+                <h2 style="font-weight: bold;" class="mg-b-10">Confirm OTP</h2>
+                <form nz-form nzLayout="vertical" [formGroup]="confirmPass" (ngSubmit)="confirmPassword()">
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="otp">OTP</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input placeholder="Enter OTP which is sent to your email" nz-input formControlName="otp" id="otp"/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label nzRequired nzFor="password">New password</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid!">
+                        <input placeholder="Enter new password" nz-input formControlName="password" id="password"/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <div nz-row nzJustify="space-between" nzAlign="middle">
+                        <button nz-button nzType="primary" type="submit">Confirm</button>
+                        <h3 style="color: var(--primary-color); cursor: pointer; margin-bottom: 0 !important;" (click)="forgotPassword()">Send OTP agian</h3>
+                    </div>
                 </form>
             </div>
         </div>
