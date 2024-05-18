@@ -11,7 +11,7 @@ export class GroupService {
   constructor(private http: HttpClient) { }
 
   getAllGroups(option: any, callBack: Function): any{
-    this.http.get(environment.path.group.GET_ALL_GROUPS, { observe: 'response' }).subscribe(
+    this.http.get(environment.path.group.GET_ALL_GROUPS, { observe: 'response', params: option }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);
@@ -42,8 +42,8 @@ export class GroupService {
     )
   }
 
-  deleteGroup(id: any, callBack: Function): any{
-    this.http.delete(environment.path.group.DELETE_GROUP + `/${id}`, { observe: 'response' }).subscribe(
+  deleteGroup(options: any, callBack: Function): any{
+    this.http.delete(environment.path.group.DELETE_GROUP, { observe: 'response', params: options }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);
@@ -76,6 +76,22 @@ export class GroupService {
 
   addMember(data: any, callBack: Function): any{
     this.http.post(environment.path.group.ADD_MEMBER, data, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  getDetailGroup(options: any, callBack: Function): any{
+    this.http.get(environment.path.group.GET_DETAIL, { observe: 'response', params: options }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
+import { GroupService } from 'src/app/services/group.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
@@ -11,7 +13,9 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class CreateGroupComponent {
   constructor(
     private fb: NonNullableFormBuilder,
-    private notificationSrv: NotificationService
+    private notificationSrv: NotificationService,
+    private groupSrv: GroupService,
+    private modal: NzModalRef<CreateGroupComponent>
   ){
 
   }
@@ -23,12 +27,20 @@ export class CreateGroupComponent {
   }> = this.fb.group({
     name: ['', [Validators.required]],
     describe: ['', [Validators.required]],
-    img: ['']
+    img: [null, []]
   });
 
   create(){
     if (this.createForm.valid) {
-      console.log(this.createForm.value);
+      this.groupSrv.createGroup(
+        this.createForm.value,
+        (res: any)  => {
+          if(res){
+            this.notificationSrv.showSuccess(res.data.message, 'Success');
+            this.modal.close(true);
+          }
+        }
+      )
     } else {
       Object.values(this.createForm.controls).forEach(control => {
         if (control.invalid) {
@@ -40,12 +52,12 @@ export class CreateGroupComponent {
   }
 
   fileList: NzUploadFile[] = [
-    {
-      uid: '-1',
-      name: 'xxx.png',
-      status: 'done',
-      url: 'http://www.baidu.com/xxx.png'
-    }
+    // {
+    //   uid: '-1',
+    //   name: 'xxx.png',
+    //   status: 'done',
+    //   url: 'http://www.baidu.com/xxx.png'
+    // }
   ];
 
   handleChange(info: NzUploadChangeParam): void {

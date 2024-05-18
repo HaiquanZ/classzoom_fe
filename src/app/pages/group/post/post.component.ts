@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { formatDistance } from 'date-fns';
+import { NotificationService } from 'src/app/services/notification.service';
+import { PostService } from 'src/app/services/post.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -7,32 +10,71 @@ import { formatDistance } from 'date-fns';
 })
 export class PostComponent {
   @Input() data: any;
-  Data: any[] = [];
+  isReact: boolean = false;
+  isEmptyCmt: boolean = false;
   submitting = false;
-  user = {
-    author: 'Han Solo',
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
-  };
   inputValue = '';
+  isShow: boolean = true;
 
-  handleSubmit(): void {
-    this.submitting = true;
-    const content = this.inputValue;
-    this.inputValue = '';
-    setTimeout(() => {
-      this.submitting = false;
-      this.Data = [
-        ...this.Data,
-        {
-          ...this.user,
-          content,
-          datetime: new Date(),
-          displayTime: formatDistance(new Date(), new Date())
+  constructor(
+    private postSrv: PostService,
+    private notificationSrv: NotificationService,
+  ) { 
+    this.data = {};
+  }
+  ngOnInit() {
+    let tmp = this.data.reacts.find((item: any) => item.id == localStorage.getItem('userId'));
+    this.isReact = tmp ? true : false;
+  }
+
+  getData() {
+    this.postSrv.getDetailPost({ postId: this.data._id },
+      (res: any) => {
+        if (res) {
+          this.data = res.data;
         }
-      ].map(e => ({
-        ...e,
-        displayTime: formatDistance(new Date(), e.datetime)
-      }));
-    }, 800);
+      }
+    )
+  }
+
+  loadMoreCmt() {
+    this.isEmptyCmt = !this.isEmptyCmt;
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      console.log('ok')
+      event.preventDefault(); // Prevents the default newline insertion
+      this.postSrv.comment(
+        { postId: this.data._id, isReply: false, content: this.inputValue },
+        (res: any) => {
+          if (res) {
+            this.getData();
+            this.inputValue = '';
+            this.notificationSrv.showSuccess(res.data.message, 'Success');
+          }
+        }
+      )
+    }
+  }
+
+  timeAgo(isoDateString: string): string {
+    const now: Date = new Date();
+    const past: Date = new Date(isoDateString);
+  
+    const diffInMs: number = now.getTime() - past.getTime();
+    const diffInMinutes: number = Math.floor(diffInMs / (1000 * 60));
+    const diffInHours: number = Math.floor(diffInMinutes / 60);
+    const diffInDays: number = Math.floor(diffInHours / 24);
+  
+    if (diffInMinutes < 1) {
+      return "just now";
+    } else if (diffInMinutes < 60) {
+      return `${diffInMinutes} minutes ago`;
+    } else if (diffInHours < 24) {
+      return `${diffInHours} hours ago`;
+    } else {
+      return `${diffInDays} days ago`;
+    }
   }
 }

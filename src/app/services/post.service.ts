@@ -10,8 +10,8 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  getPostByGroupId(id: any, callBack: Function): any{
-    this.http.get(environment.path.post.GET_POST_BY_GROUPID + `/${id}`, { observe: 'response' }).subscribe(
+  getPostByGroupId(options: any, callBack: Function): any{
+    this.http.get(environment.path.post.GET_POST_BY_GROUPID, { observe: 'response', params: options }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);
@@ -75,8 +75,8 @@ export class PostService {
     )
   }
 
-  submitAnswer(data: any, callBack: Function): any{
-    this.http.post(environment.path.post.SUBMIT_ANSWER, data, { observe: 'response' }).subscribe(
+  comment(data: any, callBack: Function): any{
+    this.http.post(environment.path.post.CREATE_COMMENT, data, { observe: 'response' }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);
@@ -91,8 +91,8 @@ export class PostService {
     )
   }
 
-  getAnswerOfUser(id: any, callBack: Function): any{
-    this.http.get(environment.path.post.GET_ANSWER_USER + `/${id}`, { observe: 'response' }).subscribe(
+  getDetailPost(options: any, callBack: Function): any{
+    this.http.get(environment.path.post.GET_DETAIL_POST, { observe: 'response', params: options }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);
@@ -106,36 +106,5 @@ export class PostService {
       }
     )
   }
-
-  getAnswerOfAssignment(id: any, callBack: Function): any{
-    this.http.get(environment.path.post.GET_ANSWER_ASSIGNMENT + `/${id}`, { observe: 'response' }).subscribe(
-      (response: any) => {
-        if(response.body){
-          callBack(response.body);
-        }
-      },
-      error => {
-        if(callBack){
-          console.log(error);
-          callBack(null);
-        }
-      }
-    )
-  }
-
-  getFile(id: any, callBack: Function): any{
-    this.http.get(environment.path.post.GET_FILE + `/${id}`, { observe: 'response' }).subscribe(
-      (response: any) => {
-        if(response.body){
-          callBack(response.body);
-        }
-      },
-      error => {
-        if(callBack){
-          console.log(error);
-          callBack(null);
-        }
-      }
-    )
-  }
+  
 }

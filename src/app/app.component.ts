@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   sidebarWidth: string = '200px';
   overlay: boolean = true;
   titleMobile: string = 'Space';
+  myId = localStorage.getItem('userId');
 
   //handle resize to solve resposive sidebar
   @HostListener('window:resize', ['$event'])
@@ -80,5 +81,10 @@ export class AppComponent implements OnInit {
     this.isCollapsed = !this.isCollapsed;
     this.overlay = !this.overlay;
     this.titleMobile = this.isCollapsed ? 'Space' : '';
+  }
+
+  navigateProfile(){
+    this.myId = localStorage.getItem('userId');
+    this.router.navigate([`/profile/${this.myId}`]);
   }
 }

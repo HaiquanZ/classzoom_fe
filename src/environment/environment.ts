@@ -4,6 +4,7 @@ export const environment = {
     },
     path: {
         auth: {
+            GET_USER: '/user',
             LOGIN: '/user/login',
             REGISTER: '/user/register',
             FORGOT_PASSWORD: '/user/forgot-password',
@@ -21,21 +22,20 @@ export const environment = {
             CREATE_GROUP: '/group/create',
             DELETE_GROUP: '/group',
             GET_MEMBERS: '/groups',
-            ADD_MEMBER: '/group/member'
+            ADD_MEMBER: '/group/member',
+            GET_DETAIL: '/group/detail'
         },
         comment: {
             CREATE_COMMENT: '/comment',
             GET_COMMENT: '/comment'
         },
         post: {
-            CREATE_POST: '/post/create',
+            CREATE_POST: '/group/post/create',
+            GET_DETAIL_POST: '/group/post/detail',
             GET_ASSIGNMENT_BY_USER: '/post/assignment',
             GET_DETAIL_ASSIGNMENT: '/post/assignment',
-            SUBMIT_ANSWER: '/post/answer',
-            GET_ANSWER_USER: '/post/answer',
-            GET_ANSWER_ASSIGNMENT: '/post/answer-all',
-            GET_FILE: '/post/answer-file',
-            GET_POST_BY_GROUPID: '/post'
+            CREATE_COMMENT: '/group/post/comment',
+            GET_POST_BY_GROUPID: '/group/post'
         }
     }
 };

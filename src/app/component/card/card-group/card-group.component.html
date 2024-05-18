@@ -4,9 +4,9 @@
     </div>
     <div class="text pd-l-10 pd-r-10 mg-t-10 pd-b-15">
         <div style="display: flex; justify-content: space-between;">
-            <p style="font-weight: bold;">{{data.groupName}}</p>
-            <p>Member</p>
+            <p style="font-weight: bold;">{{data.name}}</p>
+            <p>{{isAdmin ? 'Admin' : 'Member'}}</p>
         </div>
-        <div>{{data.description | truncate: 25}}</div>
+        <div>{{data.describe | truncate: 25}}</div>
     </div>
 </div>

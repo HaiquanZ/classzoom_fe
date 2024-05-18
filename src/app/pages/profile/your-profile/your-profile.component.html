@@ -8,14 +8,14 @@
                     <nz-avatar nzIcon="user" [nzSrc]="img" [nzSize]="sizeAvt"></nz-avatar>
                     <div class="text-statistical">
                         <div nz-row nzAlign="middle" nzJustify="space-between" class="statistical">
-                            <div>200 Tasks solved</div>
+                            <div>{{profileInfo.solve}} Tasks solved</div>
                             <div nz-row nzAlign="middle">
                                 <span nz-icon nzType="heart" nzTheme="outline" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></span>
-                                26
+                                {{profileInfo.like}}
                             </div>
                             <div nz-row nzAlign="middle">
                                 <span nz-icon nzType="dislike" nzTheme="outline" [nzTheme]="'twotone'"></span>
-                                10
+                                {{profileInfo.unlike}}
                             </div>
                         </div>
                     </div>
@@ -47,21 +47,23 @@
                 <div nz-row nzJustify="space-between" class="detail-content">
                     <div>
                         <div class="name-user" nz-row>
-                            <h1>Son Tung MT-P</h1>
-                            <h4 class="mg-l-18">he/him</h4>
+                            <h1>{{profileInfo.name}}</h1>
+                            <h4 class="mg-l-18">
+                                {{profileInfo.gender == 'UNDEFINE' ? 'undefined' : (profileInfo.gender == 'MALE' ? 'he/him' : 'she/her')}}
+                            </h4>
                         </div>
-                        <p style="font-size: 20px;">"Tờ tiền rách, dán đúng cách vẫn có giá trị. Nhân cách thối tha, xịt nước hoa vẫn thơm phức."</p>
+                        <p style="font-size: 20px;">"{{profileInfo.bio == null ? '' : profileInfo.bio}}"</p>
                     </div>
 
     
                     <div class="infor-user">
                         <div nz-row nzAlign="middle">
                             <span class="mg-r-15" nz-icon nzType="mail" style="color: var(--primary-color);" nzTheme="outline"></span>
-                            khiem.dd@gmail.com
+                            {{profileInfo.email}}
                         </div>
                         <div nz-row nzAlign="middle">
                             <span class="mg-r-15" nz-icon nzType="phone" style="color: var(--primary-color);" nzTheme="outline"></span>
-                            0852488913
+                            {{profileInfo.phone == null ? 'None' : profileInfo.phone}}
                         </div>
                     </div>
                 </div>

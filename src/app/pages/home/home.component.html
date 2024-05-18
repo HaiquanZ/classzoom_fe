@@ -18,13 +18,30 @@
         <p class="m-4" style="font-size: 20px; font-weight: 500;">Your groups</p>
 
         <div class="group-list m-4">
-            <div class="group-item" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item.groupId)">
+            <div class="group-item" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item._id)">
                 <app-card-group [data]="item"></app-card-group>
             </div>
         </div>
+
+        <div *ngIf="listGroup.length == 0" nz-row nzJustify="center" class="mg-tb-30">
+            <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+                <ng-template #contentTpl>
+                    <span>
+                        Now, you do not join any
+                        <a href="#API">Group</a>
+                    </span>
+                </ng-template>
+                <ng-template #footerTpl>
+                    <div nz-row nzJustify="center">
+                        <button nz-button nzType="primary" (click)="handleCreateGr()">Create Now</button>
+                    </div>
+                </ng-template>
+            </nz-empty>
+        </div>
     </div>
     <div class="second-block col-sm-4 col-12">
-        <div class="account d-flex justify-content-center align-items-center" routerLink="profile">
+        <div class="account d-flex justify-content-center align-items-center" (click)="navigateProfile()">
             <nz-avatar nzText="U" nzSize="large"></nz-avatar>
             <h2>{{userName}}</h2>
         </div>

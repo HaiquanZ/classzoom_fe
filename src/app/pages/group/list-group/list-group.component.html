@@ -15,13 +15,32 @@
         </div>
     </div>
 
-    <div class="group-list mg-t-25">
-        <div class="group-item" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item.groupId)">
-            <app-card-group [data]="item"></app-card-group>
+    <nz-spin [nzSpinning]="loading" nzSize="large">
+        <div class="group-list mg-t-25">
+            <div class="group-item" *ngFor="let item of listGroup" (click)="handleClickGroupItem(item._id)">
+                <app-card-group [data]="item"></app-card-group>
+            </div>
         </div>
-    </div>
-
-    <div class="mg-t-25 mg-b-30" nz-row nzJustify="center">
-        <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
-    </div>
+    
+        <div *ngIf="listGroup.length == 0" nz-row nzJustify="center" class="mg-t-30">
+            <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+                <ng-template #contentTpl>
+                    <span>
+                        Now, you do not join any
+                        <a href="#API">Group</a>
+                    </span>
+                </ng-template>
+                <ng-template #footerTpl>
+                    <div nz-row nzJustify="center">
+                        <button nz-button nzType="primary" (click)="createGroup($event)">Create Now</button>
+                    </div>
+                </ng-template>
+            </nz-empty>
+        </div>
+    
+        <div class="mg-t-25 mg-b-30" nz-row nzJustify="center" *ngIf="listGroup.length != 0">
+            <nz-pagination (nzPageIndexChange)="handlePageIndex($event)" [nzPageIndex]="currentPage" [nzTotal]="totalRecord" nzPageSize="15"></nz-pagination>
+        </div>
+    </nz-spin>
 </div>

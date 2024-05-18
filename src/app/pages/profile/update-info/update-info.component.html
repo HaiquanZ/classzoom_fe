@@ -11,7 +11,7 @@
             <div></div>
     
             <nz-form-item>
-                <nz-form-label nzRequired nzFor="phone">Phone</nz-form-label>
+                <nz-form-label nzFor="phone">Phone</nz-form-label>
                 <nz-form-control nzErrorTip="The input is not valid!">
                     <input nz-input placeholder="Enter your phone" formControlName="phone" id="phone" class="input-name"/>
                 </nz-form-control>
@@ -19,9 +19,9 @@
         </div>
 
         <nz-form-item>
-            <nz-form-label nzRequired nzFor="gender">Gender</nz-form-label>
+            <nz-form-label nzFor="gender">Gender</nz-form-label>
             <nz-form-control nzErrorTip="The input is not valid!">
-                <nz-radio-group formArrayName="gender">
+                <nz-radio-group formControlName="gender">
                     <label nz-radio nzValue="MALE">Male</label>
                     <label nz-radio nzValue="FEMALE" class="mg-l-10">Female</label>
                     <label nz-radio nzValue="UNDEFINE" class="mg-l-10">Undefine</label>
@@ -30,7 +30,7 @@
         </nz-form-item>
 
         <nz-form-item>
-            <nz-form-label nzRequired nzFor="bio">Bio</nz-form-label>
+            <nz-form-label nzFor="bio">Bio</nz-form-label>
             <nz-form-control nzErrorTip="The input is not valid!">
                 <nz-textarea-count [nzMaxCharacterCount]="2000">
                     <textarea formControlName="bio" nz-input rows="10"

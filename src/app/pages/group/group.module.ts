@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './post/post.component';
 import { CommentComponent } from './comment/comment.component';
 import { PostAssignmentComponent } from './post-assignment/post-assignment.component';
+import { DeleteGroupComponent } from './delete-group/delete-group.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 
 
@@ -21,6 +23,8 @@ import { PostAssignmentComponent } from './post-assignment/post-assignment.compo
     PostComponent,
     CommentComponent,
     PostAssignmentComponent,
+    DeleteGroupComponent,
+    CreatePostComponent,
   ],
   imports: [
     CommonModule,

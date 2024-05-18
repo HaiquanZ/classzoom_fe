@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { YourProfileComponent } from './your-profile/your-profile.component';
 
 const routes: Routes = [
-    { path: '', component: YourProfileComponent}
+    { path: ':id', component: YourProfileComponent}
 ]
 
 @NgModule({

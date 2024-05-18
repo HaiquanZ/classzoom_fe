@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { GroupModel } from 'src/app/models/group-model';
 import { CreateGroupComponent } from '../create-group/create-group.component';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-list-group',
@@ -10,39 +11,40 @@ import { CreateGroupComponent } from '../create-group/create-group.component';
   styleUrls: ['./list-group.component.scss']
 })
 export class ListGroupComponent {
-  listGroup: Array<GroupModel> = [];
+  listGroup: any[] = [];
   modalRefAnt?: NzModalRef;
+  currentPage: number = 1;
+  loading: boolean = false;
+  totalRecord: number = 0;
 
   constructor(
     private router: Router,
     private modalService: NzModalService,
-  ){}
-  
-  ngOnInit(){
-    this.listGroup = [
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-    ];
+    private groupSrv: GroupService
+  ) { }
+
+  ngOnInit() {
+    this.getData();
   }
 
-  handleClickGroupItem(id: any){
+  getData() {
+    this.loading = true;
+    this.groupSrv.getAllGroups({ id: localStorage.getItem('userId'), size: 15, page: this.currentPage },
+      (res: any) => {
+        if (res) {
+          this.listGroup = res.data.groups;
+          this.totalRecord = res.data.totalRecord;
+          this.loading = false;
+        }
+      }
+    )
+  }
+
+  handleClickGroupItem(id: any) {
     this.router.navigate([`/group/detail/${id}`]);
   }
 
-  createGroup(e: any){
+  createGroup(e: any) {
     this.modalRefAnt = this.modalService.create({
       nzTitle: 'Create new group',
       nzContent: CreateGroupComponent,
@@ -51,5 +53,16 @@ export class ListGroupComponent {
       nzWidth: 600,
       nzCentered: true
     })
+
+    this.modalRefAnt.afterClose.subscribe(status => {
+      if (status) {
+        this.getData();
+      }
+    })
   }
+
+  handlePageIndex(e: any){
+    this.currentPage = e;
+    this.getData()
+  } 
 }

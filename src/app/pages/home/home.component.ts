@@ -14,13 +14,15 @@ export class HomeComponent implements OnInit{
   logged: boolean = false;
   userName: any;
   urlAvt: any;
-  listGroup: Array<GroupModel> = [];
+  listGroup: any;
   listAssignment: Array<any> = [];
   dataTime: any;
   typeAssignment = 'done';
+  myId: any;
+  currentPage: number = 1;
   
   constructor(
-    private groupService: GroupService,
+    private groupSrv: GroupService,
     private postSrv: PostService,
     private router: Router
   ){
@@ -33,21 +35,21 @@ export class HomeComponent implements OnInit{
       //handle user information
       this.userName = localStorage.getItem('username');
       //handle list groups
-      // this.groupService.getAllGroups({}, (res: GroupModel[]) => {
-      //   if(res){
-      //     this.listGroup = res;
-      //   }
-      // })
+      this.groupSrv.getAllGroups({size: 8, id: localStorage.getItem('userId'), page: this.currentPage}, (res: any) => {
+        if(res){
+          this.listGroup = res.data.groups;
+        }
+      })
 
-      this.listGroup = [
-        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-        {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      ];
+      // this.listGroup = [
+      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
+      // ];
 
       // this.postSrv.getAssignmentByUser((res: any) => {
       //   if(res){
@@ -70,5 +72,10 @@ export class HomeComponent implements OnInit{
 
   handleCreateGr(){
     
+  }
+
+  navigateProfile(){
+    this.myId = localStorage.getItem('userId');
+    this.router.navigate([`/profile/${this.myId}`]);
   }
 }

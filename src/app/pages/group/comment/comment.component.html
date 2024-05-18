@@ -1,11 +1,19 @@
 <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
     <ng-template #item let-item>
-        <nz-comment [nzAuthor]="item.author" [nzDatetime]="item.datetime">
-            <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
+        <nz-comment [nzAuthor]="item.auth.name" [nzDatetime]="timeAgo(item.createAt)">
+            <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avt" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
             <nz-comment-content>
                 <p>{{ item.content }}</p>
             </nz-comment-content>
             <nz-comment-action>Reply to</nz-comment-action>
         </nz-comment>
+        <div *ngIf="item.replys.length != 0" class="mg-l-50">
+            <nz-comment *ngFor="let child of item.replys" [nzAuthor]="child.auth.name" [nzDatetime]="timeAgo(child.createAt)">
+                <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="child.avt" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+                <nz-comment-content>
+                    <p>{{ child.content }}</p>
+                </nz-comment-content>
+            </nz-comment>
+        </div>
     </ng-template>
 </nz-list>

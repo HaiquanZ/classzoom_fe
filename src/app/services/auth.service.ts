@@ -15,7 +15,7 @@ export class AuthService {
       (response: any) => {
         if(response.body){
           callBack(response.body);
-          this.saveInfoLogin(response.body.data)
+          this.saveInfoLogin(response.body.data, true)
         }
       },
       error => {
@@ -27,8 +27,10 @@ export class AuthService {
     )
   }
 
-  saveInfoLogin(val: any){
-    localStorage.setItem('token', val.token);
+  saveInfoLogin(val: any, isSetToken: boolean){
+    if(isSetToken){
+      localStorage.setItem('token', val.token);
+    }
     localStorage.setItem('userId', val.id);
     localStorage.setItem('username', val.name);
     localStorage.setItem('email', val.email);
@@ -174,4 +176,35 @@ export class AuthService {
     )
   }
 
+  getInfoUser(option: any, callBack: Function): any{
+    this.http.get(environment.path.auth.GET_USER + '/'  + option, { observe: 'response' }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  updateUser(data: any, callBack: Function): any{
+    this.http.post(environment.path.auth.GET_USER + '/'  + data.id, data, { observe: 'response' }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
 }

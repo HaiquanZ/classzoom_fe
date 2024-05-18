@@ -1,21 +1,22 @@
-<div class="post-component mg-t-20">
+<div class="post-component mg-t-20" *ngIf="isShow">
     <div class="composer" nz-row nzAlign="middle">
-        <nz-avatar nzText="S" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
-        <div class="mg-l-10" style="font-weight: 600;">Sơn Tùng M-TP</div>
+        <nz-avatar [nzSrc]="data.auth.avt" nzText="S" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+        <div>
+            <div class="mg-l-10" style="font-weight: 600;">{{data.auth.name}}</div>
+            <div class="mg-l-10" style="color: #BFC5D6">{{timeAgo(data.createdAt)}}</div>
+        </div>
     </div>
 
     <div class="mg-t-15">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
+        {{data.content}}
     </div>
 
     <div class="nav-react mg-t-18 mg-b-18">
         <div nz-row nzAlign="middle" nzJustify="center">
             <span nz-icon nzType="like" nzTheme="outline" [nzTheme]="'twotone'"></span>
-            <span class="mg-l-5">You and 98 other people</span>
+            <span class="mg-l-5">
+                {{isReact ? ((data.reacts.length > 2) ? 'You and '+ (data.reacts.length - 1) + ' other people' : 'You') : data.reacts.length}}
+            </span>
         </div>
 
         <div nz-row nzAlign="middle" nzJustify="center">
@@ -26,20 +27,20 @@
 
     <hr>
 
-    <div>
-        <div style="font-weight: 500;" nz-row nzAlign="middle" class="load-cmt">
+    <div *ngIf="data.comments.length > 0">
+        <div style="font-weight: 500;" nz-row nzAlign="middle" class="load-cmt" *ngIf="data.comments.length > 2" (click)="loadMoreCmt()">
             <span nz-icon nzType="down" nzTheme="outline" class="mg-r-5"></span>
-            Load more comments
+            {{ isEmptyCmt ? 'Collapse' : 'Load more comments'}}
         </div>
-        <app-comment></app-comment>
+        <app-comment [listCmt]="data.comments"></app-comment>
     </div>
 
     <div>
         <nz-comment>
-            <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="user.avatar"></nz-avatar>
+            <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="data.auth.avt"></nz-avatar>
             <nz-comment-content>
                 <nz-form-item>
-                    <textarea [(ngModel)]="inputValue" nz-input placeholder="Enter your comment" style="height: 80px !important;"></textarea>
+                    <textarea (keydown)="onKeydown($event)" [(ngModel)]="inputValue" nz-input placeholder="Enter your comment" style="height: 80px !important;"></textarea>
                 </nz-form-item>
             </nz-comment-content>
         </nz-comment>
