@@ -22,6 +22,7 @@ export const environment = {
             CREATE_GROUP: '/group/create',
             DELETE_GROUP: '/group',
             GET_MEMBERS: '/groups',
+            GET_MEMBERS_BY_POST: '/group/members-post',
             ADD_MEMBER: '/group/member',
             GET_DETAIL: '/group/detail'
         },
@@ -31,11 +32,16 @@ export const environment = {
         },
         post: {
             CREATE_POST: '/group/post/create',
+            CREATE_ASSIGNMENT: '/assignment/create',
             GET_DETAIL_POST: '/group/post/detail',
+            GET_TASK: '/assignment/task',
             GET_ASSIGNMENT_BY_USER: '/post/assignment',
-            GET_DETAIL_ASSIGNMENT: '/post/assignment',
+            GET_DETAIL_ASSIGNMENT: '/assignment',
             CREATE_COMMENT: '/group/post/comment',
-            GET_POST_BY_GROUPID: '/group/post'
+            GET_POST_BY_GROUPID: '/group/post',
+            UPDATE_TIMELINE: '/assignment/phase/update',
+            CREATE_TASK: '/assignment/task/create',
+            UPDATE_TASK: '/assignment/task/update'
         }
     }
 };

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
 import * as moment from "moment";
 
 import {
@@ -31,55 +31,34 @@ export type ChartOptions = {
   styleUrls: ['./chart-timeline.component.scss']
 })
 export class ChartTimelineComponent {
+  @Input() data: any;
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
   constructor() {
+
+  }
+  dataChart: any[] = [];
+  colors: string[] = ["#008FFB", "#00E396", "#775DD0", "#FEB019", "#FF4560"]
+
+  ngOnInit() {
+    //format data
+    this.data.forEach((ele: any, index: number) => {
+      this.dataChart.push({
+        x: 'Step: ' + ele.no,
+        y: [
+          new Date(ele.start).getTime(),
+          new Date(ele.end).getTime()
+        ],
+        fillColor: this.colors[index]
+      })
+    });
+
+    //apply to chart
     this.chartOptions = {
       series: [
         {
-          data: [
-            {
-              x: "Step 1",
-              y: [
-                new Date("2019-02-27").getTime(),
-                new Date("2019-03-04").getTime()
-              ],
-              fillColor: "#008FFB"
-            },
-            {
-              x: "Step 2",
-              y: [
-                new Date("2019-03-04").getTime(),
-                new Date("2019-03-08").getTime()
-              ],
-              fillColor: "#00E396"
-            },
-            {
-              x: "Step 3",
-              y: [
-                new Date("2019-03-07").getTime(),
-                new Date("2019-03-10").getTime()
-              ],
-              fillColor: "#775DD0"
-            },
-            {
-              x: "Step 4",
-              y: [
-                new Date("2019-03-08").getTime(),
-                new Date("2019-03-12").getTime()
-              ],
-              fillColor: "#FEB019"
-            },
-            {
-              x: "Step 5",
-              y: [
-                new Date("2019-03-12").getTime(),
-                new Date("2019-03-17").getTime()
-              ],
-              fillColor: "#FF4560"
-            }
-          ]
+          data: this.dataChart
         }
       ],
       chart: {

@@ -106,4 +106,20 @@ export class GroupService {
     )
   }
 
+  getMemberByPost(options: any, callBack: Function){
+    this.http.get(environment.path.group.GET_MEMBERS_BY_POST , { observe: 'response', params: options }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
 }

@@ -9,6 +9,12 @@
                   </nz-radio-group>
             </nz-form-control>
         </nz-form-item>
+        <nz-form-item *ngIf="createForm.value.isAssignment">
+            <nz-form-label nzRequired>Name of Assignment</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="Please input your content">
+                <input formControlName="name" nz-input placeholder="Enter name project"/>
+            </nz-form-control>
+        </nz-form-item>
         <nz-form-item>
             <nz-form-label nzRequired>Content</nz-form-label>
             <nz-form-control nzHasFeedback nzErrorTip="Please input your content">

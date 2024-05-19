@@ -1,33 +1,32 @@
 <div class="pd-l-20 pd-r-20">
     <div>
-        <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="Name of assignment"
+        <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="{{assignmentInfo.info.name}}"
             nzSubtitle="Detail assignment"></nz-page-header>
 
         <div class="row" style="align-items: center;">
             <div class="col-12 col-sm-7">
                 <div>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex
-                    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                    eu fugiat
-                    nulla pariatur.
+                    {{ assignmentInfo.info.content}}
                 </div>
                 <div class="mg-t-10">
-                    <h4>Due to: Apr 4, 2024</h4>
+                    <h4>Project is init at: <span style="color: var(--primary-color);">{{assignmentInfo.info.createdAt |
+                            date}}</span></h4>
+                    <h4>Due to: <span style="color: var(--primary-color);">{{
+                            assignmentInfo.steps[assignmentInfo.steps.length - 1].end | date }}</span></h4>
                 </div>
             </div>
             <div class="col-12 col-sm-5">
                 <div>
                     <h4>Member:</h4>
                     <nz-avatar-group>
-                        <nz-avatar nzIcon="user"
+                        <nz-avatar *ngFor="let item of members" nzSrc="{{item.avt}}" nz-tooltip
+                            nzTooltipTitle="{{item.name}}" style='background-color: #87d068;' nzIcon="user"></nz-avatar>
+                        <!-- <nz-avatar nzIcon="user"
                             nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
                         <nz-avatar style="background-color: #f56a00" nzText="U"></nz-avatar>
                         <nz-avatar style="background-color: #87d068" nz-tooltip nzTooltipTitle="NG-ZORRO User"
                             nzIcon="user"></nz-avatar>
-                        <nz-avatar style="background-color: #1890ff" nzText="NG"></nz-avatar>
+                        <nz-avatar style="background-color: #1890ff" nzText="NG"></nz-avatar> -->
                     </nz-avatar-group>
                 </div>
                 <img alt="assignment" src="../../../../assets/assignment.png" width="80%">
@@ -36,50 +35,89 @@
     </div>
     <div class="mg-t-20 mg-b-20">
         <div class="mg-b-20">
-            <button (click)="changeTimeline(null)" nz-button nzType="primary" style="font-weight: 400; font-size: 14px;">
+            <button (click)="changeTimeline(null)" nz-button nzType="primary"
+                style="font-weight: 400; font-size: 14px;">
                 Change timeline
             </button>
         </div>
-        <nz-steps [nzCurrent]="2">
-            <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
+        <div *ngIf="assignmentInfo.steps.length == 0">
+            Project: <span style="color: var(--primary-color);">{{assignmentInfo.info.name}}</span> has not been
+            scheduled yet
+        </div>
+        <nz-steps [nzCurrent]="foundIndex-1">
+            <nz-step *ngFor="let item of assignmentInfo.steps" (click)="changeStep(item.id)"
+                nzTitle="{{item.no < foundIndex ? 'Finished' : (item.no > foundIndex ? 'Waiting' : 'In Progress')}}"
+                nzDescription="{{item.name}}"></nz-step>
+            <!-- <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
             <nz-step nzTitle="In Progress" nzSubtitle="Left 00:00:08" nzDescription="This is a description."></nz-step>
             <nz-step nzTitle="In Progress" nzDescription="This is a description."></nz-step>
-            <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step> -->
         </nz-steps>
     </div>
     <div class="mg-t-20 row">
         <div class="col-12 col-sm-7">
             <div nz-row nzJustify="space-between">
                 <h2>Sub task</h2>
-                <h2 style="color: var(--primary-color); font-weight: 400; cursor: pointer;">Add task</h2>
+                <h2 style="color: var(--primary-color); font-weight: 400; cursor: pointer;" (click)="createTask()">Add task</h2>
             </div>
-            <nz-list class="demo-loadmore-list" [nzLoading]="initLoading">
-                <nz-list-item *ngFor="let item of testArr" class="pd-l-10 pd-r-10">
-                    <nz-list-item-meta nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                        nzDescription="This is sub task of User ABCDEF">
+            <nz-list class="demo-loadmore-list" [nzLoading]="loading">
+                <nz-list-item *ngFor="let item of tasks" class="pd-l-10 pd-r-10">
+                    <nz-list-item-meta
+                        nzAvatar="{{item.avtPic || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}}"
+                        nzDescription="{{item.name}}">
                         <nz-list-item-meta-title>
-                            <a href="https://ng.ant.design">Implementer: Son Tung MT-P</a>
+                            <div style="color: var(--primary-color);">
+                                PIC: {{item.namePic}}
+                            </div>
                         </nz-list-item-meta-title>
                     </nz-list-item-meta>
                     <div>
                         <div>
-                            Status: <span style="color: var(--primary-color);">Doing</span>
+                            Status:
+                            <span *ngIf="item.status == 'waiting'" style="color: var(--primary-color);">
+                                Waiting
+                            </span>
+                            <span *ngIf="item.status == 'doing'" style="color: var(--primary-color);">
+                                Doing
+                            </span>
+                            <span *ngIf="item.status == 'done'" style="color: var(--success-weight);">
+                                Done
+                            </span>
+                            <span *ngIf="item.status == 'pending'" style="color: var(--warning-weight);">
+                                Pending
+                            </span>
+                            <span *ngIf="item.status == 'cancel'" style="color: var(--error-weight);">
+                                Cancel
+                            </span>
                         </div>
-    
+
                         <div style="color: var(--gray-color);">
-                            Message: Some thing to say
+                            Message: {{item.message}}
                         </div>
-                       
+
                     </div>
                     <ul nz-list-item-actions>
-                        <nz-list-item-action><a (click)="edit('test')">Detail and Edit</a></nz-list-item-action>
+                        <nz-list-item-action><a (click)="edit(item)">Detail and Edit</a></nz-list-item-action>
                     </ul>
                 </nz-list-item>
+
+                <nz-empty *ngIf="tasks.length == 0" nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                    [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+                    <ng-template #contentTpl>
+                        <span>
+                            No task in
+                            <div style="color: var(--primary-color);">This step</div>
+                        </span>
+                    </ng-template>
+                    <ng-template #footerTpl>
+                        <button nz-button nzType="primary" (click)="createTask()">Create Now</button>
+                    </ng-template>
+                </nz-empty>
             </nz-list>
         </div>
 
         <div class="col-12 col-sm-5">
-            <app-chart-timeline></app-chart-timeline>
+            <app-chart-timeline [data]="assignmentInfo.steps"></app-chart-timeline>
         </div>
     </div>
 </div>

@@ -23,10 +23,12 @@ export class CreatePostComponent {
     content: FormControl<string>;
     isAssignment: FormControl<boolean>;
     groupId: FormControl<string>;
+    name: FormControl<string>;
   }> = this.fb.group({
     content: ['', [Validators.required]],
     isAssignment: [false, [Validators.required]],
-    groupId: ['', []]
+    groupId: ['', []],
+    name: ['',[]]
   });
 
   close(e: any){
@@ -41,8 +43,21 @@ export class CreatePostComponent {
         this.createForm.value,
         (res: any) => {
           if(res){
-            this.notificationSrv.showSuccess(res.data.message, 'Success');
-            this.modal.close(true);
+            if(this.createForm.value.isAssignment){
+              this.modal.close(true);
+              this.postSrv.createAssignment(
+                {groupId: this.createForm.value.groupId, name: this.createForm.value.name, content: this.createForm.value.content, postId: res.data.post._id},
+                (res: any) => {
+                  if(res){
+                    console.log(res);
+                    this.notificationSrv.showSuccess(res.data.message, 'Success');
+                  }
+                }
+              )
+            }else{
+              this.notificationSrv.showSuccess(res.data.message, 'Success');
+              this.modal.close(true);
+            }
           }
         }
       )

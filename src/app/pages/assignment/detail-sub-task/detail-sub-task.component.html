@@ -1,20 +1,20 @@
 <div>
-    <h2>This is title of sub task</h2>
+    <h2>{{data.info.name}}</h2>
     <div nz-row nzAlign="middle">
         <div style="font-weight: 500; font-size: 16px;">Status: </div>
-        <nz-select ngModel="{{status}}" class="mg-l-15">
-            <nz-option nzValue="jack" nzLabel="Doing"></nz-option>
-            <nz-option nzValue="lucy" nzLabel="Waiting"></nz-option>
-            <nz-option nzValue="Done" nzLabel="Done"></nz-option>
-            <nz-option nzValue="Pending" nzLabel="Pending"></nz-option>
-            <nz-option nzValue="Cancle" nzLabel="Cancle"></nz-option>
+        <nz-select [(ngModel)]="status" class="mg-l-15">
+            <nz-option nzValue="doing" nzLabel="Doing"></nz-option>
+            <nz-option nzValue="waiting" nzLabel="Waiting"></nz-option>
+            <nz-option nzValue="done" nzLabel="Done"></nz-option>
+            <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
+            <nz-option nzValue="cancel" nzLabel="Cancel"></nz-option>
         </nz-select>
     </div>
 
     <div style="font-weight: 500; font-size: 16px;" class="mg-t-15">
         Message:
         <nz-textarea-count class="mg-t-10">
-            <textarea rows="4" ngModel="{{message}}" style="height: 100px !important;" nz-input></textarea>
+            <textarea rows="4" [(ngModel)]="message" style="height: 100px !important;" nz-input></textarea>
         </nz-textarea-count>
     </div>
 
@@ -22,31 +22,34 @@
         <div>
             <h4>Leader</h4>
             <div>
-                <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>
-                Mike Týon
+                <nz-avatar nzSrc="{{this.data.info.avtTG}}" nzIcon="user" style="background-color:#87d068;"></nz-avatar>
+                {{this.data.info.nameTG}}
             </div>
         </div>
         <div>
-            <h4>Reporter</h4>
+            <h4>PIC</h4>
             <div>
-                <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>
-                Duc Khiem
+                <nz-select ngModel="{{pic}}" style="width: 200px; height: 40px;">
+                    <nz-option *ngFor="let item of data.members" nzValue="{{item.id}}"
+                        nzLabel="{{item.name}}"></nz-option>
+                </nz-select>
             </div>
         </div>
         <div>
-            <button nz-button style="font-weight: 400; font-size: 14px;">Change reporter</button>
+            <button nz-button style="font-weight: 400; font-size: 14px;">Change PIC</button>
         </div>
     </div>
 
-    <div class="mg-t-20" nz-row nzJustify="space-between" nzAlign="middle">
+    <div class="mg-t-20" nz-row nzJustify="space-evenly" nzAlign="middle">
         <div style="font-weight: 500; font-size: 16px;">Due to: </div>
-        <nz-time-picker [(ngModel)]="time" [nzDefaultOpenValue]="defaultOpenValue"></nz-time-picker>
-        <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker>
+        <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" [(ngModel)]="time"
+            (ngModelChange)="onChange($event)"></nz-date-picker>
     </div>
 
     <div nz-row nzJustify="end" class="mg-t-25">
-        <button nz-button nzType="primary" style="font-weight: 400; font-size: 14px; padding: auto !important;">Save
-            </button>
-        <button nz-button class="mg-l-10" nzType="primary" style="font-weight: 400; font-size: 14px; padding: auto !important;" nzDanger>Delete task</button>
+        <button nz-button nzType="primary" style="font-weight: 400; font-size: 14px; padding: auto !important;" (click)="save()">Save
+        </button>
+        <button nz-button class="mg-l-10" nzType="primary"
+            style="font-weight: 400; font-size: 14px; padding: auto !important;" nzDanger>Delete task</button>
     </div>
 </div>

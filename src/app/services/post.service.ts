@@ -59,8 +59,8 @@ export class PostService {
     )
   }
 
-  getDetailAssignment(id: string, callBack: Function): any{
-    this.http.get(environment.path.post.GET_DETAIL_ASSIGNMENT + `/${id}`, { observe: 'response' }).subscribe(
+  getDetailAssignment(options: any, callBack: Function): any{
+    this.http.get(environment.path.post.GET_DETAIL_ASSIGNMENT, { observe: 'response', params: options }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);
@@ -93,6 +93,86 @@ export class PostService {
 
   getDetailPost(options: any, callBack: Function): any{
     this.http.get(environment.path.post.GET_DETAIL_POST, { observe: 'response', params: options }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  createAssignment(data: any, callBack: Function): any{
+    this.http.post(environment.path.post.CREATE_ASSIGNMENT, data, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  updateTimeLine(data: any, callBack: Function){
+    this.http.post(environment.path.post.UPDATE_TIMELINE, data, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  getTask(options: any, callBack: Function){
+    this.http.get(environment.path.post.GET_TASK, { observe: 'response', params: options }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  createTask(data: any, callBack: Function){
+    this.http.post(environment.path.post.CREATE_TASK, data, { observe: 'response' }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
+
+  updateTask(data: any, callBack: Function){
+    this.http.post(environment.path.post.UPDATE_TASK, data, { observe: 'response' }).subscribe(
       (response: any) => {
         if(response.body){
           callBack(response.body);

@@ -94,7 +94,7 @@ export class DetailGroupComponent {
 
   openModalCreate(){
     this.modalRefAnt = this.modalService.create({
-      nzTitle: 'Create post',
+      nzTitle: 'Create post or project',
       nzContent: CreatePostComponent,
       nzFooter: null,
       nzData: {groupId: this.groupId},

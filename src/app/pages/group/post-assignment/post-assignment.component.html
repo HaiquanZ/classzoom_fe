@@ -1,18 +1,21 @@
 <div class="post-component mg-t-20">
     <div class="composer" nz-row nzAlign="middle">
-        <nz-avatar nzText="S" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
-        <div class="mg-l-10" style="font-weight: 600;">Sơn Tùng M-TP</div>
+        <nz-avatar [nzSrc]="data.auth.avt" nzText="S" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+        <div>
+            <div class="mg-l-10" style="font-weight: 600;">{{data.auth.name}}</div>
+            <div class="mg-l-10" style="color: #BFC5D6">{{timeAgo(data.createdAt)}}</div>
+        </div>
     </div>
 
-    <div class="mg-t-15">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
-        <div class="mg-t-15 btn-view" (click)="viewDetail('123')">
+    <div class="mg-tb-15">
+        <h3 style="color: var(--primary-color);">Assignment</h3>
+        {{data.content}}
+        <div class="mg-t-15 btn-view" (click)="viewDetail()">
             <button nz-button nzType="primary">View detail</button>
         </div>
     </div>
 
-    <div class="nav-react mg-t-18 mg-b-18">
+    <!-- <div class="nav-react mg-t-18 mg-b-18">
         <div nz-row nzAlign="middle" nzJustify="center">
             <span nz-icon nzType="like" nzTheme="outline" [nzTheme]="'twotone'"></span>
             <span class="mg-l-5">You and 98 other people</span>
@@ -43,5 +46,5 @@
                 </nz-form-item>
             </nz-comment-content>
         </nz-comment>
-    </div>
+    </div> -->
 </div>

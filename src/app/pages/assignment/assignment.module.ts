@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateAssignmentComponent } from './update-assignment/update-assignment.component';
 import { ChartModule } from 'src/app/component/chart/chart.module';
 import { CardModule } from 'src/app/component/card/card.module';
+import { CreateTaskComponent } from './create-task/create-task.component';
 
 
 
@@ -21,6 +22,7 @@ import { CardModule } from 'src/app/component/card/card.module';
     DetailSubTaskComponent,
     ChartTimelineComponent,
     UpdateAssignmentComponent,
+    CreateTaskComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,7 @@ import { CardModule } from 'src/app/component/card/card.module';
     FormsModule,
     ReactiveFormsModule,
     ChartModule,
-    CardModule
+    CardModule,
   ]
 })
 export class AssignmentModule { }

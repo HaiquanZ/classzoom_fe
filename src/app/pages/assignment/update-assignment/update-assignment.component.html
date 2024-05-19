@@ -1,22 +1,23 @@
 <div>
     <div style="text-align: center;">
         <nz-timeline nzMode="left">
-            <nz-timeline-item nzLabel="2015-09-01"><span class="edit-text">Step 1: Init project</span></nz-timeline-item>
-            <nz-timeline-item nzLabel="2015-09-01 09:12:11"><span class="edit-text">Step2: Solve initial problems</span></nz-timeline-item>
-            <nz-timeline-item><span class="edit-text">Step 3: Technical testing</span></nz-timeline-item>
-            <nz-timeline-item nzLabel="2015-09-01 09:12:11"><span class="edit-text">Step 4: Network problems</span></nz-timeline-item>
+            <nz-timeline-item
+                *ngFor="let item of data.steps"
+                nzLabel="{{item.start | date}}"
+            ><span class="edit-text" (click)="changePhase(item.id)">{{item.name}}</span></nz-timeline-item>
         </nz-timeline>
     </div>
 
     <div class="mg-t-15" nz-row nzJustify="space-between" nzAlign="middle">
-        <input nz-input placeholder="Name of new step" type="text" style="width: 70%;"/>
-        <button nz-button nz-row nzAlign="middle" style="font-size: 14px; font-weight: 500;">
+        <nz-range-picker class="mg-b-15" style="border-radius: 8px; height: 40px; width: 100%;" [nzFormat]="dateFormat" [(ngModel)]="dataTime"></nz-range-picker>
+        <input [(ngModel)]="nameStep" nz-input placeholder="Name of new step" type="text" style="width: 70%; height: 40px !important;"/>
+        <button (click)="updateTimeline()" nz-button nz-row nzAlign="middle" style="font-size: 14px; font-weight: 500; height: 40px;">
             <span nz-icon nzType="plus" nzTheme="outline"></span>
-            <span>Add step</span>
+            <span>{{isChange != -1 ? 'Change' : 'Add step'}}</span>
         </button>
     </div>
 
     <div nz-row nzJustify="end" class="mg-t-15">
-        <button nz-button nzType="primary" style="font-weight: 400; font-size: 14px;">Save</button>
+        <button (click)="saveToServer()" nz-button nzType="primary" style="font-weight: 400; font-size: 14px;">Save</button>
     </div>
 </div>

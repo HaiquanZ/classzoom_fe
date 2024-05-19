@@ -14,7 +14,7 @@ import { RoomComponent } from './pages/room/room.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { vi_VN } from 'ng-zorro-antd/i18n';
+import { vi_VN, en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
 import { AntdModule } from './component/antd/antd.module';
@@ -60,7 +60,7 @@ registerLocaleData(vi);
     ChartModule
   ],
   providers: [
-    { provide: NZ_I18N, useValue: vi_VN },
+    { provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
