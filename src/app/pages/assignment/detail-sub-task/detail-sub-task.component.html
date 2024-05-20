@@ -29,7 +29,7 @@
         <div>
             <h4>PIC</h4>
             <div>
-                <nz-select ngModel="{{pic}}" style="width: 200px; height: 40px;">
+                <nz-select ngModel="{{this.pic}}" (ngModelChange)="test($event)" style="width: 200px; height: 40px;">
                     <nz-option *ngFor="let item of data.members" nzValue="{{item.id}}"
                         nzLabel="{{item.name}}"></nz-option>
                 </nz-select>

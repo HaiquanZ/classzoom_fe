@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
   listGroup: any;
   listAssignment: Array<any> = [];
   dataTime: any;
-  typeAssignment = 'done';
+  typeAssignment = 'all';
   myId: any;
   currentPage: number = 1;
   
@@ -40,30 +40,17 @@ export class HomeComponent implements OnInit{
           this.listGroup = res.data.groups;
         }
       })
+      this.getTask(this.typeAssignment);
+  }
 
-      // this.listGroup = [
-      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      //   {description: 'Group for Backend developer', groupId: '123', groupName: 'VTP CRM', role: 'member', subject: '', totalMember: 5},
-      // ];
-
-      // this.postSrv.getAssignmentByUser((res: any) => {
-      //   if(res){
-      //     this.listAssignment = res;
-      //   }
-      // })
-      this.listAssignment = [
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'done'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'cancel'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'cancel'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'done'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'doing'},
-        {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'pending'},
-      ]
+  getTask(type: string){
+    this.postSrv.getTaskByPic({type: this.typeAssignment, pic: localStorage.getItem('userId')},
+    (res: any) => {
+      if(res){
+        this.listAssignment = res.data.tasks;
+      }
+    }
+  )
   }
 
   handleClickGroupItem(id: any){

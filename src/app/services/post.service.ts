@@ -186,5 +186,21 @@ export class PostService {
       }
     )
   }
+
+  getTaskByPic(options: any, callBack: Function){
+    this.http.get(environment.path.post.GET_TASK_BY_PIC, { observe: 'response', params: options }).subscribe(
+      (response: any) => {
+        if(response.body){
+          callBack(response.body);
+        }
+      },
+      error => {
+        if(callBack){
+          console.log(error);
+          callBack(null);
+        }
+      }
+    )
+  }
   
 }

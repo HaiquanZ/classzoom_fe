@@ -23,7 +23,6 @@ export class DetailSubTaskComponent {
   ){}
 
   ngOnInit() {
-    console.log(this.data);
     this.status = this.data.info.status;
     this.message = this.data.info.message;
     this.time = this.data.info.dueto;
@@ -52,5 +51,10 @@ export class DetailSubTaskComponent {
         }
       }
     )
+  }
+
+  test(e: any){
+    this.pic = e;
+    console.log(this.pic);
   }
 }

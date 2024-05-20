@@ -1,28 +1,28 @@
 <div class="card-assignment">
     <div class="item-icon" nz-row nzJustify="center">
         <span 
-            *ngIf="data.type == 'pending'"
+            *ngIf="data.status == 'pending'"
             nz-icon
             nzType="file-exclamation"
             nzTheme="outline"
             style="color: var(--warning-weight);"
         ></span>
         <span 
-            *ngIf="data.type == 'doing'"
+            *ngIf="data.status == 'doing' || data.status == 'waiting'"
             nz-icon
             nzType="file-text"
             nzTheme="outline"
             style="color: var(--primary-color);"
         ></span>
         <span 
-            *ngIf="data.type == 'done'"
+            *ngIf="data.status == 'done'"
             nz-icon
             nzType="file-done"
             nzTheme="outline"
             style="color: var(--success-weight);"
         ></span>
         <span 
-            *ngIf="data.type == 'cancel'"
+            *ngIf="data.status == 'cancel'"
             nz-icon
             nzType="file-excel"
             nzTheme="outline"
@@ -30,7 +30,7 @@
         ></span>
     </div>
     <div class="item-infor mg-t-10" style="text-align: center;">
-        <h3 style="font-weight: 500;">{{data.name}}</h3>
+        <h3 style="font-weight: 500;">{{data.name | truncate: 10}}</h3>
         <h5 style="font-weight: 400;">Due to: {{data.dueto | date}}</h5>
     </div>
 </div>

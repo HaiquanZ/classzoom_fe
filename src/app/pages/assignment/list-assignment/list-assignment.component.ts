@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-list-assignment',
@@ -8,22 +9,27 @@ import { Router } from '@angular/router';
 })
 export class ListAssignmentComponent {
 
-  constructor(
-    private router: Router
-  ){}
-
+  listAssignment: any[] = [];
   typeAssignment = 'all';
+  loading: boolean = false;
 
-  listAssignment = [
-    {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'done'},
-    {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'cancel'},
-    {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'cancel'},
-    {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'done'},
-    {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'doing'},
-    {name: 'Task 1', dueto: new Date(), content: 'detail', postid:'123', type: 'pending'},
-  ]
+  constructor(
+    private router: Router,
+    private postSrv: PostService
+  ) { }
 
-  handleClickGroupItem(id: any){
-    this.router.navigate([`/group/detail/${id}`]);
+  ngOnInit() {
+    this.getData(this.typeAssignment);
+  }
+
+  getData(type: string) {
+    this.loading = true;
+    this.postSrv.getTaskByPic({ pic: localStorage.getItem('userId'), type: type },
+      (res: any) => {
+        if (res) {
+          this.listAssignment = res.data.tasks;
+          this.loading = false;
+        }
+      })
   }
 }

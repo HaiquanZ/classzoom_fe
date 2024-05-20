@@ -49,21 +49,32 @@
         <div class="your-assignment mt-5">
             <div nz-row nzJustify="space-between" nzAlign="middle">
                 <h2>Assignment</h2>
-                <nz-select [(ngModel)]="typeAssignment" nzSize="large" class="mg-r-20">
+                <nz-select [(ngModel)]="typeAssignment" (ngModelChange)="getTask(typeAssignment)" nzSize="large"
+                    class="mg-r-20">
                     <nz-option nzValue="doing" nzLabel="Doing"></nz-option>
                     <nz-option nzValue="done" nzLabel="Done"></nz-option>
                     <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
                     <nz-option nzValue="cancel" nzLabel="Cancel"></nz-option>
+                    <nz-option nzValue="waiting" nzLabel="Waiting"></nz-option>
                     <nz-option nzValue="all" nzLabel="All"></nz-option>
                 </nz-select>
             </div>
             <div class="assignment-list m-4">
-                <div 
-                    class="assignment-item" 
-                    *ngFor="let assignment of listAssignment" 
-                    routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}"
-                >
+                <div class="assignment-item" *ngFor="let assignment of listAssignment"
+                    routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}">
                     <app-card-assingment [data]="assignment"></app-card-assingment>
+                </div>
+
+                <div *ngIf="listAssignment.length == 0">
+                    <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                        [nzNotFoundContent]="contentTpl">
+                        <ng-template #contentTpl>
+                            <span>
+                                No
+                                <div style="color: var(--primary-color);">Task in there</div>
+                            </span>
+                        </ng-template>
+                    </nz-empty>
                 </div>
             </div>
         </div>

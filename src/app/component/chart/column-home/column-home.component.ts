@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
 import {
   ApexChart,
   ApexAxisChartSeries,
@@ -10,6 +10,7 @@ import {
   ApexGrid,
   ApexTitleSubtitle
 } from "ng-apexcharts";
+import { PostService } from "src/app/services/post.service";
 
 type ApexXAxis = {
   type?: "category" | "datetime" | "numeric";
@@ -43,13 +44,39 @@ export type ChartOptions = {
 export class ColumnHomeComponent {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
+  listAss: any[] = [];
+  valueStatus: number[] = [0,0,0,0,0];
 
-  constructor() {
+  constructor(
+    private postSrv: PostService
+  ) { }
+
+  ngOnInit() {
+    this.postSrv.getTaskByPic({ type: 'all', pic: localStorage.getItem('userId') },
+      (res: any) => {
+        if (res) {
+          this.listAss = res.data.tasks;
+          //handle data to chart
+          this.processData(this.listAss);
+        }
+      })
+  }
+
+  processData(data: any){
+    console.log(data);
+    for(let i=0; i < data.length; i++){
+      if(data[i].status == 'doing') this.valueStatus[0]++;
+      if(data[i].status == 'waiting') this.valueStatus[1]++;
+      if(data[i].status == 'done') this.valueStatus[2]++;
+      if(data[i].status == 'pending') this.valueStatus[3]++;
+      if(data[i].status == 'cancel') this.valueStatus[4]++;
+    }
+    console.log(this.valueStatus);
     this.chartOptions = {
       series: [
         {
           name: "Quantity",
-          data: [21, 22, 10, 28]
+          data: this.valueStatus
         }
       ],
       chart: {
@@ -62,6 +89,7 @@ export class ColumnHomeComponent {
         }
       },
       colors: [
+        "#1890FF",
         "#1890FF",
         "#52C41A",
         "#FEB019",
@@ -85,6 +113,7 @@ export class ColumnHomeComponent {
       xaxis: {
         categories: [
           "Doing",
+          "Waiting",
           "Done",
           "Pending",
           "Cancel",
@@ -92,6 +121,7 @@ export class ColumnHomeComponent {
         labels: {
           style: {
             colors: [
+              "#008FFB",
               "#008FFB",
               "#00E396",
               "#FEB019",
@@ -106,7 +136,7 @@ export class ColumnHomeComponent {
         }
       },
       title: {
-        text: "Status of my tasks",
+        text: "Status of my tasks recently",
         align: "center",
         margin: 40,
         style: {

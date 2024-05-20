@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class CardAssingmentComponent {
   @Input() data: any;
+
+  ngOnInit(){
+    // console.log(this.data);
+  }
 }

@@ -3,13 +3,17 @@
         <div class="title"><span class="logo-script">Space</span> Assignments</div>
 
         <div>
-            <nz-select [(ngModel)]="typeAssignment" nzSize="large" class="mg-r-20">
-                <nz-option nzValue="doing" nzLabel="Doing"></nz-option>
-                <nz-option nzValue="done" nzLabel="Done"></nz-option>
-                <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
-                <nz-option nzValue="cancel" nzLabel="Cancel"></nz-option>
-                <nz-option nzValue="all" nzLabel="All"></nz-option>
-            </nz-select>
+            <nz-spin [nzSpinning]="loading" nzSize="large">
+                <nz-select [(ngModel)]="typeAssignment" (ngModelChange)="getData(typeAssignment)" nzSize="large"
+                    class="mg-r-20">
+                    <nz-option nzValue="doing" nzLabel="Doing"></nz-option>
+                    <nz-option nzValue="waiting" nzLabel="Waiting"></nz-option>
+                    <nz-option nzValue="done" nzLabel="Done"></nz-option>
+                    <nz-option nzValue="pending" nzLabel="Pending"></nz-option>
+                    <nz-option nzValue="cancel" nzLabel="Cancel"></nz-option>
+                    <nz-option nzValue="all" nzLabel="All"></nz-option>
+                </nz-select>
+            </nz-spin>
         </div>
     </div>
 
@@ -24,8 +28,23 @@
 
     <div class="mg-t-20 assignment-list">
         <div class="assignment-item" *ngFor="let assignment of listAssignment"
-            routerLink="/assignment/{{assignment.content == 'owner' ? 'owner' : 'detail'}}/{{assignment.postid}}">
+            routerLink="/assignment/detail/{{assignment.postId}}">
             <app-card-assingment [data]="assignment"></app-card-assingment>
+        </div>
+
+        <div *ngIf="listAssignment.length == 0">
+            <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+                <ng-template #contentTpl>
+                    <span>
+                        Empty
+                        <span style="color: var(--primary-color);">Task</span>
+                    </span>
+                </ng-template>
+                <ng-template #footerTpl>
+                    <button nz-button nzType="primary" routerLink="/">Back to Home Page</button>
+                </ng-template>
+            </nz-empty>
         </div>
     </div>
 </div>

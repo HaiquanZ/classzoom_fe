@@ -41,7 +41,8 @@ export const environment = {
             GET_POST_BY_GROUPID: '/group/post',
             UPDATE_TIMELINE: '/assignment/phase/update',
             CREATE_TASK: '/assignment/task/create',
-            UPDATE_TASK: '/assignment/task/update'
+            UPDATE_TASK: '/assignment/task/update',
+            GET_TASK_BY_PIC: '/assignment/task/pic'
         }
     }
 };
