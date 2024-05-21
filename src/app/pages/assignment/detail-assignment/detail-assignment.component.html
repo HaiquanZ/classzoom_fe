@@ -1,18 +1,18 @@
 <div class="pd-l-20 pd-r-20">
     <div>
-        <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="{{assignmentInfo.info.name}}"
+        <nz-page-header class="site-page-header" (nzBack)="onBack()" nzBackIcon nzTitle="{{assignmentInfo?.info?.name}}"
             nzSubtitle="Detail assignment"></nz-page-header>
 
         <div class="row" style="align-items: center;">
             <div class="col-12 col-sm-7">
                 <div>
-                    {{ assignmentInfo.info.content}}
+                    {{ assignmentInfo?.info?.content}}
                 </div>
                 <div class="mg-t-10">
-                    <h4>Project is init at: <span style="color: var(--primary-color);">{{assignmentInfo.info.createdAt |
+                    <h4>Project is init at: <span style="color: var(--primary-color);">{{assignmentInfo?.info?.createdAt |
                             date}}</span></h4>
                     <h4>Due to: <span style="color: var(--primary-color);">{{
-                            assignmentInfo.steps[assignmentInfo.steps.length - 1].end | date }}</span></h4>
+                           DueTo ? (DueTo | date) : 'Not Update'  }}</span></h4>
                 </div>
             </div>
             <div class="col-12 col-sm-5">
@@ -45,7 +45,7 @@
             scheduled yet
         </div>
         <nz-steps [nzCurrent]="foundIndex-1">
-            <nz-step *ngFor="let item of assignmentInfo.steps" (click)="changeStep(item.id)"
+            <nz-step *ngFor="let item of assignmentInfo?.steps" (click)="changeStep(item.id)"
                 nzTitle="{{item.no < foundIndex ? 'Finished' : (item.no > foundIndex ? 'Waiting' : 'In Progress')}}"
                 nzDescription="{{item.name}}"></nz-step>
             <!-- <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
@@ -61,45 +61,47 @@
                 <h2 style="color: var(--primary-color); font-weight: 400; cursor: pointer;" (click)="createTask()">Add task</h2>
             </div>
             <nz-list class="demo-loadmore-list" [nzLoading]="loading">
-                <nz-list-item *ngFor="let item of tasks" class="pd-l-10 pd-r-10">
-                    <nz-list-item-meta
-                        nzAvatar="{{item.avtPic || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}}"
-                        nzDescription="{{item.name}}">
-                        <nz-list-item-meta-title>
-                            <div style="color: var(--primary-color);">
-                                PIC: {{item.namePic}}
-                            </div>
-                        </nz-list-item-meta-title>
-                    </nz-list-item-meta>
-                    <div>
+               <div *ngIf="tasks.length != 0">
+                    <nz-list-item *ngFor="let item of tasks" class="pd-l-10 pd-r-10">
+                        <nz-list-item-meta
+                            nzAvatar="{{item.avtPic || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}}"
+                            nzDescription="{{item.name}}">
+                            <nz-list-item-meta-title>
+                                <div style="color: var(--primary-color);">
+                                    PIC: {{item.namePic}}
+                                </div>
+                            </nz-list-item-meta-title>
+                        </nz-list-item-meta>
                         <div>
-                            Status:
-                            <span *ngIf="item.status == 'waiting'" style="color: var(--primary-color);">
-                                Waiting
-                            </span>
-                            <span *ngIf="item.status == 'doing'" style="color: var(--primary-color);">
-                                Doing
-                            </span>
-                            <span *ngIf="item.status == 'done'" style="color: var(--success-weight);">
-                                Done
-                            </span>
-                            <span *ngIf="item.status == 'pending'" style="color: var(--warning-weight);">
-                                Pending
-                            </span>
-                            <span *ngIf="item.status == 'cancel'" style="color: var(--error-weight);">
-                                Cancel
-                            </span>
+                            <div>
+                                Status:
+                                <span *ngIf="item.status == 'waiting'" style="color: var(--primary-color);">
+                                    Waiting
+                                </span>
+                                <span *ngIf="item.status == 'doing'" style="color: var(--primary-color);">
+                                    Doing
+                                </span>
+                                <span *ngIf="item.status == 'done'" style="color: var(--success-weight);">
+                                    Done
+                                </span>
+                                <span *ngIf="item.status == 'pending'" style="color: var(--warning-weight);">
+                                    Pending
+                                </span>
+                                <span *ngIf="item.status == 'cancel'" style="color: var(--error-weight);">
+                                    Cancel
+                                </span>
+                            </div>
+    
+                            <div style="color: var(--gray-color);">
+                                Message: {{item.message}}
+                            </div>
+    
                         </div>
-
-                        <div style="color: var(--gray-color);">
-                            Message: {{item.message}}
-                        </div>
-
-                    </div>
-                    <ul nz-list-item-actions>
-                        <nz-list-item-action><a (click)="edit(item)">Detail and Edit</a></nz-list-item-action>
-                    </ul>
-                </nz-list-item>
+                        <ul nz-list-item-actions>
+                            <nz-list-item-action><a (click)="edit(item)">Detail and Edit</a></nz-list-item-action>
+                        </ul>
+                    </nz-list-item>
+               </div>
 
                 <nz-empty *ngIf="tasks.length == 0" nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
                     [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">

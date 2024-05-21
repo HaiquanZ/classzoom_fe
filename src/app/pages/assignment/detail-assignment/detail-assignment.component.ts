@@ -33,6 +33,7 @@ export class DetailAssignmentComponent {
   loading: boolean = false;
   tasks: any[] = [];
   stepId: any;
+  DueTo: any;
 
   constructor(
     private modalService: NzModalService,
@@ -45,6 +46,11 @@ export class DetailAssignmentComponent {
     this.assignmentId = this.route.snapshot.paramMap.get('id');
     this.getMember();
     this.getData();
+    if(this.assignmentInfo.steps.length > 1){
+      this.DueTo = this.assignmentInfo?.steps[this.assignmentInfo?.steps?.length - 1].end;
+    }else{
+      this.DueTo = null;
+    }
   }
 
   getData() {
