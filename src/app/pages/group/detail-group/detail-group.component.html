@@ -13,7 +13,11 @@
     <div class="col-12 col-sm-4 mg-t-20">
         <h2 style="text-align: center;">{{groupInfo.name}}</h2>
         <div nz-row nzJustify="space-between" nzAlign="middle" class="mg-t-15">
-            <input style="width: 80% !important;" nz-input placeholder="Enter mail to add member" type="text" />
+            <nz-select nzMode="tags" style="width: 280px;" nzShowSearch nzAllowClear nzPlaceHolder="Enter mail or user name" [(ngModel)]="inputMail">
+                <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+                <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+                <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+            </nz-select>
             <button nz-button nzType="primary">
                 <span nz-icon nzType="user-add" nzTheme="outline" style="font-size: 24px; cursor: pointer;">
                 </span>
@@ -31,7 +35,7 @@
                 <span nz-icon nzType="edit" nzTheme="outline"></span>
                 <span>Post</span>
             </button>
-            <button nz-button class="btn-right"
+            <button nz-button class="btn-right" (click)="handleClickFile()"
                 style="font-weight: 400; padding-left: 15px; padding-right: 15px; display: flex; align-items: center; font-size: 14px;">
                 <span nz-icon nzType="file" nzTheme="outline"></span>
                 <span>File</span>
@@ -46,13 +50,14 @@
         <div class="mg-t-15">
             <h3>Member</h3>
             <nz-list nzItemLayout="horizontal">
-                <nz-list-item *ngFor="let item of groupInfo.members" style="background-color: #fff;" class="pd-l-10 pd-r-10">
+                <nz-list-item *ngFor="let item of groupInfo.members" style="background-color: #fff;"
+                    class="pd-l-10 pd-r-10">
                     <nz-list-item-meta nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
                         nzDescription="{{item.name}}">
                         <nz-list-item-meta-title>
                             {{item.isAdmin ? 'Admin' : 'Member'}}
                         </nz-list-item-meta-title>
-                        
+
                     </nz-list-item-meta>
                     <ul nz-list-item-actions>
                         <nz-list-item-action style="cursor: pointer;">View profile</nz-list-item-action>

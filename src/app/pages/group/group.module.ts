@@ -12,6 +12,10 @@ import { CommentComponent } from './comment/comment.component';
 import { PostAssignmentComponent } from './post-assignment/post-assignment.component';
 import { DeleteGroupComponent } from './delete-group/delete-group.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { FileComponent } from './file/file.component';
+import { NewFolderComponent } from './new-folder/new-folder.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
+import { DeleteFileComponent } from './delete-file/delete-file.component';
 
 
 
@@ -25,6 +29,10 @@ import { CreatePostComponent } from './create-post/create-post.component';
     PostAssignmentComponent,
     DeleteGroupComponent,
     CreatePostComponent,
+    FileComponent,
+    NewFolderComponent,
+    UploadFileComponent,
+    DeleteFileComponent,
   ],
   imports: [
     CommonModule,

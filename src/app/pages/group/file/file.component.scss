@@ -1,0 +1,26 @@
+.title{
+    margin-top: 2rem;
+    font-size: 30px;
+    font-weight: 400;
+    text-align: center;
+}
+
+button{
+    font-size: 14px;
+    font-weight: 400;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+nz-breadcrumb-item:hover{
+    color: var(--primary-color);
+}
+
+.delete-icon span[nzType='delete']:hover{
+    cursor: pointer;
+    color: var(--error-weight);
+}
+
+.delete-icon span[nzType='download']:hover{
+    cursor: pointer;
+    color: var(--success-weight);
+}

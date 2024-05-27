@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { GroupService } from 'src/app/services/group.service';
 import { PostService } from 'src/app/services/post.service';
@@ -21,9 +21,11 @@ export class DetailGroupComponent {
   listPost: any[] = [];
   isEmptyPost: boolean = false;
   modalRefAnt?: NzModalRef;
+  inputMail: string = '';
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private groupSrv: GroupService,
     private postSrv: PostService,
     private modalService: NzModalService,
@@ -109,5 +111,9 @@ export class DetailGroupComponent {
         this.getPost(true);
       }
     })
+  }
+
+  handleClickFile(){
+    this.router.navigate(['/group/file/' + this.groupId]);
   }
 }
