@@ -1,0 +1,30 @@
+<div class="mg-l-25 mg-r-25 mg-t-25">
+    <h2>Follow Assignment</h2>
+
+    <div class="overview mg-t-30">
+        <div class="block-item pd-l-25 pd-r-25">
+            <h4>Progress assignment</h4>
+            <nz-progress nz-tooltip [nzPercent]="60"
+                [nzSuccessPercent]="30"></nz-progress>
+            <div>Now in step 2</div>
+        </div>
+        <div class="block-item item-second">
+            <div nz-row nzJustify="center" nzAlign="middle" style="background-color: var(--success-light); border-radius: 50%; height: 45px; width: 45px;" class="mg-r-20">
+                <span style="font-size: 24px; color: var(--success-weight);" nz-icon nzType="usergroup-delete" nzTheme="outline"></span>
+            </div>
+            <div>
+                <div style="color: var(--success-weight); font-size: 18px; font-weight: 500;">10 Members</div>
+                <div>in this assignment</div>
+            </div>
+        </div>
+        <div class="block-item item-second">
+            <div nz-row nzJustify="center" nzAlign="middle" style="background-color: var(--error-light); border-radius: 50%; height: 45px; width: 45px;" class="mg-r-20">
+                <span style="font-size: 24px; color: var(--error-weight);" nz-icon nzType="exclamation" nzTheme="outline"></span>
+            </div>
+            <div>
+                <div style="color: var(--error-weight); font-size: 18px; font-weight: 500;">10 Due</div>
+                <div>in the next 3 days</div>
+            </div> 
+        </div>
+    </div>
+</div>

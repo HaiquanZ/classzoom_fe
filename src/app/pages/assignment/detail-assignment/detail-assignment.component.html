@@ -5,15 +5,22 @@
 
         <div class="row" style="align-items: center;">
             <div class="col-12 col-sm-7">
+                <h3 nz-typography style="color: var(--primary-color);">Overview</h3>
                 <div>
                     {{ assignmentInfo?.info?.content}}
                 </div>
                 <div class="mg-t-10">
-                    <h4>Project is init at: <span style="color: var(--primary-color);">{{assignmentInfo?.info?.createdAt |
+                    <h4>Project is init at: <span style="color: var(--primary-color);">{{assignmentInfo?.info?.createdAt
+                            |
                             date}}</span></h4>
                     <h4>Due to: <span style="color: var(--primary-color);">{{
-                           DueTo ? (DueTo | date) : 'Not Update'  }}</span></h4>
+                            DueTo ? (DueTo | date) : 'Not Update' }}</span></h4>
                 </div>
+
+                <button (click)="viewDetail()" class="mg-t-15" nz-button nzType="default"
+                    style="font-weight: 400; font-size: 14px;">
+                    See progress
+                </button>
             </div>
             <div class="col-12 col-sm-5">
                 <div>
@@ -58,10 +65,11 @@
         <div class="col-12 col-sm-7">
             <div nz-row nzJustify="space-between">
                 <h2>Sub task</h2>
-                <h2 style="color: var(--primary-color); font-weight: 400; cursor: pointer;" (click)="createTask()">Add task</h2>
+                <h2 style="color: var(--primary-color); font-weight: 400; cursor: pointer;" (click)="createTask()">Add
+                    task</h2>
             </div>
             <nz-list class="demo-loadmore-list" [nzLoading]="loading">
-               <div *ngIf="tasks.length != 0">
+                <div *ngIf="tasks.length != 0">
                     <nz-list-item *ngFor="let item of tasks" class="pd-l-10 pd-r-10">
                         <nz-list-item-meta
                             nzAvatar="{{item.avtPic || 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'}}"
@@ -91,19 +99,20 @@
                                     Cancel
                                 </span>
                             </div>
-    
+
                             <div style="color: var(--gray-color);">
                                 Message: {{item.message}}
                             </div>
-    
+
                         </div>
                         <ul nz-list-item-actions>
                             <nz-list-item-action><a (click)="edit(item)">Detail and Edit</a></nz-list-item-action>
                         </ul>
                     </nz-list-item>
-               </div>
+                </div>
 
-                <nz-empty *ngIf="tasks.length == 0" nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                <nz-empty *ngIf="tasks.length == 0"
+                    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
                     [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
                     <ng-template #contentTpl>
                         <span>

@@ -3,6 +3,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { NewFolderComponent } from '../new-folder/new-folder.component';
 import { UploadFileComponent } from '../upload-file/upload-file.component';
 import { DeleteFileComponent } from '../delete-file/delete-file.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-file',
@@ -12,13 +13,20 @@ import { DeleteFileComponent } from '../delete-file/delete-file.component';
 export class FileComponent {
 
   modalRefAnt?: NzModalRef;
+  groupId: any;
 
   constructor(
-    private modalService: NzModalService
+    private modalService: NzModalService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
-  onBack() {
+  ngOnInit(){
+    this.groupId = this.route.snapshot.paramMap.get('id');
+  }
 
+  onBack() {
+    this.router.navigate(['/group/detail/' + this.groupId]);
   }
 
   expandSet = new Set<number>();
@@ -62,7 +70,7 @@ export class FileComponent {
       nzContent: NewFolderComponent,
       nzFooter: null,
       nzData: null,
-      nzWidth: 600,
+      nzWidth: 500,
       nzCentered: true
     })
   }
@@ -84,7 +92,7 @@ export class FileComponent {
       nzContent: DeleteFileComponent,
       nzFooter: null,
       nzData: null,
-      nzWidth: 600,
+      nzWidth: 500,
       nzCentered: true
     })
   }

@@ -89,7 +89,7 @@ export class DetailGroupComponent {
       nzContent: DeleteGroupComponent,
       nzFooter: null,
       nzData: {groupId: this.groupId},
-      nzWidth: 600,
+      nzWidth: 500,
       nzCentered: true
     })
   }

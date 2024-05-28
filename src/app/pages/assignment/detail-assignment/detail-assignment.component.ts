@@ -4,7 +4,7 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { DetailSubTaskComponent } from '../detail-sub-task/detail-sub-task.component';
 import { UpdateAssignmentComponent } from '../update-assignment/update-assignment.component';
 import { PostService } from 'src/app/services/post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GroupService } from 'src/app/services/group.service';
 import { CreateTaskComponent } from '../create-task/create-task.component';
 
@@ -39,7 +39,8 @@ export class DetailAssignmentComponent {
     private modalService: NzModalService,
     private postSrv: PostService,
     private route: ActivatedRoute,
-    private groupSrv: GroupService
+    private groupSrv: GroupService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -163,5 +164,9 @@ export class DetailAssignmentComponent {
         this.changeStep(this.stepId);
       }
     })
+  }
+
+  viewDetail(){
+    this.router.navigate(['/assignment/progress/' + this.assignmentId]);
   }
 }

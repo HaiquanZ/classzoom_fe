@@ -1,0 +1,16 @@
+.overview{
+    display: grid;
+    grid-template-columns: 1.2fr .5fr .5fr;
+    gap: 20px;
+}
+.item-second{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.block-item{
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    border: .5px solid var(--gray-color);
+    background-color: #fff;
+}

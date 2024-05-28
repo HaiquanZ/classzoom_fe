@@ -12,6 +12,7 @@ import { UpdateAssignmentComponent } from './update-assignment/update-assignment
 import { ChartModule } from 'src/app/component/chart/chart.module';
 import { CardModule } from 'src/app/component/card/card.module';
 import { CreateTaskComponent } from './create-task/create-task.component';
+import { ProgressComponent } from './progress/progress.component';
 
 
 
@@ -23,6 +24,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
     ChartTimelineComponent,
     UpdateAssignmentComponent,
     CreateTaskComponent,
+    ProgressComponent,
   ],
   imports: [
     CommonModule,

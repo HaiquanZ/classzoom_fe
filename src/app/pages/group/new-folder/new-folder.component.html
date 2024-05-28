@@ -1,1 +1,16 @@
-<p>new-folder works!</p>
+<div>
+    <h4 nz-typography>Create a folder</h4>
+    <form nz-form nzLayout="vertical" [formGroup]="createForm" class="mg-t-20 mg-b-20">
+        <nz-form-item>
+            <nz-form-label nzRequired>Name:</nz-form-label>
+            <nz-form-control nzHasFeedback nzErrorTip="Please input your content">
+                <input formControlName="name" nz-input placeholder="Enter name a folder"/>
+            </nz-form-control>
+        </nz-form-item>
+
+        <div nz-row nzJustify="end">
+            <button nz-button (click)="close($event)" nzNoColon="true">Close</button>
+            <button nz-button nzType="primary" type="submit" style="margin-left: 2rem;" (click)="create()">Create</button>
+        </div>
+    </form>
+</div>

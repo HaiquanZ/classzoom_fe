@@ -24,3 +24,7 @@ nz-breadcrumb-item:hover{
     cursor: pointer;
     color: var(--success-weight);
 }
+.item-hover:hover{
+    color: var(--primary-color) !important;
+    cursor: pointer;
+}
