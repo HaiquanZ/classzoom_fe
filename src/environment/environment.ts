@@ -8,7 +8,8 @@ export const environment = {
             LOGIN: '/user/login',
             REGISTER: '/user/register',
             FORGOT_PASSWORD: '/user/forgot-password',
-            CONFIRM_OTP: '/user/confirm-otp'
+            CONFIRM_OTP: '/user/confirm-otp',
+            SEARCH_USER: '/user/search'
         },
         calendar: {
             GET_NOTE_MONTH: '/user/calendar/month',
@@ -23,8 +24,13 @@ export const environment = {
             DELETE_GROUP: '/group',
             GET_MEMBERS: '/groups',
             GET_MEMBERS_BY_POST: '/group/members-post',
-            ADD_MEMBER: '/group/member',
-            GET_DETAIL: '/group/detail'
+            GET_DETAIL: '/group/detail',
+            GET_FILE: '/group/file',
+            DOWNLOAD_FILE: '/group/download',
+            UPLOAD_FILE: '/group/file',
+            DELETE_FILE: '/group/file',
+            ADD_MEMBER: '/group/add-member',
+            DELETE_MEMBER: '/group/member',
         },
         comment: {
             CREATE_COMMENT: '/comment',

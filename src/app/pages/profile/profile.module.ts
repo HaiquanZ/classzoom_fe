@@ -5,13 +5,15 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { AntdModule } from 'src/app/component/antd/antd.module';
 import { UpdateInfoComponent } from './update-info/update-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UploadComponent } from './upload/upload.component';
 
 
 
 @NgModule({
   declarations: [
     YourProfileComponent,
-    UpdateInfoComponent
+    UpdateInfoComponent,
+    UploadComponent
   ],
   imports: [
     CommonModule,

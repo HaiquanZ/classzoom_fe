@@ -12,6 +12,7 @@ export class ListAssignmentComponent {
   listAssignment: any[] = [];
   typeAssignment = 'all';
   loading: boolean = false;
+  background = `background-image: url(https://i.pinimg.com/736x/6e/51/ab/6e51abfb7cd9d5b6a58ca04ab3aba764.jpg); `
 
   constructor(
     private router: Router,

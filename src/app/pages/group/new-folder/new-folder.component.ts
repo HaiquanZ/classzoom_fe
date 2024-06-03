@@ -13,21 +13,28 @@ export class NewFolderComponent {
     private modal: NzModalRef<NewFolderComponent>,
     private fb: NonNullableFormBuilder,
     @Inject(NZ_MODAL_DATA) public data: any,
-  ){}
+  ) { }
 
   createForm: FormGroup<{
     name: FormControl<string>;
   }> = this.fb.group({
-    name: ['',[Validators.required]]
+    name: ['', [Validators.required]]
   });
 
-  close(e: any){
+  close(e: any) {
     this.modal.close();
   }
 
-  create(){
+  create() {
     if (this.createForm.valid) {
-      
+      this.data.files.push();
+      let filePath = 'File/';
+      filePath = filePath + this.data.groupId;
+      this.data.path.forEach((item: any) => filePath += ('/' + item));
+      filePath += '/' + this.createForm.value.name + '/';
+      this.data.files.push({ name: filePath, time: new Date() })
+      this.modal.close(true)
+      // console.log(filePath);
     } else {
       Object.values(this.createForm.controls).forEach(control => {
         if (control.invalid) {

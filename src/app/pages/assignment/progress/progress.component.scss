@@ -14,3 +14,11 @@
     border: .5px solid var(--gray-color);
     background-color: #fff;
 }
+.content-progress{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: .8fr 1fr;
+}
+.content-progress div{
+    background-color: #fff;
+}

@@ -1,0 +1,13 @@
+<nz-upload nzType="drag" [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
+    <p class="ant-upload-drag-icon">
+        <span nz-icon nzType="inbox"></span>
+    </p>
+    <p class="ant-upload-text">Click or drag image to this area to upload</p>
+    <p class="ant-upload-hint">
+        Support for a single upload. Strictly prohibit from uploading important images.
+    </p>
+</nz-upload>
+
+<div nz-row nzAlign="middle" nzJustify="end" class="mg-b-20 mg-t-25">
+    <button nz-button nzType="primary" type="submit" style="font-weight: 400;" (click)="upload()">Upload</button>
+</div>

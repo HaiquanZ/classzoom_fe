@@ -5,6 +5,8 @@ import { GroupService } from 'src/app/services/group.service';
 import { PostService } from 'src/app/services/post.service';
 import { DeleteGroupComponent } from '../delete-group/delete-group.component';
 import { CreatePostComponent } from '../create-post/create-post.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-detail-group',
@@ -22,6 +24,9 @@ export class DetailGroupComponent {
   isEmptyPost: boolean = false;
   modalRefAnt?: NzModalRef;
   inputMail: string = '';
+  keyword: string = '';
+  listUser: any[] = [];
+  listOfSelectedValue: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +34,11 @@ export class DetailGroupComponent {
     private groupSrv: GroupService,
     private postSrv: PostService,
     private modalService: NzModalService,
+    private authSrv: AuthService,
+    private notificationSrv: NotificationService
   ) {
     this.groupId = this.route.snapshot.paramMap.get('id');
+    this.searchUser();
   }
 
   ngOnInit() {
@@ -115,5 +123,46 @@ export class DetailGroupComponent {
 
   handleClickFile(){
     this.router.navigate(['/group/file/' + this.groupId]);
+  }
+
+  searchUser(){
+    this.authSrv.searchUser({keyword: this.keyword}, 
+      (res: any) => {
+        if(res){
+          this.listUser = res.data.users.map((item: any) => ({value: item, label: item.name}));
+        }
+      }
+    )
+  }
+
+  addMember(){
+    for(let i=0; i < this.listOfSelectedValue.length;i++){
+      this.listOfSelectedValue[i].isAdmin = false;
+    }
+    this.groupSrv.addMember({users: this.listOfSelectedValue, groupId: this.groupId},
+      (res: any) => {
+        if(res){
+          this.notificationSrv.showSuccess(res.data.message, 'Success');
+          this.getData();
+          this.listOfSelectedValue = [];
+        }
+      }
+    )
+  }
+
+  showProfile(id: any){
+    console.log('ok');
+    this.router.navigate(['/profile/' + id]);
+  }
+
+  deleteMember(id: any){
+    this.groupSrv.deleteMember({ groupId: this.groupId, userId: id},
+      (res: any) => {
+        if(res){
+          this.notificationSrv.showSuccess('Delete successfully', 'Success');
+          this.getData();
+        }
+      }
+    )
   }
 }

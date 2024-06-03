@@ -42,4 +42,8 @@ export class PostAssignmentComponent {
       return `${diffInDays} days ago`;
     }
   }
+
+  showProfile(id: any){
+    this.router.navigate(['/profile/' + id]);
+  }
 }

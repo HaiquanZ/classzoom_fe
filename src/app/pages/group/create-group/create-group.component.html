@@ -4,14 +4,14 @@
             <nz-form-item>
                 <nz-form-label nzRequired nzFor="name">Name</nz-form-label>
                 <nz-form-control nzErrorTip="The input is not valid!">
-                    <input nz-input placeholder="Enter name of group" formControlName="name" id="name" class="input-name"/>
+                    <input nz-input placeholder="Enter name of group" formControlName="name" id="name"
+                        class="input-name" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-label nzFor="img">Avatar group</nz-form-label>
                 <nz-form-control>
-                    <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" [nzFileList]="fileList"
-                        (nzChange)="handleChange($event)">
+                    <nz-upload [nzFileList]="fileList" [nzBeforeUpload]="beforeUpload">
                         <button nz-button style="font-weight: 400;" nz-row nzAlign="middle">
                             <span nz-icon nzType="upload"></span>
                             Upload

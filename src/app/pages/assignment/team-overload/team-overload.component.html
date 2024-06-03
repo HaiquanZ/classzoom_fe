@@ -1,0 +1,74 @@
+<div class="mg-t-20 mg-l-20">
+    <h4 nz-typography>Team Workload</h4>
+    <nz-tabset>
+        <nz-tab nzTitle="Progress">
+            <nz-table #basicTable [nzData]="listOfData" [nzShowPagination]="false">
+                <thead>
+                    <tr>
+                        <th style="width: 250px;">Assignee</th>
+                        <th>Work status</th>
+                        <th>Count</th>
+                        <!-- <th>Action</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data" style="cursor: pointer;" (click)="openTaskOwner()">
+                        <td style="display: flex; align-items: center; width: 250px;">
+                            <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>
+                            <span class="mg-l-10">{{ data.name }}</span>
+                        </td>
+                        <td>
+                            <nz-progress [nzPercent]="data.age"></nz-progress>
+                        </td>
+                        <td>{{ data.address }}</td>
+                        <!-- <td>
+                            <a>Action 一 {{ data.name }}</a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <a>Delete</a>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-tab>
+        <nz-tab nzTitle="Table">
+            <nz-table #basicTable2 [nzData]="listTable" [nzShowPagination]="false">
+                <thead>
+                    <tr>
+                        <th style="width: 250px;">Name</th>
+                        <th style="background-color: #E6F7FF; color: var(--primary-color);">Waiting</th>
+                        <th style="background-color: #E6F7FF; color: var(--primary-color);">Doing</th>
+                        <th style="background-color: var(--success-light); color: var(--success-weight);">Done</th>
+                        <th style="background-color: var(--error-light); color: var(--error-weight);">Cancel</th>
+                        <th style="background-color: var(--warning-light); color: var(--warning-weight);">Pending</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable2.data" style="cursor: pointer;">
+                        <td style="display: flex; align-items: center; width: 250px;">
+                            <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>
+                            <span class="mg-l-10">{{ data.name }}</span>
+                        </td>
+                        <td>{{data.waiting}}</td>
+                        <td>{{data.doing}}</td>
+                        <td>{{data.done}}</td>
+                        <td>{{data.cancel}}</td>
+                        <td>{{data.pending}}</td>
+                        <!-- <td>
+                            <a>Action 一 {{ data.name }}</a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <a>Delete</a>
+                        </td> -->
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-tab>
+    </nz-tabset>
+</div>

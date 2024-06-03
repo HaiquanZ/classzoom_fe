@@ -1,6 +1,6 @@
 <div class="post-component mg-t-20">
     <div class="composer" nz-row nzAlign="middle">
-        <nz-avatar [nzSrc]="data.auth.avt" nzText="S" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+        <nz-avatar [nzSrc]="data.auth.avt" nzText="S" style="color:#f56a00; background-color:#fde3cf;" (click)="showProfile(data.auth.id)"></nz-avatar>
         <div>
             <div class="mg-l-10" style="font-weight: 600;">{{data.auth.name}}</div>
             <div class="mg-l-10" style="color: #BFC5D6">{{timeAgo(data.createdAt)}}</div>

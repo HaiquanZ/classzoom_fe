@@ -18,6 +18,7 @@ export class PostComponent {
 
   constructor(
     private postSrv: PostService,
+    private router: Router,
     private notificationSrv: NotificationService,
   ) { 
     this.data = {};
@@ -76,5 +77,9 @@ export class PostComponent {
     } else {
       return `${diffInDays} days ago`;
     }
+  }
+
+  showProfile(id: any){
+    this.router.navigate(['/profile/' + id]);
   }
 }

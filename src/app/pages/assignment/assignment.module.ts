@@ -13,6 +13,9 @@ import { ChartModule } from 'src/app/component/chart/chart.module';
 import { CardModule } from 'src/app/component/card/card.module';
 import { CreateTaskComponent } from './create-task/create-task.component';
 import { ProgressComponent } from './progress/progress.component';
+import { DonutChartComponent } from './donut-chart/donut-chart.component';
+import { TeamOverloadComponent } from './team-overload/team-overload.component';
+import { TaskOwnerComponent } from './task-owner/task-owner.component';
 
 
 
@@ -25,6 +28,9 @@ import { ProgressComponent } from './progress/progress.component';
     UpdateAssignmentComponent,
     CreateTaskComponent,
     ProgressComponent,
+    DonutChartComponent,
+    TeamOverloadComponent,
+    TaskOwnerComponent,
   ],
   imports: [
     CommonModule,

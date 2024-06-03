@@ -5,18 +5,28 @@ import { environment } from 'src/environment/environment';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
-  constructor() {}
+  constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add base URL
-    const url = `${environment.server.apiUrl}${req.url}`;
-
     // add token
     const token = localStorage.getItem('token'); // Thay thế bằng token của bạn
-    const headers = new HttpHeaders({
+    let headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/json'
     });
+
+
+    // add base URL
+    let url = '';
+    if (req.url == '/group/file' || req.url == '/group/download' || req.url == '/user/avatar' || req.url == '/user/cover') {
+      url = 'http://localhost:8004' + req.url;
+    } else {
+      url = `${environment.server.apiUrl}${req.url}`;
+    }
+
+    // if(req.url == '/group/file' && req.method == 'POST'){
+    //   headers = headers.set('Content-Type', 'multipart/form-data');
+    // }
 
     // Clone request
     const modifiedReq = req.clone({

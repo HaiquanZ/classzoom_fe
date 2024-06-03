@@ -1,7 +1,6 @@
 <div>
     <div>
-        <nz-upload nzType="drag" [nzMultiple]="true" nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            (nzChange)="handleChange($event)">
+        <nz-upload nzType="drag" [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
             <p class="ant-upload-drag-icon">
                 <span nz-icon nzType="inbox"></span>
             </p>

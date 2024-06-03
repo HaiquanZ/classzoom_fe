@@ -3,6 +3,9 @@ import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { UpdateInfoComponent } from '../update-info/update-info.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { NotificationService } from 'src/app/services/notification.service';
+import { UploadComponent } from '../upload/upload.component';
 
 @Component({
   selector: 'app-your-profile',
@@ -16,32 +19,37 @@ export class YourProfileComponent {
   profileInfo: any;
   userId: any;
   myId: any;
+  cover = 'background-image: url(https://i.imgur.com/Hj6VLrM.jpeg)';
+
 
   constructor(
     private modalService: NzModalService,
     private authSrv: AuthService,
-    private route: ActivatedRoute
-  ){
+    private route: ActivatedRoute,
+  ) {
     this.myId = localStorage.getItem('userId');
   }
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
     this.isOtherProfile = (String(this.myId) != String(this.userId));
+    this.getData();
+  }
+
+  getData() {
     this.authSrv.getInfoUser(this.userId,
       (res: any) => {
-        if(res){
+        if (res) {
           this.profileInfo = res.data.user;
+          this.cover = 'background-image: url(' + this.profileInfo.cover + ');';
         }
       }
     )
   }
 
   sizeAvt = 256;
-  cover = 'background-image: url(https://media-cdn-v2.laodong.vn/storage/newsportal/2024/3/7/1312582/St.jpg)';
-  img = 'https://yt3.googleusercontent.com/v-fHSvLthvdRlrtXeEbWc1JtuKPa7yUeG668kRdxbX6XAxcw_rlhf8wjRGxht_oepo49SkwnXA=s900-c-k-c0x00ffffff-no-rj';
 
-  openUpdate(){
+  openUpdate() {
     this.modalRefAnt = this.modalService.create({
       nzTitle: 'Update personal information',
       nzContent: UpdateInfoComponent,
@@ -52,10 +60,10 @@ export class YourProfileComponent {
     })
 
     this.modalRefAnt.afterClose.subscribe(status => {
-      if(status){
+      if (status) {
         this.authSrv.getInfoUser(this.userId,
           (res: any) => {
-            if(res){
+            if (res) {
               this.profileInfo = res.data.user;
               this.authSrv.saveInfoLogin(this.profileInfo, false);
             }
@@ -63,5 +71,24 @@ export class YourProfileComponent {
         )
       }
     })
+  }
+
+  openUpload(type: any) {
+    if (this.myId == this.userId) {
+      this.modalRefAnt = this.modalService.create({
+        nzTitle: 'Update Avatar/Cover',
+        nzContent: UploadComponent,
+        nzFooter: null,
+        nzData: { type: type },
+        nzWidth: 600,
+        nzCentered: true
+      })
+
+      this.modalRefAnt.afterClose.subscribe(status => {
+        if(status){
+          window.location.reload();
+        }
+      })
+    }
   }
 }

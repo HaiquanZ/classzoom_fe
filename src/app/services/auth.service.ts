@@ -207,4 +207,20 @@ export class AuthService {
       }
     )
   }
+
+  searchUser(option: any, callBack: Function): any{
+    this.http.get(environment.path.auth.SEARCH_USER, { observe: 'response', params: option }).subscribe(
+      (res: any) => {
+        if(res.body){
+          callBack(res.body);
+        }
+      },
+      err => {
+        if(callBack){
+          console.log(err);
+          callBack(null);
+        }
+      }
+    )
+  }
 }

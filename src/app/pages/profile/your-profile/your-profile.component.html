@@ -1,11 +1,12 @@
 <div class="view-profile">
     <div class="content-profile">
         <div>
-            <div class="cover" [style]="cover"></div>
+            <div class="cover" [style]="cover" (click)="openUpload('Cover')"></div>
 
             <div class="container-pr">
                 <div class="img-profile">
-                    <nz-avatar nzIcon="user" [nzSrc]="img" [nzSize]="sizeAvt"></nz-avatar>
+                    <nz-avatar nzIcon="user" [nzSrc]="profileInfo.avatar" [nzSize]="sizeAvt" (click)="openUpload('Avatar')"></nz-avatar>
+                   
                     <div class="text-statistical">
                         <div nz-row nzAlign="middle" nzJustify="space-between" class="statistical">
                             <div>{{profileInfo.solve}} Tasks solved</div>
